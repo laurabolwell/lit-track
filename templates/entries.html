@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lit Track</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
     {% for entry in entries %}
         {{ entry.entry_type_name}}<br>
         {{ entry.date }}<br>
@@ -15,5 +10,4 @@
         {{ entry.pages_read }}<br>
         {{ entry.comments }}<br>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
