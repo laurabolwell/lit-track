@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Register Here!</h3>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <div class="card-panel pink">
+            <!-- user type radio buttons -->
+            <div class="row">
+                <div class="col s3">
+                    <h5 class="white-text">I am a: </h5>
+                </div>
+                <div class="col s3">
+                    <label for="student-user">
+                        <input class="with-gap" id="student-user" name="user-type" type="radio" value="student-user"/>
+                        <span class="white-text">Student</span>
+                    </label>
+                </div>
+                <div class="col s3 text-white">
+                    <label for="parent-user">
+                        <input class="with-gap" id="parent-user" name="user-type" type="radio" value="parent-user"/>
+                        <span class="white-text">Parent</span>
+                    </label>
+                </div>
+                <div class="col s3 text-white">
+                    <label for="teacher-user">
+                        <input class="with-gap" id="teacher-user" name="user-type" type="radio" value="teacher-user"/>
+                        <span class="white-text">Teacher</span>
+                    </label>
+                </div>
+            </div>
+        <!-- first name and last name -->
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="fa-solid fa-user-plus white-text prefix"></i>
+                <input id="fname" name="fname" type="text" class="validate">
+                <label for="fname" class="white-text">First Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="lname" name="lname" type="text" class="validate">
+                <label for="lname" class="white-text">Last Name</label>
+            </div>
+        </div>
+        <!-- password -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-user-lock white-text prefix"></i>
+                <input id="password" name="password" type="password" class="validate">
+                <label for="password" class="white-text">Password</label>
+            </div>
+        </div>
+        <!-- class code -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-users white-text prefix"></i>
+                <input id="class-code" name="class-code" type="text" class="validate">
+                <label for="class-code" class="white-text">Class Code</label>
+            </div>
+        </div>
+        <!-- register button -->
+        <div class="row">
+            <button type="submit" class="col s12 btn-large white pink-text">
+                Register <i class="fa-solid fa-sign-in-alt"></i>
+            </button>
+        </div>
+</div>
+</form>
+</div>
+
+{% endblock %}
