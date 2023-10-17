@@ -11,10 +11,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>Lit Track</title>
+    <title>LitTrack</title>
 </head>
 
 <body>
+
+    <header>
+        <!-- top navbar -->
+        <nav class="nav-extended cyan darken-1">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('view_entries') }}" class="brand-logo">LitTrack</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('view_entries') }}">Home</a></li>
+                    <li><a href="#">Log a Reading Session</a></li>
+                    <li><a href="#">Log a Reading Assessment</a></li>
+                    <li><a href="#">Update Reading Levels</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Log Out</a></li>
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- mobile sidenav  -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{ url_for('view_entries') }}">Home</a></li>
+            <li><a href="#">Log a Reading Session</a></li>
+            <li><a href="#">Log a Reading Assessment</a></li>
+            <li><a href="#">Update Reading Levels</a></li>
+            <li><a href="#">Classes</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </header>
     <h1>LitTrack</h1>
     {% block content %}
     {% endblock%}
