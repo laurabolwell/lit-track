@@ -24,7 +24,7 @@
                     </label>
                 </div>
             </div> -->
-            <!-- first name and last name -->
+            <!-- username -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-user-plus white-text prefix"></i>
@@ -33,6 +33,7 @@
                     <label for="username" class="white-text">Username</label>
                 </div>
             </div>
+            <!-- first name and last name -->
             <div class="row">
                 <div class="input-field col s6">
                     <i class="fa-solid fa-user-plus white-text prefix"></i>
@@ -71,6 +72,15 @@
             </div>
         </div>
     </form>
+</div>
+
+<!-- Link to login page -->
+<div class="row">
+    <div class="col s12">
+        <p class="center-align">
+            Already registered? <a href="{{ url_for('login') }}" class="">Log In Here</a>
+        </p>
+    </div>
 </div>
 
 {% endblock %}
