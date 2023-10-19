@@ -7,15 +7,9 @@
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel pink">
             <!-- user type radio buttons -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col s3">
                     <h5 class="white-text">I am a: </h5>
-                </div>
-                <div class="col s3">
-                    <label for="student-user">
-                        <input class="with-gap" id="student-user" name="user-type" type="radio" value="student-user"/>
-                        <span class="white-text">Student</span>
-                    </label>
                 </div>
                 <div class="col s3 text-white">
                     <label for="parent-user">
@@ -29,43 +23,54 @@
                         <span class="white-text">Teacher</span>
                     </label>
                 </div>
+            </div> -->
+            <!-- first name and last name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-user-plus white-text prefix"></i>
+                    <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{5,15}%" class="validate" required>
+                    <label for="username" class="white-text">Username</label>
+                </div>
             </div>
-        <!-- first name and last name -->
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="fa-solid fa-user-plus white-text prefix"></i>
-                <input id="fname" name="fname" type="text" class="validate">
-                <label for="fname" class="white-text">First Name</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="fa-solid fa-user-plus white-text prefix"></i>
+                    <input id="fname" name="fname" type="text" minlength="2" maxlength="15" pattern="^[a-zA-Z]{2,15}%"
+                        class="validate">
+                    <label for="fname" class="white-text">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="lname" name="lname" type="text" minlength="2" maxlength="15" pattern="^[a-zA-Z]{2,15}%"
+                        class="validate">
+                    <label for="lname" class="white-text">Last Name</label>
+                </div>
             </div>
-            <div class="input-field col s6">
-                <input id="lname" name="lname" type="text" class="validate">
-                <label for="lname" class="white-text">Last Name</label>
+            <!-- password -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-user-lock white-text prefix"></i>
+                    <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{5,15}%" class="validate" required>
+                    <label for="password" class="white-text">Password</label>
+                </div>
+            </div>
+            <!-- class code -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-users white-text prefix"></i>
+                    <input id="reg-code" name="reg-code" type="text" class="validate">
+                    <label for="reg-code" class="white-text">Registration Code</label>
+                </div>
+            </div>
+            <!-- register button -->
+            <div class="row">
+                <button type="submit" class="col s12 btn-large white pink-text">
+                    Register <i class="fa-solid fa-sign-in-alt"></i>
+                </button>
             </div>
         </div>
-        <!-- password -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fa-solid fa-user-lock white-text prefix"></i>
-                <input id="password" name="password" type="password" class="validate">
-                <label for="password" class="white-text">Password</label>
-            </div>
-        </div>
-        <!-- class code -->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fa-solid fa-users white-text prefix"></i>
-                <input id="class-code" name="class-code" type="text" class="validate">
-                <label for="class-code" class="white-text">Class Code</label>
-            </div>
-        </div>
-        <!-- register button -->
-        <div class="row">
-            <button type="submit" class="col s12 btn-large white pink-text">
-                Register <i class="fa-solid fa-sign-in-alt"></i>
-            </button>
-        </div>
-</div>
-</form>
+    </form>
 </div>
 
 {% endblock %}
