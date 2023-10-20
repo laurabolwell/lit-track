@@ -6,24 +6,14 @@
 <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel pink">
-            <!-- user type radio buttons -->
-            <!-- <div class="row">
-                <div class="col s3">
-                    <h5 class="white-text">I am a: </h5>
+            <!-- registration code -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-users white-text prefix"></i>
+                    <input id="reg-code" name="reg-code" type="text" class="validate">
+                    <label for="reg-code" class="white-text">Registration Code</label>
                 </div>
-                <div class="col s3 text-white">
-                    <label for="parent-user">
-                        <input class="with-gap" id="parent-user" name="user-type" type="radio" value="parent-user"/>
-                        <span class="white-text">Parent</span>
-                    </label>
-                </div>
-                <div class="col s3 text-white">
-                    <label for="teacher-user">
-                        <input class="with-gap" id="teacher-user" name="user-type" type="radio" value="teacher-user"/>
-                        <span class="white-text">Teacher</span>
-                    </label>
-                </div>
-            </div> -->
+            </div>
             <!-- username -->
             <div class="row">
                 <div class="input-field col s12">
@@ -33,20 +23,6 @@
                     <label for="username" class="white-text">Username</label>
                 </div>
             </div>
-            <!-- first name and last name -->
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="fa-solid fa-user-plus white-text prefix"></i>
-                    <input id="fname" name="fname" type="text" minlength="2" maxlength="15" pattern="^[a-zA-Z]{2,15}%"
-                        class="validate">
-                    <label for="fname" class="white-text">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="lname" name="lname" type="text" minlength="2" maxlength="15" pattern="^[a-zA-Z]{2,15}%"
-                        class="validate">
-                    <label for="lname" class="white-text">Last Name</label>
-                </div>
-            </div>
             <!-- password -->
             <div class="row">
                 <div class="input-field col s12">
@@ -54,14 +30,6 @@
                     <input id="password" name="password" type="password" minlength="5" maxlength="15"
                         pattern="^[a-zA-Z0-9]{5,15}%" class="validate" required>
                     <label for="password" class="white-text">Password</label>
-                </div>
-            </div>
-            <!-- class code -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-users white-text prefix"></i>
-                    <input id="reg-code" name="reg-code" type="text" class="validate">
-                    <label for="reg-code" class="white-text">Registration Code</label>
                 </div>
             </div>
             <!-- register button -->
