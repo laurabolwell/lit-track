@@ -23,6 +23,13 @@ def view_entries():
     return render_template("entries.html", entries=entries)
 
 
+@app.route("/students", methods=["GET", "POST"])
+def students():
+# get the session user's students from the database
+    students = list(mongo.db.students.find())
+    return render_template("students.html", students=students)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel pink">
+            <h3 class="center-align white-text">
+                My Students
+            </h3>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    {% for student in students %}
+    <div class="col s12 m4">
+      <div class="card-panel center-align pink lighten-2">
+        {{ student.fname }}
+        {{ student.lname }}<br>
+        Current Reading Level: {{ student.reading_level }}<br>
+        {{ student.teacher }}
+        {{ student.parent }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}
