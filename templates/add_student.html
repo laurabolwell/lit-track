@@ -21,7 +21,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-book-open white-text prefix"></i>
-                <select id="reading_level" name="reading_level" class="validate">
+                <select id="reading_level" name="reading_level" class="validate" required>
                     <option value="" disabled selected>Select Current Reading Level</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-person-chalkboard white-text prefix"></i>
-                <select id="teacher" name="teacher" class="validate">
+                <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled selected>Select Teacher</option>
                     {% for teacher in teachers %}
                     <option value="{{ teacher.username }}">{{ teacher.title }} {{ teacher.surname }}
