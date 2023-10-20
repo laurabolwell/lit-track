@@ -111,7 +111,8 @@ def logout():
 
 @app.route("/add_student")
 def add_student():
-    return render_template("add_student.html")
+    teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
+    return render_template("add_student.html", teachers=teachers)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

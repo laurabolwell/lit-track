@@ -8,12 +8,55 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="fa-solid fa-user-circle white-text prefix"></i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix" class="white-text">First Name</label>
+                <input id="fname" name="fname" minlength="2" maxlength="15" type="text" class="validate" required>
+                <label for="fname" class="white-text">First Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone" class="white-text">Last Name</label>
+                <input id="lname" name="lname" minlength="2" maxlength="15" type="tel" class="validate" required>
+                <label for="lname" class="white-text">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-book-open white-text prefix"></i>
+                <select id="reading_level" name="reading_level" class="validate">
+                    <option value="" disabled selected>Select Current Reading Level</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="Free">Free Reader</option>
+                </select>
+                <label for="reading_level" class="white-text">Reading Level</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa-solid fa-person-chalkboard white-text prefix"></i>
+                <select id="teacher" name="teacher" class="validate">
+                    <option value="" disabled selected>Select Teacher</option>
+                    {% for teacher in teachers %}
+                    <option value="{{ teacher.title }}{{ teacher.surname }}">{{ teacher.title }} {{ teacher.surname }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <label for="teacher" class="white-text">Teacher</label>
             </div>
         </div>
     </form>
