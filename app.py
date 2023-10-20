@@ -109,8 +109,20 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_student")
+@app.route("/add_student", methods=["GET", "POST"])
 def add_student():
+    if request.method == "POST":
+        student = {
+            "fname": request.form.get("fname"),
+            "lname": request.form.get("lname"),
+            "reading_level": request.form.get("reading_level"),
+            "teacher": request.form.get("teacher"),
+            "parent": session["user"]
+        }
+        mongo.db.students.insert_one(student)
+        flash("Student Successfully Added")
+        return redirect(url_for("students"))
+        
     teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
     return render_template("add_student.html", teachers=teachers)
 

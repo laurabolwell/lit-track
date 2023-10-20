@@ -4,7 +4,7 @@
 <h2 class="center-align pink-text ">Add Student</h2>
 
 <div class="row card-panel pink">
-    <form class="col s12" method="POST" action="">
+    <form class="col s12" method="POST" action="{{ url_for('add_student') }}">
         <!-- student first and last names-->
         <div class="row">
             <div class="input-field col s6">
@@ -55,7 +55,7 @@
                 <select id="teacher" name="teacher" class="validate">
                     <option value="" disabled selected>Select Teacher</option>
                     {% for teacher in teachers %}
-                    <option value="{{ teacher.title }}{{ teacher.surname }}">{{ teacher.title }} {{ teacher.surname }}
+                    <option value="{{ teacher.username }}">{{ teacher.title }} {{ teacher.surname }}
                     </option>
                     {% endfor %}
                 </select>
