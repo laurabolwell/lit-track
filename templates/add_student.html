@@ -5,6 +5,7 @@
 
 <div class="row card-panel pink">
     <form class="col s12" method="POST" action="">
+        <!-- student first and last names-->
         <div class="row">
             <div class="input-field col s6">
                 <i class="fa-solid fa-user-circle white-text prefix"></i>
@@ -16,6 +17,7 @@
                 <label for="lname" class="white-text">Last Name</label>
             </div>
         </div>
+        <!-- current reading level selector-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-book-open white-text prefix"></i>
@@ -46,6 +48,7 @@
                 <label for="reading_level" class="white-text">Reading Level</label>
             </div>
         </div>
+        <!-- teacher name selector -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-person-chalkboard white-text prefix"></i>
@@ -57,6 +60,13 @@
                     {% endfor %}
                 </select>
                 <label for="teacher" class="white-text">Teacher</label>
+            </div>
+        </div>
+        <!-- submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large white pink-text">Add Student <i
+                        class="fa-solid fa-plus-square right"></i></button>
             </div>
         </div>
     </form>
