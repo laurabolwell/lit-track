@@ -126,6 +126,15 @@ def add_student():
     teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
     return render_template("add_student.html", teachers=teachers)
 
+
+@app.route("/edit_student/<student_id>", methods=["GET", "POST"])
+def edit_student(student_id):
+    student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
+
+    teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
+    return render_template("edit_student.html", student=student, teachers=teachers)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
