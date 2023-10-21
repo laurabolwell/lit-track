@@ -91,11 +91,11 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
+@app.route("/profile/<username>")
 def profile(username):
     #get the session user's username from the database
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        {"username": session["user"]})
     if session["user"]:
         return render_template("profile.html", username=username)
     return redirect(url_for("login"))
@@ -130,12 +130,13 @@ def add_student():
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
     if request.method == "POST":
+        parent = mongo.db.users.find_one({"username": session["user"]})["_id"]
         submit = {
             "fname": request.form.get("fname"),
             "lname": request.form.get("lname"),
             "reading_level": request.form.get("reading_level"),
             "teacher": request.form.get("teacher"),
-            "parent": session["user"]
+            "parent": parent
         }
         mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
         flash("Student Successfully Updated")
