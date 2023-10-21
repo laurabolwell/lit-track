@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h3 class="center-align">All Reading Sessions</h3>
+
 <ul class="collapsible popout">
     {% for reading_session in reading_sessions %}
     <li>
@@ -13,9 +15,7 @@
                 {% endif %}
                 {% endfor %}
             </strong>
-
-            Book: <strong>{{ reading_session.title }}</strong>
-            Date: <strong>{{ reading_session.date }}</strong>
+            <strong>{{ reading_session.date }}</strong>
             {% for user in users %}
             {% if reading_session.logged_by | string() == user._id | string() %}
             {% if user.user_type == "parent" %}
@@ -27,9 +27,9 @@
             {% endfor %}
         </div>
         <div class="collapsible-body">
+            Book: <strong>{{ reading_session.title }}</strong><br>
             Level: {{ reading_session.book_level }}<br>
-            Pages read: {{ reading_session.pages_read }}<br>
-            Comments: {{ reading_session.comments }}<br>
+            Comments: {{ reading_session.comment }}<br>
         </div>
     </li>
     {% endfor %}

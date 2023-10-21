@@ -4,10 +4,10 @@
 <h3 class="center-align">Log a Reading Session</h3>
 
 <div class="row card-panel pink">
-    <form class="col s12" method="POST" action="">
+    <form class="col s12" method="POST" action="{{ url_for('log_reading_session') }}">
         <!-- student name selector -->
         <div class="row">
-            <div class="input-field col s8">
+            <div class="input-field col s12 m8">
                 <i class="fa-solid fa-user white-text prefix"></i>
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled selected>Select Student</option>
@@ -18,68 +18,48 @@
                 </select>
                 <label for="student" class="white-text">Student</label>
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s12 m4">
                 <i class="fa-solid fa-calendar-days white-text prefix"></i>
                 <input id="date" name="date" type="text" class="datepicker validate" required>
                 <label for="date" class="white-text">Date</label>
             </div>
         </div>
-        <!-- book title-->
         <div class="row">
-            <div class="input-field col s12">
+            <!-- book title-->
+            <div class="input-field col s12 m8">
                 <i class="fa-solid fa-book white-text prefix"></i>
                 <input id="title" name="title" minlength="2" maxlength="30" type="text" class="validate" required>
                 <label for="title" class="white-text">Book Title</label>
             </div>
-        </div>
-        <!-- book level selector-->
-        <div class="row">
-            <div class="input-field col s12">
+            <!-- book level selector-->
+            <div class="input-field col s12 m4">
                 <i class="fa-solid fa-book-open white-text prefix"></i>
-                <select id="reading_level" name="reading_level" class="validate" required>
+                <select id="book_level" name="book_level" class="validate" required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
                     <option value="{{i}}">{{i}}</option>
                     {% endfor %}
-                    <option value="Free">Free Reader</option>
+                    <option value="Free">30+</option>
                 </select>
-                <label for="reading_level" class="white-text">Reading Level</label>
+                <label for="book_level" class="white-text">Reading Level</label>
             </div>
         </div>
         <!-- comments -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-comment white-text prefix"></i>
-                <textarea id="comments" name="comments" class="materialize-textarea"></textarea>
-                <label for="comments" class="white-text">Textarea</label>
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <label for="comment" class="white-text">Comment</label>
             </div>
         </div>
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large white pink-text">Add Student <i
+                <button type="submit" class="btn-large white pink-text">Log Reading Session<i
                         class="fa-solid fa-plus-square right"></i></button>
             </div>
         </div>
     </form>
 </div>
-
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fa-solid fa-book prefix"></i>
-                <input id="title" name="title" type="text" class="validate">
-                <label for="title">Book title</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="fa-solid fa-book prefix"></i>
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Telephone</label>
-            </div>
-        </div>
-    </form>
-</div>
-
 
 {% endblock %}

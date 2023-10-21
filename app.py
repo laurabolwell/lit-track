@@ -114,12 +114,13 @@ def logout():
 @app.route("/add_student", methods=["GET", "POST"])
 def add_student():
     if request.method == "POST":
+        parent = mongo.db.users.find_one({"username": session["user"]})["_id"]
         student = {
             "fname": request.form.get("fname"),
             "lname": request.form.get("lname"),
             "reading_level": request.form.get("reading_level"),
             "teacher": request.form.get("teacher"),
-            "parent": session["user"]
+            "parent": parent
         }
         mongo.db.students.insert_one(student)
         flash("Student Successfully Added")
@@ -148,8 +149,21 @@ def edit_student(student_id):
     return render_template("edit_student.html", student=student, teachers=teachers)
 
 
-@app.route("/log_reading_session")
+@app.route("/log_reading_session", methods=["GET", "POST"])
 def log_reading_session():
+    if request.method == "POST":
+        logged_by = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        reading_session = {
+            "student": request.form.get("student"),
+            "date": request.form.get("date"),
+            "title": request.form.get("title"),
+            "book_level": request.form.get("book_level"),
+            "comment": request.form.get("comment"),
+            "logged_by": logged_by
+        }
+        mongo.db.reading_sessions.insert_one(reading_session)
+        flash("Reading Session Successfully Added")
+        return redirect(url_for("view_reading_sessions"))
     students = mongo.db.students.find()
     return render_template("log_reading_session.html", students=students)
 
