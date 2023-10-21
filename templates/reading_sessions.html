@@ -14,7 +14,7 @@
                 {% endfor %}
             </strong>
 
-            Book: <strong>{{ reading_session.book_name }}</strong>
+            Book: <strong>{{ reading_session.title }}</strong>
             Date: <strong>{{ reading_session.date }}</strong>
             {% for user in users %}
             {% if reading_session.logged_by | string() == user._id | string() %}

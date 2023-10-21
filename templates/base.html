@@ -26,7 +26,7 @@
                     <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
                     {% if session.user %}
                         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a href="#">Log a Reading Session</a></li>
+                        <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
                         <li><a href="{{ url_for('students') }}">Students</a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
@@ -42,7 +42,7 @@
             <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-            <li><a href="#">Log a Reading Session</a></li>
+            <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
             <li><a href="{{ url_for('students') }}">Students</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}

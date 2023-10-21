@@ -148,6 +148,12 @@ def edit_student(student_id):
     return render_template("edit_student.html", student=student, teachers=teachers)
 
 
+@app.route("/log_reading_session")
+def log_reading_session():
+    students = mongo.db.students.find()
+    return render_template("log_reading_session.html", students=students)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
