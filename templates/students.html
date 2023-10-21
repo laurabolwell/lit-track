@@ -8,22 +8,24 @@
             <h3 class="center-align white-text">
                 My Students
             </h3>
+            <a href="{{ url_for('add_student' )}}" class="btn-floating btn-large white right"><i class="fa-solid fa-plus pink-text"></i></a>
         </div>
     </div>
 </div>
 
-<a href="{{ url_for('add_student' )}}" class="btn">Add Student</a>
-
 
 <div class="row">
     {% for student in students %}
-    <div class="col s12 m4">
+    <div class="col s12 m6">
       <div class="card-panel center-align pink lighten-2">
         {{ student.fname }}
         {{ student.lname }}<br>
         Current Reading Level: {{ student.reading_level }}<br>
         Teacher: {{ student.teacher }}<br>
-        Parent: {{ student.parent }}
+        Parent: {{ student.parent }}<br>
+        <a href="" class="btn-small white pink-text text-darken-3">View</a>
+        <a href="" class="btn-small white pink-text text-darken-3">Edit</a>
+        <a href="" class="btn-small white pink-text text-darken-3">Delete</a>
       </div>
     </div>
     {% endfor %}
