@@ -9,11 +9,11 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="fa-solid fa-user-circle white-text prefix"></i>
-                <input id="fname" name="fname" minlength="2" maxlength="15" type="text" class="validate" required>
+                <input id="fname" name="fname" minlength="2" maxlength="15" value="{{ student.fname }}" type="text" class="validate" required>
                 <label for="fname" class="white-text">First Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="lname" name="lname" minlength="2" maxlength="15" type="tel" class="validate" required>
+                <input id="lname" name="lname" minlength="2" maxlength="15" value="{{ student.lname }}" type="tel" class="validate" required>
                 <label for="lname" class="white-text">Last Name</label>
             </div>
         </div>
@@ -22,11 +22,19 @@
             <div class="input-field col s12">
                 <i class="fa-solid fa-book-open white-text prefix"></i>
                 <select id="reading_level" name="reading_level" class="validate" required>
-                    <option value="" disabled selected>Select Current Reading Level</option>
+                    <option value="" disabled>Select Current Reading Level</option>
                     {% for i in range(1, 31) %}
-                    <option value="{{i}}">{{i}}</option>
+                        {% if student.reading_level == i | string() %}
+                            <option value="{{i}}" selected>{{i}}</option>
+                        {% else %}
+                            <option value="{{i}}">{{i}}</option>
+                        {% endif %}
                     {% endfor %}
+                    {% if student.reading_level == "Free" %}
+                    <option value="Free" selected>Free Reader</option>
+                    {% else %}
                     <option value="Free">Free Reader</option>
+                    {% endif %}
                 </select>
                 <label for="reading_level" class="white-text">Reading Level</label>
             </div>
@@ -36,10 +44,13 @@
             <div class="input-field col s12">
                 <i class="fa-solid fa-person-chalkboard white-text prefix"></i>
                 <select id="teacher" name="teacher" class="validate" required>
-                    <option value="" disabled selected>Select Teacher</option>
+                    <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
-                    <option value="{{ teacher.username }}">{{ teacher.title }} {{ teacher.surname }}
-                    </option>
+                    {% if teacher.username == student.teacher %}
+                    <option value="{{ teacher.username }}" selected>{{ teacher.title }} {{ teacher.surname }}
+                        {% else %}
+                    <option value="{{ teacher.username }}">{{ teacher.title }} {{ teacher.surname }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="teacher" class="white-text">Teacher</label>
