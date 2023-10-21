@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ul class="collapsible popout">
+    {% for reading_session in reading_sessions %}
+    <li>
+        <div class="collapsible-header">
+            <i class="fa-solid fa-caret-down"></i>
+            <strong>
+                {% for student in students %}
+                {% if reading_session.student | string() == student._id | string() %}
+                {{ student.fname }} {{ student.lname }}
+                {% endif %}
+                {% endfor %}
+            </strong>
+
+            Book: <strong>{{ reading_session.book_name }}</strong>
+            Date: <strong>{{ reading_session.date }}</strong>
+            {% for user in users %}
+            {% if reading_session.logged_by | string() == user._id | string() %}
+            {% if user.user_type == "parent" %}
+            <i class="fa-solid fa-house"></i>
+            {% elif user.user_type == "teacher" %}
+            <i class="fa-solid fa-school"></i>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="collapsible-body">
+            Level: {{ reading_session.book_level }}<br>
+            Pages read: {{ reading_session.pages_read }}<br>
+            Comments: {{ reading_session.comments }}<br>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

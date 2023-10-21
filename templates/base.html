@@ -20,10 +20,10 @@
         <!-- top navbar -->
         <nav class="nav-extended cyan darken-1">
             <div class="nav-wrapper">
-                <a href="{{ url_for('view_entries') }}" class="brand-logo">LitTrack</a>
+                <a href="{{ url_for('view_reading_sessions') }}" class="brand-logo">LitTrack</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('view_entries') }}">Home</a></li>
+                    <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
                     {% if session.user %}
                         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                         <li><a href="#">Log a Reading Session</a></li>
@@ -39,7 +39,7 @@
 
         <!-- mobile sidenav  -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="{{ url_for('view_entries') }}">Home</a></li>
+            <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="#">Log a Reading Session</a></li>

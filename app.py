@@ -17,10 +17,12 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/view_entries")
-def view_entries():
-    entries = mongo.db.entries.find()
-    return render_template("entries.html", entries=entries)
+@app.route("/view_reading_sessions")
+def view_reading_sessions():
+    reading_sessions = list(mongo.db.reading_sessions.find())
+    users = list(mongo.db.users.find())
+    students = list(mongo.db.students.find())
+    return render_template("reading_sessions.html", reading_sessions=reading_sessions, users=users, students=students)
 
 
 @app.route("/students", methods=["GET", "POST"])

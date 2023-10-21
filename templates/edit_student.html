@@ -46,7 +46,7 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
-                    {% if teacher.username == student.teacher %}
+                    {% if teacher._id == student.teacher %}
                     <option value="{{ teacher._id }}" selected>{{ teacher.title }} {{ teacher.surname }}
                         {% else %}
                     <option value="{{ teacher._id }}">{{ teacher.title }} {{ teacher.surname }}</option>
