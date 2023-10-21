@@ -7,7 +7,7 @@
     <form class="col s12" method="POST" action="">
         <!-- student name selector -->
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s8">
                 <i class="fa-solid fa-user white-text prefix"></i>
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled selected>Select Student</option>
@@ -16,14 +16,19 @@
                     </option>
                     {% endfor %}
                 </select>
-                <label for="student" class="white-text">Teacher</label>
+                <label for="student" class="white-text">Student</label>
+            </div>
+            <div class="input-field col s4">
+                <i class="fa-solid fa-calendar-days white-text prefix"></i>
+                <input id="date" name="date" type="text" class="datepicker validate" required>
+                <label for="date" class="white-text">Date</label>
             </div>
         </div>
         <!-- book title-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-book white-text prefix"></i>
-                <input id="title" name="title" minlength="2" maxlength="15" type="text" class="validate" required>
+                <input id="title" name="title" minlength="2" maxlength="30" type="text" class="validate" required>
                 <label for="title" class="white-text">Book Title</label>
             </div>
         </div>
@@ -43,15 +48,12 @@
         </div>
         <!-- comments -->
         <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="comments" class="materialize-textarea"></textarea>
-                  <label for="comments">Textarea</label>
-                </div>
-              </div>
-            </form>
-          </div>
+            <div class="input-field col s12">
+                <i class="fa-solid fa-comment white-text prefix"></i>
+                <textarea id="comments" name="comments" class="materialize-textarea"></textarea>
+                <label for="comments" class="white-text">Textarea</label>
+            </div>
+        </div>
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">

@@ -1,6 +1,12 @@
 $(document).ready(function () {
   $('.sidenav').sidenav({ edge: "right" });
   $('select').formSelect();
+  $('.collapsible').collapsible();
+  $('.datepicker').datepicker({
+    format: "dd mmmm, yyyy",
+    yearRange: 0,
+    autoClose: true,
+  });
 // code taken from mini project walkthrough to validate dropdown form elements
   validateMaterializeSelect();
   function validateMaterializeSelect() {
@@ -29,5 +35,4 @@ $(document).ready(function () {
       }
     });
   }
-  $('.collapsible').collapsible();
 });
