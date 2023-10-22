@@ -186,6 +186,14 @@ def edit_reading_session(reading_session_id):
     return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
 
 
+@app.route("/delete_task/<reading_session_id>")
+def delete_reading_session(reading_session_id):
+    mongo.db.reading_sessions.delete_one({"_id": ObjectId()})
+    flash("Reading Session Successfully Deleted")
+    return redirect(url_for("view_reading_sessions"))
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
