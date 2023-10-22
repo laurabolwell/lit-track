@@ -141,7 +141,7 @@ def edit_student(student_id):
             "fname": request.form.get("fname"),
             "lname": request.form.get("lname"),
             "reading_level": request.form.get("reading_level"),
-            "teacher": request.form.get("teacher"),
+            "teacher": ObjectId(request.form.get("teacher")),
         }
         mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
         flash("Student Successfully Updated")
@@ -156,7 +156,7 @@ def log_reading_session():
     if request.method == "POST":
         logged_by = mongo.db.users.find_one({"username": session["user"]})["_id"]
         reading_session = {
-            "student": request.form.get("student"),
+            "student": ObjectId(request.form.get("student")),
             "date": request.form.get("date"),
             "title": request.form.get("title"),
             "book_level": request.form.get("book_level"),
@@ -174,7 +174,7 @@ def log_reading_session():
 def edit_reading_session(reading_session_id):
     if request.method == "POST":
         reading_session = {
-            "student": request.form.get("student"),
+            "student": ObjectId(request.form.get("student")),
             "date": request.form.get("date"),
             "title": request.form.get("title"),
             "book_level": request.form.get("book_level"),
