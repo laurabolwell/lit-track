@@ -171,7 +171,7 @@ def log_reading_session():
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])
 def edit_reading_session(reading_session_id):
     reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
-    students = mongo.db.students.find().sort("lname", 1)
+    students = list(mongo.db.students.find().sort("lname", 1))
     return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
 
 
