@@ -133,13 +133,11 @@ def add_student():
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
     if request.method == "POST":
-        parent = mongo.db.users.find_one({"username": session["user"]})["_id"]
         submit = {
             "fname": request.form.get("fname"),
             "lname": request.form.get("lname"),
             "reading_level": request.form.get("reading_level"),
             "teacher": request.form.get("teacher"),
-            "parent": parent
         }
         mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
         flash("Student Successfully Updated")
