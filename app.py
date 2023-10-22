@@ -170,6 +170,17 @@ def log_reading_session():
 
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])
 def edit_reading_session(reading_session_id):
+    if request.method == "POST":
+        reading_session = {
+            "student": request.form.get("student"),
+            "date": request.form.get("date"),
+            "title": request.form.get("title"),
+            "book_level": request.form.get("book_level"),
+            "comment": request.form.get("comment"),
+        }
+        mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
+        flash("Reading Session Successfully Updated")
+        return redirect(url_for("view_reading_sessions"))
     reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
     students = list(mongo.db.students.find().sort("lname", 1))
     return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
