@@ -55,7 +55,7 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "user_type": user_type,
-            "title": request.form.get("username").lower(),
+            "title": request.form.get("title").lower(),
             "fname": request.form.get("fname").lower(),
             "lname": request.form.get("lname").lower(),
             "password": generate_password_hash(request.form.get("password"))
