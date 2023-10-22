@@ -61,6 +61,7 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large white pink-text">Edit Student <i
                         class="fa-solid fa-edit right"></i></button>
+                        <a href="{{ url_for('my_students', username=session['user']) }}" class="btn-large white pink-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>
