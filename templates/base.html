@@ -27,7 +27,7 @@
                     {% if session.user %}
                     <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>
                     <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-                    <li><a href="{{ url_for('students') }}">Students</a></li>
+                    <li><a href="{{ url_for('students') }}">Students(tobedeleted)</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -43,7 +43,7 @@
             {% if session.user %}
             <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>
             <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-            <li><a href="{{ url_for('students') }}">Students</a></li>
+            <li><a href="{{ url_for('students') }}">Students(tobedeleted)</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>

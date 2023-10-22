@@ -27,7 +27,7 @@ def view_reading_sessions():
 
 @app.route("/students")
 def students():
-# get the session user's students from the database
+# get all students from the database
     students = list(mongo.db.students.find())
     teachers = list(mongo.db.users.find({"user_type": "teacher"}))
     return render_template("students.html", teachers=teachers, students=students)
@@ -129,7 +129,7 @@ def add_student():
         }
         mongo.db.students.insert_one(student)
         flash("Student Successfully Added")
-        return redirect(url_for("students"))
+        return redirect(url_for("my_students", username=session["user"]))
         
     teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("add_student.html", teachers=teachers)
@@ -146,10 +146,18 @@ def edit_student(student_id):
         }
         mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
         flash("Student Successfully Updated")
-        return redirect(url_for("students"))
+        return redirect(url_for("my_students", username=session["user"]))
     student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
     teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("edit_student.html", student=student, teachers=teachers)
+
+
+@app.route("/delete_student/<student_id>")
+def delete_student(student_id):
+    mongo.db.students.delete_one({"_id": ObjectId(student_id)})
+    mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
+    flash("Student and All Associated Reading Sessions Successfully Deleted")
+    return redirect(url_for("my_students", username=session["user"]))
 
 
 @app.route("/log_reading_session", methods=["GET", "POST"])
