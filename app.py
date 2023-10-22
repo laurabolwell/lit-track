@@ -29,7 +29,7 @@ def view_reading_sessions():
 def students():
 # get the session user's students from the database
     students = list(mongo.db.students.find())
-    return render_template("students.html", students=students)
+    return render_template("students.html", teachers=teachers, students=students)
 
 
 @app.route("/register", methods=["GET", "POST"])
