@@ -130,7 +130,7 @@ def add_student():
         flash("Student Successfully Added")
         return redirect(url_for("students"))
         
-    teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
+    teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("add_student.html", teachers=teachers)
 
 
@@ -147,7 +147,7 @@ def edit_student(student_id):
         flash("Student Successfully Updated")
         return redirect(url_for("students"))
     student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
-    teachers = mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1)
+    teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("edit_student.html", student=student, teachers=teachers)
 
 

@@ -38,8 +38,7 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled selected>Select Teacher</option>
                     {% for teacher in teachers %}
-                    <option value="{{ teacher._id }}">{{ teacher.title }} {{ teacher.surname }}
-                    </option>
+                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}</option>
                     {% endfor %}
                 </select>
                 <label for="teacher" class="white-text">Teacher</label>

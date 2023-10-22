@@ -47,9 +47,9 @@
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
                     {% if teacher._id == student.teacher %}
-                    <option value="{{ teacher._id }}" selected>{{ teacher.title }} {{ teacher.surname }}
+                    <option value="{{ teacher._id }}" selected>{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
                         {% else %}
-                    <option value="{{ teacher._id }}">{{ teacher.title }} {{ teacher.surname }}</option>
+                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}</option>
                     {% endif %}
                     {% endfor %}
                 </select>
