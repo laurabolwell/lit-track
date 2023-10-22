@@ -30,7 +30,7 @@
             Book: <strong>{{ reading_session.title }}</strong><br>
             Level: {{ reading_session.book_level }}<br>
             Comments: {{ reading_session.comment }}<br>
-            <a href="" class="btn-small">Edit</a>
+            <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}" class="btn-small">Edit</a>
             <a href="" class="btn-small">Delete</a>
         </div>
     </li>
