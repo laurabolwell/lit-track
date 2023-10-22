@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <div class="card-panel pink">
+      {% if username.user_type == 'teacher' %}
+      <h3 class="center-align white-text">My Students</h3>
+      {% else %}
+      <h3 class="center-align white-text">My Children</h3>
+      <a href="{{ url_for('add_student' )}}" class="btn-floating btn-large white right"><i
+        class="fa-solid fa-plus pink-text"></i></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  {% for student in students %}
+  {% if student.parent == username._id %}
+  <div class="col s12 m6">
+    <div class="card-panel center-align pink lighten-2">
+      {{ student.fname }}
+      {{ student.lname }}<br>
+      Current Reading Level: {{ student.reading_level }}<br>
+      {% for teacher in teachers %}
+      {% if teacher._id | string() == student.teacher | string() %}
+      Teacher: {{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}<br>
+      {% endif %}
+      {% endfor %}
+      <a href="" class="btn-small white pink-text text-darken-3">View</a>
+      <a href="{{ url_for('edit_student', student_id=student._id )}}"
+        class="btn-small white pink-text text-darken-3">Edit</a>
+      <a href="" class="btn-small white pink-text text-darken-3">Delete</a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+{% endblock %}

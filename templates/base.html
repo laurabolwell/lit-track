@@ -25,13 +25,13 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
                     {% if session.user %}
-                        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-                        <li><a href="{{ url_for('students') }}">Students</a></li>
-                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>
+                    <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
+                    <li><a href="{{ url_for('students') }}">Students</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -41,7 +41,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('view_reading_sessions') }}">Home</a></li>
             {% if session.user %}
-            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>
             <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
             <li><a href="{{ url_for('students') }}">Students</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>

@@ -33,6 +33,17 @@ def students():
     return render_template("students.html", teachers=teachers, students=students)
 
 
+@app.route("/my_students/<username>")
+def my_students(username):
+    #get the session user's username from the database
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})
+    if session["user"]:
+        students = list(mongo.db.students.find())
+        return render_template("my_students.html", username=username, students=students)
+    return redirect(url_for("login"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -65,7 +76,7 @@ def register():
         #put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("my_students", username=session["user"]))
         
     return render_template("register.html")
 
@@ -83,7 +94,7 @@ def login():
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("profile", username=session["user"]))
+                return redirect(url_for("my_students", username=session["user"]))
             else:
                 #invalid password match
                 flash("Incorrect Username and/or Password")
@@ -95,16 +106,6 @@ def login():
             return redirect(url_for('login'))
 
     return render_template("login.html")
-
-
-@app.route("/profile/<username>")
-def profile(username):
-    #get the session user's username from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})
-    if session["user"]:
-        return render_template("profile.html", username=username)
-    return redirect(url_for("login"))
 
 
 @app.route("/logout")
