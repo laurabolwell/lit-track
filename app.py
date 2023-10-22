@@ -25,10 +25,11 @@ def view_reading_sessions():
     return render_template("reading_sessions.html", reading_sessions=reading_sessions, users=users, students=students)
 
 
-@app.route("/students", methods=["GET", "POST"])
+@app.route("/students")
 def students():
 # get the session user's students from the database
     students = list(mongo.db.students.find())
+    teachers = list(mongo.db.users.find({"user_type": "teacher"}))
     return render_template("students.html", teachers=teachers, students=students)
 
 
@@ -54,6 +55,9 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "user_type": user_type,
+            "title": request.form.get("username").lower(),
+            "fname": request.form.get("fname").lower(),
+            "lname": request.form.get("lname").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
 
@@ -119,7 +123,7 @@ def add_student():
             "fname": request.form.get("fname"),
             "lname": request.form.get("lname"),
             "reading_level": request.form.get("reading_level"),
-            "teacher": request.form.get("teacher"),
+            "teacher": ObjectId(request.form.get("teacher")),
             "parent": parent
         }
         mongo.db.students.insert_one(student)

@@ -4,7 +4,7 @@
 <h3 class="center-align">Register Here!</h3>
 
 <div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+    <form class="col s12 m10 offset-m1" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel pink">
             <!-- registration code -->
             <div class="row">
@@ -21,6 +21,27 @@
                     <input id="username" name="username" type="text" minlength="5" maxlength="15"
                         class="validate" required>
                     <label for="username" class="white-text">Username</label>
+                </div>
+            </div>
+            <!-- title -->
+            <div class="row">
+                <div class="input-field col s2">
+                    <i class="fa-solid fa-user-plus white-text prefix"></i>
+                    <input id="title" name="title" type="text" minlength="5" maxlength="15"
+                        class="validate" required>
+                    <label for="title" class="white-text">Title</label>
+                </div>
+                <!-- first name -->
+                <div class="input-field col s5">
+                    <input id="fname" name="fname" type="text" minlength="5" maxlength="15"
+                        class="validate" required>
+                    <label for="fname" class="white-text">First Name</label>
+                </div>
+                <!-- last name -->
+                <div class="input-field col s5">
+                    <input id="lname" name="lname" type="text" minlength="5" maxlength="15"
+                        class="validate" required>
+                    <label for="lname" class="white-text">Surname</label>
                 </div>
             </div>
             <!-- password -->
