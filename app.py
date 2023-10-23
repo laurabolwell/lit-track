@@ -182,7 +182,7 @@ def log_reading_session():
         reading_session = {
             "student": ObjectId(request.form.get("student")),
             "date": request.form.get("date"),
-            "title": request.form.get("title"),
+            "title": request.form.get("title").lower(),
             "book_level": request.form.get("book_level"),
             "comment": request.form.get("comment"),
             "logged_by": logged_by
@@ -208,7 +208,7 @@ def edit_reading_session(reading_session_id):
         reading_session = {
             "student": ObjectId(request.form.get("student")),
             "date": request.form.get("date"),
-            "title": request.form.get("title"),
+            "title": request.form.get("title").lower(),
             "book_level": request.form.get("book_level"),
             "comment": request.form.get("comment"),
         }
