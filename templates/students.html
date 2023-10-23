@@ -17,8 +17,8 @@
     {% for student in students %}
     <div class="col s12 m6">
       <div class="card-panel center-align pink lighten-2">
-        {{ student.fname }}
-        {{ student.lname }}<br>
+        {{ student.fname | capitalize }}
+        {{ student.lname | capitalize }}<br>
         Current Reading Level: {{ student.reading_level }}<br>
         {% for teacher in teachers %}
         {% if teacher._id | string() == student.teacher | string() %}

@@ -121,8 +121,8 @@ def add_student():
     if request.method == "POST":
         parent = mongo.db.users.find_one({"username": session["user"]})["_id"]
         student = {
-            "fname": request.form.get("fname"),
-            "lname": request.form.get("lname"),
+            "fname": request.form.get("fname").lower(),
+            "lname": request.form.get("lname").lower(),
             "reading_level": request.form.get("reading_level"),
             "teacher": ObjectId(request.form.get("teacher")),
             "parent": parent
@@ -139,8 +139,8 @@ def add_student():
 def edit_student(student_id):
     if request.method == "POST":
         submit = {
-            "fname": request.form.get("fname"),
-            "lname": request.form.get("lname"),
+            "fname": request.form.get("fname").lower(),
+            "lname": request.form.get("lname").lower(),
             "reading_level": request.form.get("reading_level"),
             "teacher": ObjectId(request.form.get("teacher")),
         }
