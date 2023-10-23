@@ -4,16 +4,15 @@
 <h3 class="center-align">My Reading Sessions</h3>
 
 <ul class="collapsible popout">
+    {% for student in students %}
+    {% if username._id == student.parent or username._id == student.teacher %}
     {% for reading_session in reading_sessions %}
+    {% if reading_session.student == student._id %}
     <li>
         <div class="collapsible-header">
             <i class="fa-solid fa-caret-down"></i>
             <strong>
-                {% for student in students %}
-                {% if reading_session.student == student._id %}
                 {{ student.fname | capitalize }} {{ student.lname | capitalize }}
-                {% endif %}
-                {% endfor %}
             </strong>
             <strong>{{ reading_session.date }}</strong>
             <!-- display home icon if logged by parent and school icon if logged by teacher -->
@@ -35,6 +34,9 @@
             <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}" class="btn-small">Delete</a>
         </div>
     </li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     {% endfor %}
 </ul>
 {% endblock %}
