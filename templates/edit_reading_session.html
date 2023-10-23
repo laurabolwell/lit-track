@@ -14,9 +14,9 @@
                     <option value="" disabled>Select Student</option>
                     {% for pupil in students %}
                     {% if reading_session.student | string() == pupil._id | string() %}
-                    <option value="{{ pupil._id }}" selected>{{ pupil.fname }} {{ pupil.lname }}</option>
+                    <option value="{{ pupil._id }}" selected>{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
                     {% else %}
-                    <option value="{{ pupil._id }}">{{ pupil.fname }} {{ pupil.lname }}</option>
+                    <option value="{{ pupil._id }}">{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
                     {% endif %}
                     {% endfor %}
                 </select>

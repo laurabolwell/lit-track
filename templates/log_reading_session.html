@@ -12,7 +12,7 @@
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled selected>Select Student</option>
                     {% for pupil in students %}
-                    <option value="{{ pupil._id }}">{{ pupil.fname }} {{ pupil.lname }}
+                    <option value="{{ pupil._id }}">{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}
                     </option>
                     {% endfor %}
                 </select>

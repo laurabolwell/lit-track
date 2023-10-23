@@ -9,11 +9,11 @@
         <div class="row">
             <div class="input-field col s6">
                 <i class="fa-solid fa-user-circle white-text prefix"></i>
-                <input id="fname" name="fname" minlength="2" maxlength="15" value="{{ student.fname }}" type="text" class="validate" required>
+                <input id="fname" name="fname" minlength="2" maxlength="15" value="{{ student.fname | capitalize }}" type="text" class="validate" required>
                 <label for="fname" class="white-text">First Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="lname" name="lname" minlength="2" maxlength="15" value="{{ student.lname }}" type="tel" class="validate" required>
+                <input id="lname" name="lname" minlength="2" maxlength="15" value="{{ student.lname | capitalize }}" type="tel" class="validate" required>
                 <label for="lname" class="white-text">Last Name</label>
             </div>
         </div>

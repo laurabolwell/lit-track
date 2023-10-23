@@ -11,7 +11,7 @@
             <strong>
                 {% for student in students %}
                 {% if reading_session.student | string() == student._id | string() %}
-                {{ student.fname }} {{ student.lname }}
+                {{ student.fname | capitalize }} {{ student.lname | capitalize }}
                 {% endif %}
                 {% endfor %}
             </strong>
