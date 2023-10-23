@@ -21,7 +21,7 @@
         {{ student.lname | capitalize }}<br>
         Current Reading Level: {{ student.reading_level }}<br>
         {% for teacher in teachers %}
-        {% if teacher._id | string() == student.teacher | string() %}
+        {% if teacher._id == student.teacher %}
         Teacher: {{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}<br>
         {% endif %}
         {% endfor %}

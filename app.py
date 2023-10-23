@@ -25,6 +25,17 @@ def view_reading_sessions():
     return render_template("reading_sessions.html", reading_sessions=reading_sessions, users=users, students=students)
 
 
+@app.route("/")
+@app.route("/my_reading_sessions/<username>")
+def my_reading_sessions(username):
+    username = mongo.db.users.find_one({"username": session["user"]})
+    if session["user"]:
+        reading_sessions = list(mongo.db.reading_sessions.find())
+        students = list(mongo.db.students.find())
+        return render_template("my_reading_sessions.html", username=username, reading_sessions=reading_sessions, students=students)
+    return redirect(url_for("login"))
+
+
 @app.route("/students")
 def students():
 # get all students from the database

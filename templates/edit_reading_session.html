@@ -13,7 +13,7 @@
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled>Select Student</option>
                     {% for pupil in students %}
-                    {% if reading_session.student | string() == pupil._id | string() %}
+                    {% if reading_session.student == pupil._id %}
                     <option value="{{ pupil._id }}" selected>{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
                     {% else %}
                     <option value="{{ pupil._id }}">{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
