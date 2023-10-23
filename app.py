@@ -12,6 +12,9 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+debug = os.environ.get("DEBUG", False)
+parent_code = os.environ.get("PARENT_CODE")
+teacher_code = os.environ.get("TEACHER_CODE")
 
 mongo = PyMongo(app)
 
@@ -31,8 +34,9 @@ def my_reading_sessions(username):
     username = mongo.db.users.find_one({"username": session["user"]})
     if session["user"]:
         reading_sessions = list(mongo.db.reading_sessions.find())
+        users = list(mongo.db.users.find())
         students = list(mongo.db.students.find())
-        return render_template("my_reading_sessions.html", username=username, reading_sessions=reading_sessions, students=students)
+        return render_template("my_reading_sessions.html", username=username, users=users, reading_sessions=reading_sessions, students=students)
     return redirect(url_for("login"))
 
 
@@ -59,9 +63,9 @@ def my_students(username):
 def register():
     if request.method == "POST":
         registration_code = request.form.get("reg-code")
-        if registration_code == "T1":
+        if registration_code == teacher_code:
             user_type = "teacher"
-        elif registration_code == "P1":
+        elif registration_code == parent_code:
             user_type = "parent"
         else:
             flash("Registration code not valid")
@@ -187,7 +191,14 @@ def log_reading_session():
         flash("Reading Session Successfully Added")
         return redirect(url_for("view_reading_sessions"))
     user = mongo.db.users.find_one({"username": session["user"]})
-    students = mongo.db.students.find().sort("lname", 1)
+    students = list(mongo.db.students.find().sort("lname", 1))
+    student_count = 0
+    for student in students:
+        if user["_id"] == student["parent"] or user["_id"] == student["teacher"]:
+            student_count += 1
+    if student_count == 0:
+        flash("You have no students")
+        return redirect(url_for('my_students', username=session['user']))
     return render_template("log_reading_session.html", students=students, user=user)
 
 
@@ -219,4 +230,4 @@ def delete_reading_session(reading_session_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
-        debug=True)
+        debug = debug)

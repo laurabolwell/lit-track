@@ -24,7 +24,7 @@
                 <select id="reading_level" name="reading_level" class="validate" required>
                     <option value="" disabled>Select Current Reading Level</option>
                     {% for i in range(1, 31) %}
-                        {% if student.reading_level == i | string() %}
+                        {% if student.reading_level == i | string %}
                             <option value="{{i}}" selected>{{i}}</option>
                         {% else %}
                             <option value="{{i}}">{{i}}</option>
