@@ -175,8 +175,9 @@ def log_reading_session():
         mongo.db.reading_sessions.insert_one(reading_session)
         flash("Reading Session Successfully Added")
         return redirect(url_for("view_reading_sessions"))
+    user = mongo.db.users.find_one({"username": session["user"]})
     students = mongo.db.students.find().sort("lname", 1)
-    return render_template("log_reading_session.html", students=students)
+    return render_template("log_reading_session.html", students=students, user=user)
 
 
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])

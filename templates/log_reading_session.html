@@ -12,8 +12,10 @@
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled selected>Select Student</option>
                     {% for pupil in students %}
+                    {% if pupil.parent == user._id or pupil.teacher == user._id %}
                     <option value="{{ pupil._id }}">{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}
                     </option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="student" class="white-text">Student</label>
