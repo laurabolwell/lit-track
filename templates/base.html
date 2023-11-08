@@ -29,6 +29,7 @@
                     <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">My Reading Sessions</a>
                     </li>
                     <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>
+                    <li><a href="{{ url_for('update_reading_levels', username=session['user']) }}">Update all levels</a></li>
                     <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
                     <li><a href="{{ url_for('students') }}">Students(tobedeleted)</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
