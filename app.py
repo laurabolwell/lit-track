@@ -43,7 +43,7 @@ def my_reading_sessions(username):
 @app.route("/students")
 def students():
 # get all students from the database
-    students = list(mongo.db.students.find())
+    students = list(mongo.db.students.find().sort("lname", 1))
     teachers = list(mongo.db.users.find({"user_type": "teacher"}))
     return render_template("students.html", teachers=teachers, students=students)
 
@@ -54,7 +54,7 @@ def my_students(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})
     if session["user"]:
-        students = list(mongo.db.students.find())
+        students = list(mongo.db.students.find().sort("lname", 1))
         return render_template("my_students.html", username=username, students=students)
     return redirect(url_for("login"))
 
