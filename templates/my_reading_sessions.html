@@ -4,10 +4,12 @@
 <h3 class="center-align">My Reading Sessions</h3>
 
 <ul class="collapsible popout">
-    {% for student in students %}
-    {% if username._id == student.parent or username._id == student.teacher %}
+
     {% for reading_session in reading_sessions %}
+    {% for student in students %}
     {% if reading_session.student == student._id %}
+    {% if student.teacher == username._id or student.parent == username._id %}
+
     <li>
         <div class="collapsible-header">
             <i class="fa-solid fa-caret-down"></i>
@@ -16,27 +18,29 @@
             </strong>
             <strong>{{ reading_session.date }}</strong>
             <!-- display home icon if logged by parent and school icon if logged by teacher -->
-            {% for user in users %}
-            {% if reading_session.logged_by == user._id %}
-            {% if user.user_type == "parent" %}
+            {% if reading_session.logged_by == student.parent %}
             <i class="fa-solid fa-house"></i>
-            {% elif user.user_type == "teacher" %}
+            {% elif reading_session.logged_by == student.teacher %}
             <i class="fa-solid fa-school"></i>
             {% endif %}
-            {% endif %}
-            {% endfor %}
+
         </div>
         <div class="collapsible-body">
             Book: <strong>{{ reading_session.title | title }}</strong><br>
             Level: {{ reading_session.book_level }}<br>
             Comment: {{ reading_session.comment }}<br>
-            <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}" class="btn-small">Edit</a>
-            <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}" class="btn-small">Delete</a>
+            {% if username._id == reading_session.logged_by %}
+            <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}"
+                class="btn-small">Edit</a>
+            <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}"
+                class="btn-small">Delete</a>
+            {% endif %}
         </div>
     </li>
     {% endif %}
-    {% endfor %}
     {% endif %}
     {% endfor %}
+    {% endfor %}
 </ul>
+
 {% endblock %}
