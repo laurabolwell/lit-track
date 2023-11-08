@@ -8,6 +8,7 @@
         <!-- student first and last names-->
         <div class="row">
             {% for student in students %}
+            {% if student.teacher == username._id or student.parent == username._id %}
             <div class="input-field col s6">
                 <span>{{ student.fname | capitalize }} {{ student.lname | capitalize }}</span>
             </div>
@@ -22,7 +23,7 @@
                             <option value="{{i}}">{{i}}</option>
                         {% endif %}
                     {% endfor %}
-                    {% if student.reading_level == "Free" %}
+                    {% if student.reading_level == "Free Reader" %}
                     <option value="Free Reader" selected>Free Reader</option>
                     {% else %}
                     <option value="Free Reader">Free Reader</option>
@@ -30,6 +31,7 @@
                 </select>
                 <label for="reading_level" class="white-text">Reading Level</label>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         
