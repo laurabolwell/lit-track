@@ -202,13 +202,6 @@ def update_reading_levels(username):
         return render_template("update_reading_levels.html", username=username, students=students)
     return redirect(url_for("login"))
 
-@app.route("/delete_student/<student_id>")
-def delete_student(student_id):
-    mongo.db.students.delete_one({"_id": ObjectId(student_id)})
-    mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
-    flash("Student and All Associated Reading Sessions Successfully Deleted")
-    return redirect(url_for("my_students", username=session["user"]))
-
 
 @app.route("/log_reading_session", methods=["GET", "POST"])
 def log_reading_session():
@@ -263,9 +256,16 @@ def edit_reading_session(reading_session_id):
 
 @app.route("/delete_reading_session/<reading_session_id>")
 def delete_reading_session(reading_session_id):
-    mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
-    flash("Reading Session Successfully Deleted")
-    return redirect(url_for("view_reading_sessions"))
+    # find the reading session
+    reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
+    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+    # the session["user"] must be the user who created the task
+    if user_id == reading_session["logged_by"]:
+        mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
+        flash("Reading Session Successfully Deleted")
+        return redirect(url_for("view_reading_sessions"))
+    flash("You don't have access to delete this reading session")
+    return redirect(url_for('my_reading_sessions', username=session['user']))
 
 
 if __name__ == "__main__":
