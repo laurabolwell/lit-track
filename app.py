@@ -166,6 +166,15 @@ def edit_student(student_id):
     teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("edit_student.html", student=student, teachers=teachers)
 
+@app.route("/update_reading_levels/<username>", methods=["GET", "POST"])
+def update_reading_levels(username):
+    user_id = mongo.db.users.find_one(
+        {"username": session["user"]})
+    if session["user"]:
+        students = list(mongo.db.students.find().sort("lname", 1))
+        return render_template("update_reading_levels.html", username=username, students=students)
+    return redirect(url_for("login"))
+
 
 @app.route("/delete_student/<student_id>")
 def delete_student(student_id):
