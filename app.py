@@ -152,16 +152,27 @@ def add_student():
 
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
-    if request.method == "POST":
-        submit = {
-            "fname": request.form.get("fname").lower(),
-            "lname": request.form.get("lname").lower(),
-            "reading_level": request.form.get("reading_level"),
-            "teacher": ObjectId(request.form.get("teacher")),
-        }
-        mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
-        flash("Student Successfully Updated")
-        return redirect(url_for("my_students", username=session["user"]))
+    # find the student
+    student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
+    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+    # the user must be a parent or teacher of the student to edit
+    if student["parent"] == user_id or student["teacher"] == user_id:
+        if request.method == "POST":
+            submit = {
+                "fname": request.form.get("fname").lower(),
+                "lname": request.form.get("lname").lower(),
+                "reading_level": request.form.get("reading_level"),
+                "teacher": ObjectId(request.form.get("teacher")),
+            }
+            mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
+            flash("Student Successfully Updated")
+            return redirect(url_for("my_students", username=session["user"]))
+        teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
+        return render_template("edit_student.html", student=student, teachers=teachers)
+    flash("You don't have permission to edit this student")
+    return redirect(url_for("my_students", username=session["user"]))
+
+
     student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
     teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
     return render_template("edit_student.html", student=student, teachers=teachers)
