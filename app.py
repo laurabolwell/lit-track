@@ -173,9 +173,20 @@ def edit_student(student_id):
     return redirect(url_for("my_students", username=session["user"]))
 
 
+@app.route("/delete_student/<student_id>")
+def delete_student(student_id):
+    # find the student
     student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
-    teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
-    return render_template("edit_student.html", student=student, teachers=teachers)
+    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+    # the user must be a parent or teacher of the student to delete
+    if student["parent"] == user_id or student["teacher"] == user_id:
+        mongo.db.students.delete_one({"_id": ObjectId(student_id)})
+        mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
+        flash("Student and All Associated Reading Sessions Successfully Deleted")
+        return redirect(url_for("my_students", username=session["user"]))
+    flash("You don't have permission to delete this student")
+    return redirect(url_for("my_students", username=session["user"]))
+
 
 @app.route("/update_reading_levels/<username>", methods=["GET", "POST"])
 def update_reading_levels(username):
