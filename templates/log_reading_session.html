@@ -8,7 +8,6 @@
         <!-- student name selector -->
         <div class="row">
             <div class="input-field col s12 m8">
-                <i class="fa-solid fa-user white-text prefix"></i>
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled selected>Select Student</option>
                     {% for pupil in students %}
@@ -18,11 +17,12 @@
                     {% endif %}
                     {% endfor %}
                 </select>
-                <label for="student" class="white-text">Student</label>
+                <label for="student">Student</label>
             </div>
+            <!-- datepicker -->
             <div class="input-field col s12 m4">
                 <i class="fa-solid fa-calendar-days white-text prefix"></i>
-                <input id="date" name="date" type="text" class="datepicker validate" required>
+                <input id="date" name="date" type="text" class="pink datepicker validate" placeholder=" " required>
                 <label for="date" class="white-text">Date</label>
             </div>
         </div>
@@ -30,27 +30,28 @@
             <!-- book title-->
             <div class="input-field col s12 m8">
                 <i class="fa-solid fa-book white-text prefix"></i>
-                <input id="title" name="title" minlength="2" maxlength="30" type="text" class="validate" placeholder=" " required>
+                <input id="title" name="title" minlength="2" maxlength="30" type="text" class="pink validate"
+                    placeholder=" " required>
                 <label for="title" class="white-text">Book Title</label>
             </div>
             <!-- book level selector-->
             <div class="input-field col s12 m4">
                 <i class="fa-solid fa-book-open white-text prefix"></i>
-                <select id="book_level" name="book_level" class="validate" required>
+                <select id="book_level" name="book_level" class="pink validate" placeholder=" " required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
                     <option value="{{i}}">{{i}}</option>
                     {% endfor %}
                     <option value="Free">30+</option>
                 </select>
-                <label for="book_level" class="white-text">Reading Level</label>
+                <label for="book_level" class="">Reading Level</label>
             </div>
         </div>
         <!-- comments -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-comment white-text prefix"></i>
-                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <textarea id="comment" name="comment" class="pink materialize-textarea" placeholder=" "></textarea>
                 <label for="comment" class="white-text">Comment</label>
             </div>
         </div>
