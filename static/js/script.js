@@ -11,4 +11,8 @@
      yearRange: 0,
      autoClose: true,
     });
+    let modal = document.querySelectorAll('.modal');
+    M.Modal.init(modal, {
+      dismissable: false
+    });
   });

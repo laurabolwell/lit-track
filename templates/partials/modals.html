@@ -1,0 +1,14 @@
+<!-- modal: confirm reading session deletion -->
+{% if reading_session %}
+<div id="modal-{{ reading_session._id }}" class="modal black white-text">
+    <div class="modal-content">
+        <h4>Are you sure you want to delete this reading session?</h4>
+        <p>This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer black">
+        <a class="btn red modal-close">No</a>
+        <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}" class="btn green accent-4">Yes</a>
+    </div>
+</div>
+{% endif %}
+

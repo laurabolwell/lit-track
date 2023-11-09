@@ -263,7 +263,7 @@ def delete_reading_session(reading_session_id):
     if user_id == reading_session["logged_by"]:
         mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
         flash("Reading Session Successfully Deleted")
-        return redirect(url_for("view_reading_sessions"))
+        return redirect(url_for("my_reading_sessions"))
     flash("You don't have access to delete this reading session")
     return redirect(url_for('my_reading_sessions', username=session['user']))
 
