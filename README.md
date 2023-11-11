@@ -591,7 +591,7 @@ by sending yourself the following command: `!freemedia`.
 | Source | Location | Type | Notes |
 | --- | --- | --- | --- |
 | [Pexels](https://www.pexels.com) | entire site | image | favicon on all pages |
-| [Lorem Picsum](https://picsum.photos) | home page | image | hero image background |
+| [Freepik](https://www.freepik.com/free-vector/book-pattern_25135451.htm#page=2&query=books&position=2&from_view=search&track=sph) | entire site | image | background image |
 | [Unsplash](https://unsplash.com) | product page | image | sample of fake products |
 | [Pixabay](https://pixabay.com) | gallery page | image | group of photos for gallery |
 | [Wallhere](https://wallhere.com) | footer | image | background wallpaper image in the footer |
