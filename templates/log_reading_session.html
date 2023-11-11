@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Log a Reading Session</h3>
-
-<div class="row card-panel pink">
+<div class="row card-panel pistachio center-align">
     <form class="col s12" method="POST" action="{{ url_for('log_reading_session') }}">
+        <h3 class="plum-text">Log a Reading Session</h3>
         <!-- student name selector -->
         <div class="row">
             <div class="input-field col s12 m8">
@@ -17,27 +16,27 @@
                     {% endif %}
                     {% endfor %}
                 </select>
-                <label for="student">Student</label>
+                <label for="student" class="">Student</label>
             </div>
             <!-- datepicker -->
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-calendar-days white-text prefix"></i>
-                <input id="date" name="date" type="text" class="pink datepicker validate" placeholder=" " required>
-                <label for="date" class="white-text">Date</label>
+                <i class="fa-solid fa-calendar-days plum-text prefix"></i>
+                <input id="date" name="date" type="text" class="pistachio datepicker validate" placeholder=" " required>
+                <label for="date" class="plum-text">Date</label>
             </div>
         </div>
         <div class="row">
             <!-- book title-->
             <div class="input-field col s12 m8">
-                <i class="fa-solid fa-book white-text prefix"></i>
-                <input id="title" name="title" minlength="2" maxlength="30" type="text" class="pink validate"
+                <i class="fa-solid fa-book plum-text prefix"></i>
+                <input id="title" name="title" minlength="2" maxlength="30" type="text" class="pistachio validate"
                     placeholder=" " required>
-                <label for="title" class="white-text">Book Title</label>
+                <label for="title" class="plum-text">Book Title</label>
             </div>
             <!-- book level selector-->
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-book-open white-text prefix"></i>
-                <select id="book_level" name="book_level" class="pink validate" placeholder=" " required>
+                <i class="fa-solid fa-book-open plum-text prefix"></i>
+                <select id="book_level" name="book_level" class="pistachio validate" placeholder=" " required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
                     <option value="{{i}}">{{i}}</option>
@@ -50,15 +49,15 @@
         <!-- comments -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fa-solid fa-comment white-text prefix"></i>
-                <textarea id="comment" name="comment" class="pink materialize-textarea" placeholder=" "></textarea>
-                <label for="comment" class="white-text">Comment</label>
+                <i class="fa-solid fa-comment plum-text prefix"></i>
+                <textarea id="comment" name="comment" class="pistachio materialize-textarea" placeholder=" "></textarea>
+                <label for="comment" class="plum-text">Comment</label>
             </div>
         </div>
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large white pink-text">Log Reading Session<i
+                <button type="submit" class="btn-large white plum-text">Log Reading Session<i
                         class="fa-solid fa-plus-square right"></i></button>
             </div>
         </div>
