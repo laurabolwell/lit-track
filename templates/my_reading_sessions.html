@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">My Reading Sessions</h3>
+<div class="row">
+    <div class="col s12">
+      <div class="card-panel pistachio center-align">
+        <h3 class="center-align plum-text">My Reading Sessions</h3>
 
 <ul class="collapsible popout">
 
@@ -11,7 +14,7 @@
     {% if student.teacher == username._id or student.parent == username._id %}
 
     <li>
-        <div class="collapsible-header">
+        <div class="collapsible-header plum-text">
             <i class="fa-solid fa-caret-down"></i>
             <strong>
                 {{ student.fname | capitalize }} {{ student.lname | capitalize }}
@@ -25,7 +28,7 @@
             {% endif %}
 
         </div>
-        <div class="collapsible-body">
+        <div class="collapsible-body plum-text">
             Book: <strong>{{ reading_session.title | title }}</strong><br>
             Level: {{ reading_session.book_level }}<br>
             Comment: {{ reading_session.comment }}<br>
@@ -43,5 +46,10 @@
     {% endfor %}
     {% endfor %}
 </ul>
+      </div>
+    </div>
+  </div>
+
+
 
 {% endblock %}
