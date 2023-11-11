@@ -22,7 +22,7 @@
         <nav class="nav-extended cyan darken-1">
             <div class="nav-wrapper">
                 {% if session.user %}
-                <a href="{{ url_for('my_reading_sessions') }}" class="brand-logo">LitTrack</a>
+                <a href="{{ url_for('my_reading_sessions', username=session['user']) }}" class="brand-logo">LitTrack</a>
                 {% else %}
                 <a href="{{ url_for('login') }}" class="brand-logo">LitTrack</a>
                 {% endif %}
@@ -30,7 +30,7 @@
                 <ul class="right hide-on-med-and-down">
                     
                     {% if session.user %}
-                    <li><a href="{{ url_for('my_reading_sessions') }}">Home</a></li>
+                    <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">Home</a></li>
                     <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">My Reading Sessions</a>
                     </li>
                     <li><a href="{{ url_for('my_students', username=session['user']) }}">My Students</a></li>

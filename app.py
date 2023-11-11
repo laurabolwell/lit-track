@@ -19,7 +19,6 @@ teacher_code = os.environ.get("TEACHER_CODE")
 mongo = PyMongo(app)
 
 
-@app.route("/")
 @app.route("/view_reading_sessions")
 def view_reading_sessions():
     reading_sessions = list(mongo.db.reading_sessions.find().sort("date", -1))
@@ -28,7 +27,6 @@ def view_reading_sessions():
     return render_template("reading_sessions.html", reading_sessions=reading_sessions, users=users, students=students)
 
 
-@app.route("/")
 @app.route("/my_reading_sessions/<username>")
 def my_reading_sessions(username):
     username = mongo.db.users.find_one({"username": session["user"]})
@@ -210,6 +208,22 @@ def update_reading_levels(username):
     return redirect(url_for("login"))
 
 
+@app.route("/update_teacher/<user>", methods=["GET", "POST"])
+def update_teacher(user):
+    if request.method == "POST":
+        # insert post method here!
+        submit = {
+            "teacher": request.form.get("teacher")
+        }
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
+    if session["user"]:
+        students = list(mongo.db.students.find().sort("lname", 1))
+        teachers = list(mongo.db.users.find({"user_type": "teacher"}).sort("lname"))
+        return render_template("update_teacher.html", user=user, students=students, teachers=teachers)
+    return redirect(url_for("login"))
+
+
 @app.route("/log_reading_session", methods=["GET", "POST"])
 def log_reading_session():
     if request.method == "POST":
@@ -232,7 +246,7 @@ def log_reading_session():
         if user["_id"] == student["parent"] or user["_id"] == student["teacher"]:
             student_count += 1
     if student_count == 0:
-        flash("You have no students")
+        flash("You have no students. Please remind parents to sign up.")
         return redirect(url_for('my_students', username=session['user']))
     return render_template("log_reading_session.html", students=students, user=user)
 
