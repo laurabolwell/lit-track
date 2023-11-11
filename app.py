@@ -19,6 +19,21 @@ teacher_code = os.environ.get("TEACHER_CODE")
 mongo = PyMongo(app)
 
 
+@app.errorhandler(404)
+def client_error(error):
+    return render_template("errors/404.html"), 404
+
+
+@app.errorhandler(500)
+def server_error(error):
+    return render_template("errors/500.html"), 500
+
+
+@app.route("/<path:path>")
+def path_error(path):
+    return render_template("errors/404.html"), 404
+
+    
 @app.route("/view_reading_sessions")
 def view_reading_sessions():
     reading_sessions = list(mongo.db.reading_sessions.find().sort("date", -1))
