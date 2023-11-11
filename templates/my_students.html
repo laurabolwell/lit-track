@@ -6,8 +6,8 @@
     <div class="card-panel pink">
       {% if username.user_type == 'teacher' %}
       <h3 class="center-align white-text">My Students</h3>
-      <a href="{{ url_for('update_reading_levels', username=session['user']) }}" class="btn white pink-text">Update All Reading Levels</a>
-      <a href="" class="btn white pink-text">Update Teacher for All Students</a>
+      <a href="{{ url_for('update_reading_levels', username=session['user']) }}" class="btn white pink-text">Update All
+        Reading Levels</a>
       {% else %}
       <h3 class="center-align white-text">My Children</h3>
       <a href="{{ url_for('add_student') }}" class="btn-floating btn-large white right"><i
