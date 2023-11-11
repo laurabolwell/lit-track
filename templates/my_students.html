@@ -8,7 +8,8 @@
       <h3 class="center-align white-text">My Students</h3>
       <a href="{{ url_for('update_reading_levels', username=session['user']) }}" class="btn white pink-text">Update All
         Reading Levels</a>
-      <a href="{{ url_for('update_teacher', user=username._id) }}" class="btn white pink-text">Update Teacher for All Students</a>
+      <a href="{{ url_for('update_teacher', user=username._id) }}" class="btn white pink-text">Update Teacher for All
+        Students</a>
       {% else %}
       <h3 class="center-align white-text">My Children</h3>
       <a href="{{ url_for('add_student') }}" class="btn-floating btn-large white right"><i
@@ -50,15 +51,18 @@
         class="btn-small white pink-text text-darken-3">Edit</a>
       <a href="#modal-{{ student._id }}" class="btn-small white pink-text text-darken-3 modal-trigger">Delete</a>
       <!-- inject the modals partials-template -->
-      {% include "partials/modals.html" %}      
+      {% include "partials/modals.html" %}
     </div>
   </div>
   {% endif %}
   {% endfor %}
 </div>
 
-<a href="#modal-{{ username._id }}" class="btn-small white pink-text text-darken-3">Delete My
+
+<a href="#modal-{{ username._id }}" class="btn-small white pink-text text-darken-3 modal-trigger">Delete My
   Account</a>
+<!-- inject the modals partials-template -->
+{% include "partials/modals.html" %}
 
 
 {% endblock %}

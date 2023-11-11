@@ -185,11 +185,14 @@ def delete_student(student_id):
     flash("You don't have permission to delete this student")
     return redirect(url_for("my_students", username=session["user"]))
 
-@app.route("/delete_user/<user_id>")
-def delete_user(user_id):
-    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+
+
+@app.route("/delete_user/<username_id>")
+def delete_user(username_id):
+    user = mongo.db.users.find_one({"username": session["user"]})
     flash("User Account Deleted")
+    session.pop("user")
+    mongo.db.users.delete_one(user)
     return redirect(url_for("register"))
 
 

@@ -7,7 +7,8 @@
     </div>
     <div class="modal-footer black">
         <a class="btn red modal-close">No</a>
-        <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}" class="btn green accent-4">Yes</a>
+        <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}"
+            class="btn green accent-4">Yes</a>
     </div>
 </div>
 {% endif %}
@@ -27,7 +28,23 @@
 {% endif %}
 
 <!-- modal: confirm user deletion -->
-{% if student %}
+{% if session["user"] %}
+{% for student in students %}
+{% if student.parent == username._id or student.teacher == username._id %}
+<div id="modal-{{ username._id }}" class="modal black white-text">
+    <div class="modal-content">
+        <h4>You still have students!</h4>
+        <p>You must delete or reassign students before you can delete your account</p>
+    </div>
+    <div class="modal-footer black">
+        <a class="btn green accent-4 modal-close">Close</a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if session["user"] %}
 <div id="modal-{{ username._id }}" class="modal black white-text">
     <div class="modal-content">
         <h4>Are you sure you want to delete your account?</h4>
@@ -35,7 +52,7 @@
     </div>
     <div class="modal-footer black">
         <a class="btn red modal-close">No</a>
-        <a href="{{ url_for('delete_user', user_id=username._id )}}" class="btn green accent-4">Yes</a>
+        <a href="{{ url_for('delete_user', username_id=username._id )}}" class="btn green accent-4">Yes</a>
     </div>
 </div>
 {% endif %}
