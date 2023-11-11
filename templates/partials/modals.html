@@ -17,7 +17,7 @@
 {% if student %}
 <div id="modal-{{ student._id }}" class="modal black white-text">
     <div class="modal-content">
-        <h4>Are you sure you want to delete this student?</h4>
+        <h4>Are you sure you want to delete this student and all associated reading sessions?</h4>
         <p>This action cannot be undone.</p>
     </div>
     <div class="modal-footer black">
@@ -34,7 +34,7 @@
 <div id="modal-{{ username._id }}" class="modal black white-text">
     <div class="modal-content">
         <h4>You still have students!</h4>
-        <p>You must delete or reassign students before you can delete your account</p>
+        <p>You must {% if username.user_type == "parent" %} delete {% else %} delete or reassign {% endif %} students before you can delete your account</p>
     </div>
     <div class="modal-footer black">
         <a class="btn green accent-4 modal-close">Close</a>
