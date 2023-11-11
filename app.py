@@ -33,7 +33,7 @@ def server_error(error):
 def path_error(path):
     return render_template("errors/404.html"), 404
 
-    
+
 @app.route("/view_reading_sessions")
 def view_reading_sessions():
     reading_sessions = list(mongo.db.reading_sessions.find().sort("date", -1))
@@ -121,7 +121,8 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
+                user = mongo.db.users.find_one({"username": request.form.get("username").lower()})
+                flash("Welcome, {title} {lname}".format(title=user["title"].capitalize(), lname=user["lname"].capitalize()))
                 return redirect(url_for("my_students", username=session["user"]))
             else:
                 #invalid password match
