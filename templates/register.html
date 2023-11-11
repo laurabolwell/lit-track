@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Register Here!</h3>
 
 <div class="row">
     <form class="col s12 m10 offset-m1" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel pink">
+        <div class="card-panel dark-mauve">
+            <h3 class="center-align white-text">Register Here!</h3>
             <!-- registration code -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-users white-text prefix"></i>
-                    <input id="reg-code" name="reg-code" type="text" class="pink validate" placeholder=" " required>
+                    <input id="reg-code" name="reg-code" type="text" class="dark-mauve validate" placeholder=" " required>
                     <label for="reg-code" class="white-text">Registration Code</label>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-user-plus white-text prefix"></i>
                     <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,15}$"
-                        class="pink validate" placeholder=" " required>
+                        class="dark-mauve validate" placeholder=" " required>
                     <label for="username" class="white-text">Username</label>
                 </div>
             </div>
@@ -28,19 +28,19 @@
                 <div class="input-field col s2">
                     <i class="fa-solid fa-user-plus white-text prefix"></i>
                     <input id="title" name="title" type="text" pattern="^[a-zA-Z]{2,5}$"
-                        class="pink validate" placeholder=" " required>
+                        class="dark-mauve validate" placeholder=" " required>
                     <label for="title" class="white-text">Title</label>
                 </div>
                 <!-- first name -->
                 <div class="input-field col s5">
                     <input id="fname" name="fname" type="text" pattern="^[a-zA-Z]{2,15}$"
-                        class="pink validate" placeholder=" " required>
+                        class="dark-mauve validate" placeholder=" " required>
                     <label for="fname" class="white-text">First Name</label>
                 </div>
                 <!-- last name -->
                 <div class="input-field col s5">
                     <input id="lname" name="lname" type="text" pattern="^[a-zA-Z]{2,15}$"
-                        class="pink validate" placeholder=" " required>
+                        class="dark-mauve validate" placeholder=" " required>
                     <label for="lname" class="white-text">Surname</label>
                 </div>
             </div>
@@ -49,13 +49,13 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-user-lock white-text prefix"></i>
                     <input id="password" name="password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-                        class="pink validate" placeholder=" " required>
+                        class="dark-mauve validate" placeholder=" " required>
                     <label for="password" class="white-text">Password</label>
                 </div>
             </div>
             <!-- register button -->
             <div class="row">
-                <button type="submit" class="col s12 btn-large white pink-text">
+                <button type="submit" class="col s12 btn-large white dark-mauve-text">
                     Register <i class="fa-solid fa-sign-in-alt"></i>
                 </button>
             </div>
@@ -65,10 +65,10 @@
 
 <!-- Link to login page -->
 <div class="row">
-    <div class="col s12">
-        <p class="center-align">
-            Already registered? <a href="{{ url_for('login') }}" class="">Log In Here</a>
-        </p>
+    <div class="col s12 center-align">
+        <button class="btn outlined aero plum-text">
+            Already registered? <a href="{{ url_for('login') }}" class="white-text">Log In Here</a>
+        </button>
     </div>
 </div>
 
