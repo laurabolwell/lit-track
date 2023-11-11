@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">Edit Reading Session</h3>
-
-<div class="row card-panel pink">
+<div class="row card-panel pistachio plum-text center-align">
     <form class="col s12" method="POST"
         action="{{ url_for('edit_reading_session', reading_session_id=reading_session._id ) }}">
+        <h3 class="">Edit Reading Session</h3>
         <!-- student name selector -->
         <div class="row">
             <div class="input-field col s12 m8">
-                <i class="fa-solid fa-user white-text prefix"></i>
+                <i class="fa-solid fa-user prefix"></i>
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled>Select Student</option>
                     {% for pupil in students %}
@@ -20,24 +19,24 @@
                     {% endif %}
                     {% endfor %}
                 </select>
-                <label for="student" class="white-text">Student</label>
+                <label for="student" class="">Student</label>
             </div>
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-calendar-days white-text prefix"></i>
+                <i class="fa-solid fa-calendar-days prefix"></i>
                 <input id="date" name="date" type="text" value="{{ reading_session.date }}" class="datepicker validate" required>
-                <label for="date" class="white-text">Date</label>
+                <label for="date">Date</label>
             </div>
         </div>
         <div class="row">
             <!-- book title-->
             <div class="input-field col s12 m8">
-                <i class="fa-solid fa-book white-text prefix"></i>
+                <i class="fa-solid fa-book prefix"></i>
                 <input id="title" name="title" minlength="2" maxlength="30" value="{{ reading_session.title | title }}" type="text" class="validate" required>
-                <label for="title" class="white-text">Book Title</label>
+                <label for="title" class="">Book Title</label>
             </div>
             <!-- book level selector-->
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-book-open white-text prefix"></i>
+                <i class="fa-solid fa-book-open prefix"></i>
                 <select id="book_level" name="book_level" class="validate" required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
@@ -53,25 +52,25 @@
                     <option value="Free">30+</option>
                     {% endif %}
                 </select>
-                <label for="book_level" class="white-text">Reading Level</label>
+                <label for="book_level">Reading Level</label>
             </div>
         </div>
         <!-- comments -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fa-solid fa-comment white-text prefix"></i>
+                <i class="fa-solid fa-comment prefix"></i>
                 <textarea id="comment" name="comment" class="materialize-textarea">
                     {{- reading_session.comment -}}
                 </textarea>
-                <label for="comment" class="white-text">Comment</label>
+                <label for="comment">Comment</label>
             </div>
         </div>
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large white pink-text">Edit Reading Session<i
+                <button type="submit" class="btn-large white plum-text">Edit Reading Session<i
                         class="fa-solid fa-edit right"></i></button>
-                    <a href="{{ url_for('view_reading_sessions') }}" class="btn-large white pink-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
+                    <a href="{{ url_for('view_reading_sessions') }}" class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>
