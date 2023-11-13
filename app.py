@@ -34,6 +34,15 @@ def path_error(path):
     return render_template("errors/404.html"), 404
 
 
+@app.context_processor
+def get_user_type():
+    if "user" in session:
+        user_type = mongo.db.users.find_one({"username": session["user"]})["user_type"]
+    else:
+        user_type = ""
+    return dict(user_type=user_type)
+
+
 @app.route("/view_reading_sessions")
 def view_reading_sessions():
     reading_sessions = list(mongo.db.reading_sessions.find().sort("date", -1))
@@ -200,7 +209,6 @@ def delete_student(student_id):
         return redirect(url_for("my_students", username=session["user"]))
     flash("You don't have permission to delete this student")
     return redirect(url_for("my_students", username=session["user"]))
-
 
 
 @app.route("/delete_user/<username_id>")
