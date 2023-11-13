@@ -43,14 +43,6 @@ def get_user_type():
     return dict(user_type=user_type)
 
 
-@app.route("/view_reading_sessions")
-def view_reading_sessions():
-    reading_sessions = list(mongo.db.reading_sessions.find().sort("date", -1))
-    users = list(mongo.db.users.find())
-    students = list(mongo.db.students.find())
-    return render_template("reading_sessions.html", reading_sessions=reading_sessions, users=users, students=students)
-
-
 @app.route("/my_reading_sessions/<username>")
 def my_reading_sessions(username):
     username = mongo.db.users.find_one({"username": session["user"]})
