@@ -257,7 +257,7 @@ def log_reading_session():
         }
         mongo.db.reading_sessions.insert_one(reading_session)
         flash("Reading Session Successfully Added")
-        return redirect(url_for("view_reading_sessions"))
+        return redirect(url_for('my_reading_sessions', username=session['user']))
     user = mongo.db.users.find_one({"username": session["user"]})
     students = list(mongo.db.students.find().sort("lname", 1))
     student_count = 0
@@ -287,7 +287,7 @@ def edit_reading_session(reading_session_id):
             }
             mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
             flash("Reading Session Successfully Updated")
-            return redirect(url_for("view_reading_sessions"))
+            return redirect(url_for('my_reading_sessions', username=session['user']))
         students = list(mongo.db.students.find().sort("lname", 1))
         return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
     flash("You don't have access to edit this reading session")
@@ -297,13 +297,13 @@ def edit_reading_session(reading_session_id):
 @app.route("/delete_reading_session/<reading_session_id>")
 def delete_reading_session(reading_session_id):
     # find the reading session
-    reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
+    reading_session_author = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})["logged_by"]
     user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
     # the session["user"] must be the user who created the task
-    if user_id == reading_session["logged_by"]:
+    if user_id == reading_session_author:
         mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
         flash("Reading Session Successfully Deleted")
-        return redirect(url_for("my_reading_sessions"))
+        return redirect(url_for('my_reading_sessions', username=session['user']))
     flash("You don't have access to delete this reading session")
     return redirect(url_for('my_reading_sessions', username=session['user']))
 
