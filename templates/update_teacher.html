@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="center-align pink-text ">Update Teacher</h2>
-
-<div class="row card-panel pink">
+<div class="row card-panel center-align mauve plum-text">
     <form class="col s12" method="POST" action="{{ url_for('update_reading_levels', username=session['user']) }}">
+        <h2>Update Teacher</h2>
         <!-- student first and last names-->
         <div class="row">
             {% for student in students %}
@@ -18,24 +17,27 @@
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
                     {% if teacher._id == student.teacher %}
-                    <option value="{{ teacher._id }}" selected>{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
+                    <option value="{{ teacher._id }}" selected>{{ teacher.title | capitalize }} {{ teacher.lname |
+                        capitalize }}
                         {% else %}
-                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}</option>
+                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
+                    </option>
                     {% endif %}
                     {% endfor %}
                 </select>
-                <label for="teacher" class="white-text">Teacher</label>
+                <label for="teacher">Teacher</label>
             </div>
             {% endif %}
             {% endfor %}
         </div>
-        
+
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large white pink-text">Edit Student <i
+                <button type="submit" class="btn-large white plum-text">Update<i
                         class="fa-solid fa-edit right"></i></button>
-                        <a href="{{ url_for('my_students', username=session['user']) }}" class="btn-large white pink-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
+                <a href="{{ url_for('my_students', username=session['user']) }}"
+                    class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>
