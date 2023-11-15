@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import (Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -256,8 +257,10 @@ def update_teacher(user):
 def log_reading_session():
     if request.method == "POST":
         logged_by = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
         reading_session = {
             "student": ObjectId(request.form.get("student")),
+            "date_sort": date_sort,
             "date": request.form.get("date"),
             "title": request.form.get("title").lower(),
             "book_level": request.form.get("book_level"),
