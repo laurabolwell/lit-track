@@ -215,10 +215,15 @@ def delete_user(username_id):
 @app.route("/update_reading_levels/<username>", methods=["GET", "POST"])
 def update_reading_levels(username):
     if request.method == "POST":
-        # insert post method here!
-        submit = {
-            "reading_level": request.form.get("reading_level")
-        }
+        for student in request.form.getlist("reading_level"):
+            student_id = student.split("__")[1]
+            student_lvl = student.split("__")[0]
+            mongo.db.students.find_one_and_update(
+                {"_id": ObjectId(student_id)},
+                {"$set": {"reading_level": student_lvl}}
+            )
+        flash("Reading Levels Successfully Updated")
+        return redirect(url_for("my_students", username=session["user"]))
     username = mongo.db.users.find_one(
         {"username": session["user"]})
     if session["user"]:
