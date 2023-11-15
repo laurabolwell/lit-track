@@ -243,8 +243,8 @@ def update_teacher(user):
                 {"_id": ObjectId(student_id)},
                 {"$set":{"teacher": ObjectId(teacher_id)}}
             )
-            flash("Teachers Successfully Updated")
-            return redirect(url_for("my_students", username=session["user"]))
+        flash("Teachers Successfully Updated")
+        return redirect(url_for("my_students", username=session["user"]))
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
         students = list(mongo.db.students.find().sort("lname", 1))
