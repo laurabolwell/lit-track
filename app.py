@@ -290,8 +290,10 @@ def edit_reading_session(reading_session_id):
     # the session["user"] must be the user who created the task
     if user_id == reading_session["logged_by"]:
         if request.method == "POST":
+            date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
             reading_session = {
                 "student": ObjectId(request.form.get("student")),
+                "date_sort": date_sort,
                 "date": request.form.get("date"),
                 "title": request.form.get("title").lower(),
                 "book_level": request.form.get("book_level"),
