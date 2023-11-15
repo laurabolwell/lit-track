@@ -235,13 +235,17 @@ def update_reading_levels(username):
 @app.route("/update_teacher/<user>", methods=["GET", "POST"])
 def update_teacher(user):
     if request.method == "POST":
-        # insert post method here!
-        submit = {
-            "teacher": request.form.get("teacher")
-        }
-    user = mongo.db.users.find_one(
-        {"username": session["user"]})
+        for student in request.form.getlist("teacher"):
+            student_id = student.split("__")[1]
+            teacher_id = student.split("__")[0]
+            mongo.db.students.find_one_and_update(
+                {"_id": ObjectId(student_id)},
+                {"$set":{"teacher": ObjectId(teacher_id)}}
+            )
+            flash("Teachers Successfully Updated")
+            return redirect(url_for("my_students", username=session["user"]))
     if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
         students = list(mongo.db.students.find().sort("lname", 1))
         teachers = list(mongo.db.users.find({"user_type": "teacher"}).sort("lname"))
         return render_template("update_teacher.html", user=user, students=students, teachers=teachers)

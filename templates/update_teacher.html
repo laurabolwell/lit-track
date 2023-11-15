@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row card-panel center-align mauve plum-text">
-    <form class="col s12" method="POST" action="{{ url_for('update_reading_levels', username=session['user']) }}">
+    <form class="col s12" method="POST" action="{{ url_for('update_teacher', user=session['user']) }}">
         <h2>Update Teacher</h2>
         <!-- student first and last names-->
         <div class="row">
@@ -16,13 +16,8 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
-                    {% if teacher._id == student.teacher %}
-                    <option value="{{ teacher._id }}" selected>{{ teacher.title | capitalize }} {{ teacher.lname |
-                        capitalize }}
-                        {% else %}
-                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
-                    </option>
-                    {% endif %}
+                    <option value="{{ teacher._id }}__{{ student._id }}" {% if teacher._id==student.teacher %}selected{% endif %}>{{
+                        teacher.title | capitalize }} {{ teacher.lname | capitalize }}
                     {% endfor %}
                 </select>
                 <label for="teacher">Teacher</label>
