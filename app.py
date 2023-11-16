@@ -249,9 +249,17 @@ def update_teacher(user):
         return redirect(url_for("my_students", username=session["user"]))
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find().sort("lname", 1))
-        teachers = list(mongo.db.users.find({"user_type": "teacher"}).sort("lname"))
-        return render_template("update_teacher.html", user=user, students=students, teachers=teachers)
+        #check user is a teacher
+        if user["user_type"] == "teacher":
+            students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
+            #check user has students linked to them
+            if not students:
+                flash("You have no students. Please remind parents to sign up.")
+                return redirect(url_for('my_students', username=session['user']))
+            teachers = list(mongo.db.users.find({"user_type": "teacher"}).sort("lname"))
+            return render_template("update_teacher.html", user=user, students=students, teachers=teachers)
+        flash("You Don't Have Access to Update Teachers")
+        return redirect(url_for("my_students", username=session['user']))
     return redirect(url_for("login"))
 
 
