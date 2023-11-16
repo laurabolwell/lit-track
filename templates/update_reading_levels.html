@@ -2,12 +2,12 @@
 {% block content %}
 
 <div class="row card-panel mauve plum-text">
-    <form class="col s12" method="POST" action="{{ url_for('update_reading_levels', username=session['user']) }}">
+    <form class="col s12" method="POST" action="{{ url_for('update_reading_levels', user=session['user']) }}">
         <h2>Update All Reading Levels</h2>
         <!-- student first and last names-->
         <div class="row">
             {% for student in students %}
-            {% if student.teacher == username._id or student.parent == username._id %}
+            {% if student.teacher == user._id or student.parent == user._id %}
             <div class="input-field col s6">
                 <span>{{ student.fname | capitalize }} {{ student.lname | capitalize }}</span>
             </div>

@@ -213,8 +213,8 @@ def delete_user(username_id):
     return redirect(url_for("register"))
 
 
-@app.route("/update_reading_levels/<username>", methods=["GET", "POST"])
-def update_reading_levels(username):
+@app.route("/update_reading_levels/<user>", methods=["GET", "POST"])
+def update_reading_levels(user):
     if request.method == "POST":
         for student in request.form.getlist("reading_level"):
             student_id = student.split("__")[1]
@@ -225,11 +225,13 @@ def update_reading_levels(username):
             )
         flash("Reading Levels Successfully Updated")
         return redirect(url_for("my_students", username=session["user"]))
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})
     if session["user"]:
-        students = list(mongo.db.students.find().sort("lname", 1))
-        return render_template("update_reading_levels.html", username=username, students=students)
+        user = mongo.db.users.find_one({"username": session["user"]})
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
+        if not students:
+            flash("You have no students. Please remind parents to sign up.")
+            return redirect(url_for('my_students', username=session['user']))
+        return render_template("update_reading_levels.html", user=user, students=students)
     return redirect(url_for("login"))
 
 

@@ -6,7 +6,7 @@
     <div class="card-panel mauve">
       {% if username.user_type == 'teacher' %}
       <h3 class="center-align plum-text">My Students</h3>
-      <a href="{{ url_for('update_reading_levels', username=session['user']) }}" class="btn white plum-text">Update All
+      <a href="{{ url_for('update_reading_levels', user=session['user']) }}" class="btn white plum-text">Update All
         Reading Levels</a>
       <a href="{{ url_for('update_teacher', user=username._id) }}" class="btn white plum-text">Update Teacher for All
         Students</a>
