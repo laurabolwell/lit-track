@@ -29,7 +29,7 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large white plum-text">Update<i
                         class="fa-solid fa-edit right"></i></button>
-                        <a href="{{ url_for('my_students', username=session['user']) }}" class="btn-large white plum-text">Cancel<i class="fa-solid fa-times-circle right"></i></a>
+                        <a href="{{ url_for('my_students', user=session['user']) }}" class="btn-large white plum-text">Cancel<i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>

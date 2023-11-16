@@ -22,7 +22,7 @@
         <nav class="nav-extended aero">
             <div class="nav-wrapper">
                 {% if session.user %}
-                <a href="{{ url_for('my_reading_sessions', username=session['user']) }}" class="brand-logo plum-text">LitTrack</a>
+                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="brand-logo plum-text">LitTrack</a>
                 {% else %}
                 <a href="{{ url_for('login') }}" class="brand-logo plum-text">LitTrack</a>
                 {% endif %}
@@ -30,11 +30,11 @@
                 <ul class="right hide-on-med-and-down">
 
                     {% if session.user %}
-                    <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">Home</a></li>
-                    <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">Reading Sessions</a>
+                    <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Home</a></li>
+                    <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Reading Sessions</a>
                     </li>
                     <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-                    <li><a href="{{ url_for('my_students', username=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
+                    <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -47,11 +47,11 @@
         <!-- mobile sidenav  -->
         <ul class="sidenav" id="mobile-demo">
             {% if session.user %}
-            <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">Home</a></li>
-            <li><a href="{{ url_for('my_reading_sessions', username=session['user']) }}">Reading Sessions</a>
+            <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Home</a></li>
+            <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Reading Sessions</a>
             </li>
             <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-            <li><a href="{{ url_for('my_students', username=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
+            <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>

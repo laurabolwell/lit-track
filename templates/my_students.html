@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col s12 m8 offset-m2">
     <div class="card-panel mauve">
-      {% if username.user_type == 'teacher' %}
+      {% if user.user_type == 'teacher' %}
       <h3 class="center-align plum-text">My Students</h3>
       <a href="{{ url_for('update_reading_levels', user=session['user']) }}" class="btn white plum-text">Update All
         Reading Levels</a>
-      <a href="{{ url_for('update_teacher', user=username._id) }}" class="btn white plum-text">Update Teacher for All
+      <a href="{{ url_for('update_teacher', user=user._id) }}" class="btn white plum-text">Update Teacher for All
         Students</a>
       {% else %}
       <h3 class="center-align plum-text">My Children</h3>
@@ -21,7 +21,7 @@
 
 <div class="row">
   {% for student in students %}
-  {% if student.parent == username._id %}
+  {% if student.parent == user._id %}
   <div class="col s12 m6">
     <div class="card-panel center-align light-mauve">
       {{ student.fname | capitalize }}
@@ -39,7 +39,7 @@
       {% include "partials/modals.html" %}
     </div>
   </div>
-  {% elif student.teacher == username._id %}
+  {% elif student.teacher == user._id %}
   <div class="col s6 m4">
     <div class="card-panel center-align light-mauve">
       {{ student.fname | capitalize }}
@@ -57,7 +57,7 @@
 </div>
 
 
-<a href="#modal-{{ username._id }}" class="btn-small mauve plum-text modal-trigger">Delete My
+<a href="#modal-{{ user._id }}" class="btn-small mauve plum-text modal-trigger">Delete My
   Account</a>
 <!-- inject the modals partials-template -->
 {% include "partials/modals.html" %}
