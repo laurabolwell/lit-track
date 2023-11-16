@@ -15,4 +15,16 @@
     M.Modal.init(modal, {
       dismissable: false
     });
+    let autocomplete = document.querySelectorAll('.autocomplete');
+    M.Autocomplete.init(autocomplete, {
+      minLength: 0,
+      data: [
+        {id: "Mrs"},
+        {id: "Mr"},
+        {id: "Miss"},
+        {id: "Ms"},
+        {id: "Mx"},
+        {id: "Dr"},
+      ]
+    });
   });
