@@ -110,7 +110,7 @@ def register():
         
     return render_template("register.html")
 
-
+@app.route("/")
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -271,12 +271,8 @@ def log_reading_session():
         flash("Reading Session Successfully Added")
         return redirect(url_for('my_reading_sessions', username=session['user']))
     user = mongo.db.users.find_one({"username": session["user"]})
-    students = list(mongo.db.students.find().sort("lname", 1))
-    student_count = 0
-    for student in students:
-        if user["_id"] == student["parent"] or user["_id"] == student["teacher"]:
-            student_count += 1
-    if student_count == 0:
+    students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
+    if not students:
         flash("You have no students. Please remind parents to sign up.")
         return redirect(url_for('my_students', username=session['user']))
     return render_template("log_reading_session.html", students=students, user=user)
