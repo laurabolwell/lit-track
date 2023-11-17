@@ -46,24 +46,26 @@ def get_user_type():
 
 @app.route("/my_reading_sessions/<user>")
 def my_reading_sessions(user):
-    user = mongo.db.users.find_one({"username": session["user"]})
     if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
         students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
         reading_sessions = list(mongo.db.reading_sessions.find().sort("date_sort", -1))
         users = list(mongo.db.users.find())
         return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
     return redirect(url_for("login"))
 
-@app.route("/search", methods=["GET", "POST"])
-def search_title():
+@app.route("/search_books", methods=["GET", "POST"])
+def search_books():
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
         query = request.form.get("query")
-        students = list(mongo.db.students.find())
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
         reading_sessions = list(mongo.db.reading_sessions.find({"$text": {"$search": query}}).sort("date_sort", -1))
         users = list(mongo.db.users.find())
         return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
     return redirect(url_for("login"))
+
+
 
 
 @app.route("/students")
