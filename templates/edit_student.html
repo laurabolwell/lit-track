@@ -25,17 +25,9 @@
                 <select id="reading_level" name="reading_level" class="validate" required>
                     <option value="" disabled>Select Current Reading Level</option>
                     {% for i in range(1, 31) %}
-                    {% if student.reading_level == i | string %}
-                    <option value="{{i}}" selected>{{i}}</option>
-                    {% else %}
-                    <option value="{{i}}">{{i}}</option>
-                    {% endif %}
+                    <option value="{{i}}" {% if student.reading_level == i | string %}selected{% endif %}>{{i}}</option>
                     {% endfor %}
-                    {% if student.reading_level == "Free" %}
-                    <option value="Free Reader" selected>Free Reader</option>
-                    {% else %}
-                    <option value="Free Reader">Free Reader</option>
-                    {% endif %}
+                    <option value="Free Reader" {% if student.reading_level == "Free Reader" %}selected{% endif %}>Free Reader</option>
                 </select>
                 <label for="reading_level" class="white-text">Reading Level</label>
             </div>
@@ -47,13 +39,8 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
-                    {% if teacher._id == student.teacher %}
-                    <option value="{{ teacher._id }}" selected>{{ teacher.title | capitalize }} {{ teacher.lname |
+                    <option value="{{ teacher._id }}" {% if teacher._id == student.teacher %}selected{% endif %}>{{ teacher.title | capitalize }} {{ teacher.lname |
                         capitalize }}
-                        {% else %}
-                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
-                    </option>
-                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="teacher" class="white-text">Teacher</label>

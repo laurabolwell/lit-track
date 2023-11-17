@@ -12,11 +12,7 @@
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled>Select Student</option>
                     {% for pupil in students %}
-                    {% if reading_session.student == pupil._id %}
-                    <option value="{{ pupil._id }}" selected>{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
-                    {% else %}
-                    <option value="{{ pupil._id }}">{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
-                    {% endif %}
+                    <option value="{{ pupil._id }}" {% if reading_session.student == pupil._id %}selected{% endif %}>{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
                     {% endfor %}
                 </select>
                 <label for="student" class="">Student</label>
@@ -40,17 +36,9 @@
                 <select id="book_level" name="book_level" class="validate" required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
-                        {% if reading_session.book_level == i | string %}
-                            <option value="{{i}}" selected>{{i}}</option>
-                        {% else %}
-                            <option value="{{i}}">{{i}}</option>
-                        {% endif %}
+                    <option value="{{i}}" {% if reading_session.book_level == i | string %}selected{% endif %}>{{i}}</option>
                     {% endfor %}
-                    {% if reading_session.book_level == "Free" %}
-                    <option value="Free" selected>30+</option>
-                    {% else %}
-                    <option value="Free">30+</option>
-                    {% endif %}
+                    <option value="Free Reader" {% if reading_session.book_level == "Free Reader" %}selected{% endif %}>30+</option>
                 </select>
                 <label for="book_level">Reading Level</label>
             </div>

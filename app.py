@@ -66,16 +66,6 @@ def search_books():
     return redirect(url_for("login"))
 
 
-
-
-@app.route("/students")
-def students():
-# get all students from the database
-    students = list(mongo.db.students.find().sort("lname", 1))
-    teachers = list(mongo.db.users.find({"user_type": "teacher"}))
-    return render_template("students.html", teachers=teachers, students=students)
-
-
 @app.route("/my_students/<user>")
 def my_students(user):
     #get the session user's username from the database
