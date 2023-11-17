@@ -165,53 +165,64 @@ def add_student():
     if session["user"]:    
         teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
         return render_template("add_student.html", teachers=teachers)
-    return redirect('login')
+    return redirect(url_for('login'))
 
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
-    # find the student
-    student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
+    if session["user"]:
+        # find the student
+        student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        # the user must be a parent or teacher of the student to edit
+        if student["parent"] == user_id or student["teacher"] == user_id:
+            if request.method == "POST":
+                submit = {
+                    "fname": request.form.get("fname").lower(),
+                    "lname": request.form.get("lname").lower(),
+                    "reading_level": request.form.get("reading_level"),
+                    "teacher": ObjectId(request.form.get("teacher")),
+                }
+                mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
+                flash("Student Successfully Updated")
+                return redirect(url_for("my_students", user=session["user"]))
+            teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
+            return render_template("edit_student.html", student=student, teachers=teachers)
+        flash("You don't have permission to edit this student")
+        return redirect(url_for("my_students", user=session["user"]))
+    # find the reading session
+    reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
     user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    # the user must be a parent or teacher of the student to edit
-    if student["parent"] == user_id or student["teacher"] == user_id:
-        if request.method == "POST":
-            submit = {
-                "fname": request.form.get("fname").lower(),
-                "lname": request.form.get("lname").lower(),
-                "reading_level": request.form.get("reading_level"),
-                "teacher": ObjectId(request.form.get("teacher")),
-            }
-            mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
-            flash("Student Successfully Updated")
-            return redirect(url_for("my_students", user=session["user"]))
-        teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
-        return render_template("edit_student.html", student=student, teachers=teachers)
-    flash("You don't have permission to edit this student")
-    return redirect(url_for("my_students", user=session["user"]))
+    # the session["user"] must be the user who created the task
 
 
 @app.route("/delete_student/<student_id>")
 def delete_student(student_id):
-    # find the student
-    student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
-    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    # the user must be a parent or teacher of the student to delete
-    if student["parent"] == user_id or student["teacher"] == user_id:
-        mongo.db.students.delete_one({"_id": ObjectId(student_id)})
-        mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
-        flash("Student and All Associated Reading Sessions Successfully Deleted")
+    if session["user"]:
+        # find the student
+        student = mongo.db.students.find_one({"_id": ObjectId(student_id)})
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        # the user must be a parent or teacher of the student to delete
+        if student["parent"] == user_id or student["teacher"] == user_id:
+            mongo.db.students.delete_one({"_id": ObjectId(student_id)})
+            mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
+            flash("Student and All Associated Reading Sessions Successfully Deleted")
+            return redirect(url_for("my_students", user=session["user"]))
+        flash("You don't have permission to delete this student")
         return redirect(url_for("my_students", user=session["user"]))
-    flash("You don't have permission to delete this student")
-    return redirect(url_for("my_students", user=session["user"]))
+        flash("You Must Login to Visit This Page")
+    return redirect(url_for('login'))
 
 
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
-    user = mongo.db.users.find_one({"username": session["user"]})
-    flash("User Account Deleted")
-    session.pop("user")
-    mongo.db.users.delete_one(user)
-    return redirect(url_for("register"))
+    if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
+        flash("User Account Deleted")
+        session.pop("user")
+        mongo.db.users.delete_one(user)
+        return redirect(url_for("register"))
+    flash("You Must Login to Visit This Page")
+    return redirect(url_for('login'))
 
 
 @app.route("/update_reading_levels/<user>", methods=["GET", "POST"])
@@ -291,47 +302,53 @@ def log_reading_session():
             flash("You have no students. Please remind parents to sign up.")
             return redirect(url_for('my_students', user=session['user']))
         return render_template("log_reading_session.html", students=students, user=user)
-    return redirect('login')
+    return redirect(url_for('login'))
 
 
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])
 def edit_reading_session(reading_session_id):
-    # find the reading session
-    reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
-    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    # the session["user"] must be the user who created the task
-    if user_id == reading_session["logged_by"]:
-        if request.method == "POST":
-            date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
-            reading_session = {
-                "student": ObjectId(request.form.get("student")),
-                "date_sort": date_sort,
-                "date": request.form.get("date"),
-                "title": request.form.get("title").lower(),
-                "book_level": request.form.get("book_level"),
-                "comment": request.form.get("comment"),
-            }
-            mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
-            flash("Reading Session Successfully Updated")
-            return redirect(url_for('my_reading_sessions', user=session['user']))
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user_id)},  {"teacher": ObjectId(user_id)}]}).sort("lname", 1))
-        return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
-    flash("You don't have access to edit this reading session")
-    return redirect(url_for('my_reading_sessions', user=session['user']))
+    if session["user"]:
+        # find the reading session
+        reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        # the session["user"] must be the user who created the task
+        if user_id == reading_session["logged_by"]:
+            if request.method == "POST":
+                date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
+                reading_session = {
+                    "student": ObjectId(request.form.get("student")),
+                    "date_sort": date_sort,
+                    "date": request.form.get("date"),
+                    "title": request.form.get("title").lower(),
+                    "book_level": request.form.get("book_level"),
+                    "comment": request.form.get("comment"),
+                }
+                mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
+                flash("Reading Session Successfully Updated")
+                return redirect(url_for('my_reading_sessions', user=session['user']))
+            students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user_id)},  {"teacher": ObjectId(user_id)}]}).sort("lname", 1))
+            return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
+        flash("You don't have access to edit this reading session")
+        return redirect(url_for('my_reading_sessions', user=session['user']))
+    flash("You Must Login to Visit This Page")
+    return redirect(url_for('login'))
 
 
 @app.route("/delete_reading_session/<reading_session_id>")
 def delete_reading_session(reading_session_id):
-    # find the reading session
-    reading_session_author = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})["logged_by"]
-    user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
-    # the session["user"] must be the user who created the task
-    if user_id == reading_session_author:
-        mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
-        flash("Reading Session Successfully Deleted")
+    if session["user"]:
+        # find the reading session
+        reading_session_author = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})["logged_by"]
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        # the session["user"] must be the user who created the task
+        if user_id == reading_session_author:
+            mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
+            flash("Reading Session Successfully Deleted")
+            return redirect(url_for('my_reading_sessions', user=session['user']))
+        flash("You don't have access to delete this reading session")
         return redirect(url_for('my_reading_sessions', user=session['user']))
-    flash("You don't have access to delete this reading session")
-    return redirect(url_for('my_reading_sessions', user=session['user']))
+    flash("You Must Login to Visit This Page")
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
