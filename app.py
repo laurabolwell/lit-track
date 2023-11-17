@@ -50,8 +50,7 @@ def my_reading_sessions(user):
         user = mongo.db.users.find_one({"username": session["user"]})
         students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
         reading_sessions = list(mongo.db.reading_sessions.find().sort("date_sort", -1))
-        users = list(mongo.db.users.find())
-        return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
+        return render_template("my_reading_sessions.html", user=user, reading_sessions=reading_sessions, students=students)
     return redirect(url_for("login"))
 
 @app.route("/search_books", methods=["GET", "POST"])
@@ -61,8 +60,7 @@ def search_books():
         query = request.form.get("query")
         students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
         reading_sessions = list(mongo.db.reading_sessions.find({"$text": {"$search": query}}).sort("date_sort", -1))
-        users = list(mongo.db.users.find())
-        return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
+        return render_template("my_reading_sessions.html", user=user, reading_sessions=reading_sessions, students=students)
     return redirect(url_for("login"))
 
 
@@ -311,7 +309,7 @@ def edit_reading_session(reading_session_id):
             mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
             flash("Reading Session Successfully Updated")
             return redirect(url_for('my_reading_sessions', user=session['user']))
-        students = list(mongo.db.students.find().sort("lname", 1))
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user_id)},  {"teacher": ObjectId(user_id)}]}).sort("lname", 1))
         return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
     flash("You don't have access to edit this reading session")
     return redirect(url_for('my_reading_sessions', user=session['user']))
