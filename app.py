@@ -228,11 +228,14 @@ def update_reading_levels(user):
         return redirect(url_for("my_students", user=session["user"]))
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
-        if not students:
-            flash("You have no students. Please remind parents to sign up.")
-            return redirect(url_for('my_students', user=session['user']))
-        return render_template("update_reading_levels.html", user=user, students=students)
+        if user["user_type"] == "teacher":
+            students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
+            if not students:
+                flash("You have no students. Please remind parents to sign up.")
+                return redirect(url_for('my_students', user=session['user']))
+            return render_template("update_reading_levels.html", user=user, students=students)
+        flash("You Don't Have Access to This Page")
+        return redirect(url_for("my_students", user=session["user"]))
     return redirect(url_for("login"))
 
 
