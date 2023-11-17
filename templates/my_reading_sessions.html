@@ -28,10 +28,7 @@
 {% if reading_sessions | length > 0 %}
 <ul class="collapsible popout">
 
-    {% for reading_session in reading_sessions %}
-    {% for student in students %}
-    {% if reading_session.student == student._id %}
-    {% if student.teacher == user._id or student.parent == user._id %}
+                {% if reading_session.student == student._id %}
 
     <li>
         <div class="collapsible-header plum-text">
@@ -47,29 +44,8 @@
             <i class="fa-solid fa-school"></i>
             {% endif %}
 
-        </div>
-        <div class="collapsible-body plum-text">
-            Book: <strong>{{ reading_session.title | title }}</strong><br>
-            Level: {{ reading_session.book_level }}<br>
-            Comment: {{ reading_session.comment }}<br>
-            {% if user._id == reading_session.logged_by %}
-            <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}"
-                class="btn-small">Edit</a>
-            <a href="#modal-{{ reading_session._id }}" class="btn-small modal-trigger">Delete</a>
-            <!-- inject the modals partials-template -->
-            {% include "partials/modals.html" %}
-            {% endif %}
-        </div>
-    </li>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-</ul>
-{% else %}
-<h3 class="center-align plum-text">No Results Found</h3>
-{% endif %}
-      </div>
+                </li>
+                {% endif %}
     </div>
   </div>
 
