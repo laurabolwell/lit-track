@@ -67,10 +67,9 @@ def search_books():
 @app.route("/my_students/<user>")
 def my_students(user):
     #get the session user's username from the database
-    user = mongo.db.users.find_one(
-        {"username": session["user"]})
     if session["user"]:
-        students = list(mongo.db.students.find().sort("lname", 1))
+        user = mongo.db.users.find_one({"username": session["user"]})
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
         return render_template("my_students.html", user=user, students=students)
     return redirect(url_for("login"))
 
@@ -162,10 +161,11 @@ def add_student():
         mongo.db.students.insert_one(student)
         flash("Student Successfully Added")
         return redirect(url_for("my_students", user=session["user"]))
-        
-    teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
-    return render_template("add_student.html", teachers=teachers)
-
+    
+    if session["user"]:    
+        teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
+        return render_template("add_student.html", teachers=teachers)
+    return redirect('login')
 
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
@@ -228,7 +228,7 @@ def update_reading_levels(user):
         return redirect(url_for("my_students", user=session["user"]))
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
+        students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
         if not students:
             flash("You have no students. Please remind parents to sign up.")
             return redirect(url_for('my_students', user=session['user']))
@@ -281,12 +281,14 @@ def log_reading_session():
         mongo.db.reading_sessions.insert_one(reading_session)
         flash("Reading Session Successfully Added")
         return redirect(url_for('my_reading_sessions', user=session['user']))
-    user = mongo.db.users.find_one({"username": session["user"]})
-    students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
-    if not students:
-        flash("You have no students. Please remind parents to sign up.")
-        return redirect(url_for('my_students', user=session['user']))
-    return render_template("log_reading_session.html", students=students, user=user)
+    if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
+        if not students:
+            flash("You have no students. Please remind parents to sign up.")
+            return redirect(url_for('my_students', user=session['user']))
+        return render_template("log_reading_session.html", students=students, user=user)
+    return redirect('login')
 
 
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])
