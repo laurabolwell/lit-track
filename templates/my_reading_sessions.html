@@ -16,8 +16,6 @@
                             <label for="query">Search for a Book Title</label>
                         </div>
                         <div class="col s12 m4">
-                            <a href="{{ url_for('my_reading_sessions', user=session['user']) }}"
-                                class="red btn btn-small">Reset</a>
                             <button type="submit" class="btn btn-small">
                                 <i class="fa-solid fa-search left"></i>
                                 Search
@@ -25,6 +23,31 @@
                         </div>
                     </div>
                 </form>
+                <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST" class="col s12 m6">
+                    <div class="row valign-wrapper center-align">
+                        <div class="input-field col s12 m8">
+                            <i class="fa-solid fa-filter left prefix"></i>
+                            <select name="filter" id="filter" class="validate" required multiple>
+                                {% for student in students %}
+                                <option value="{{ student._id }}">{{ student.fname | capitalize }} {{ student.lname |
+                                    capitalize }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <label for="filter">Filter Students</label>
+                        </div>
+                        <div class="col s12 m4">
+                            <button type="submit" class="btn btn-small">
+                                <i class="fa-solid fa-filter left"></i>
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="col s6 offset-m5">
+                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="red btn btn-small left">
+                        <i class="fa-solid fa-rotate-left"></i>Reset</a>
+                </div>
             </div>
 
             {% if reading_sessions | length > 0 %}
@@ -68,6 +91,7 @@
             </ul>
             {% else %}
             <h3 class="center-align plum-text">No Results Found</h3>
+
             {% endif %}
         </div>
     </div>

@@ -64,6 +64,20 @@ def search_books():
     return redirect(url_for("login"))
 
 
+@app.route("/filter_students/<user>", methods=["GET", "POST"])
+def filter_students(user):
+    if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
+        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
+        filtered_students = request.form.getlist("filter")
+        filtered_students = [ObjectId(student) for student in filtered_students]
+        reading_sessions = list(mongo.db.reading_sessions.find({"student": { "$in": filtered_students}}).sort("date_sort", -1))
+        users = list(mongo.db.users.find())
+        return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
+    return redirect(url_for("login"))
+
+
+
 @app.route("/my_students/<user>")
 def my_students(user):
     #get the session user's username from the database
