@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>404 Error</h1>
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h1>404 Error</h1>
+            <h2 class="heading">Uh-oh!</h2>
+            <h3>We couldn't find the page you are looking for</h3>
+            <p>You'll automatically be redirected to the <a class="btn btn-small btn-blue" href="{{ url_for('my_reading_sessions', user=session['user']) }}"
+                    aria-label="link to homepage">homepage</a> in <span id="countdowntimer">10 </span> seconds.
+            </p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
