@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class="row">
     <form class="col s12 m10 offset-m1" method="POST" action="{{ url_for('register') }}">
-        <div class="card-panel dark-mauve">
-            <h3 class="center-align white-text">Register Here!</h3>
+        <div class="card-panel dark-mauve white-text center-align">
+            <h1 class="uppercase">Enter the World of Digital Reading Records</h1>
+            <h3>Tracking Triumphs, One Story at a Time</h3>
+            <a href="{{ url_for('about_us')}}" class="btn aero plum-text filled">
+                Find out more <i class="fa-solid fa-circle-info"></i>
+              </a>
+            <button class="btn outlined aero plum-text">
+                Already registered? <a href="{{ url_for('login') }}" class="white-text">Log In <i class="fa-solid fa-right-to-bracket"></i></a>
+            </button>
+            <h3 class="center-align white-text">Register Here</h3>
             <!-- registration code -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-users white-text prefix"></i>
-                    <input id="reg-code" name="reg-code" type="text" class="dark-mauve validate" placeholder=" " required>
+                    <input id="reg-code" name="reg-code" type="text" class="dark-mauve validate" placeholder=" "
+                        required>
                     <label for="reg-code" class="white-text">Registration Code</label>
                 </div>
             </div>
@@ -33,14 +41,14 @@
                 </div>
                 <!-- first name -->
                 <div class="input-field col s5">
-                    <input id="fname" name="fname" type="text" pattern="^[a-zA-Z]{2,15}$"
-                        class="dark-mauve validate" placeholder=" " required>
+                    <input id="fname" name="fname" type="text" pattern="^[a-zA-Z]{2,15}$" class="dark-mauve validate"
+                        placeholder=" " required>
                     <label for="fname" class="white-text">First Name</label>
                 </div>
                 <!-- last name -->
                 <div class="input-field col s5">
-                    <input id="lname" name="lname" type="text" pattern="^[a-zA-Z]{2,15}$"
-                        class="dark-mauve validate" placeholder=" " required>
+                    <input id="lname" name="lname" type="text" pattern="^[a-zA-Z]{2,15}$" class="dark-mauve validate"
+                        placeholder=" " required>
                     <label for="lname" class="white-text">Surname</label>
                 </div>
             </div>
@@ -63,13 +71,5 @@
     </form>
 </div>
 
-<!-- Link to login page -->
-<div class="row">
-    <div class="col s12 center-align">
-        <button class="btn outlined aero plum-text">
-            Already registered? <a href="{{ url_for('login') }}" class="white-text">Log In Here</a>
-        </button>
-    </div>
-</div>
 
 {% endblock %}
