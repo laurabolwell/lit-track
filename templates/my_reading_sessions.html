@@ -67,7 +67,7 @@
                         <!-- display home icon if logged by parent and school icon if logged by teacher -->
                         {% if reading_session.logged_by == student.parent %}
                         <i class="fa-solid fa-house"></i>
-                        {% elif reading_session.logged_by == student.teacher %}
+                        {% else %}
                         <i class="fa-solid fa-school"></i>
                         {% endif %}
 
