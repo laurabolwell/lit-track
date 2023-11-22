@@ -6,15 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block refresh %}
     {% endblock %}
-    <!-- Materialize CDN link -->
+    <!-- font awesome -->
     <script src="https://kit.fontawesome.com/d2b22e28d8.js" crossorigin="anonymous"></script>
+    <!-- materialize -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@2.0.3-alpha/dist/css/materialize.min.css"
         type="text/css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
     <title>LitTrack</title>
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.png">
 </head>
 
 <body>

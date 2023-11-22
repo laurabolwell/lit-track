@@ -74,15 +74,33 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
 }
 
-  main {
+header, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.brand-logo {
+    letter-spacing: 0.5px;
+}
+
+main {
     flex: 1 0 auto;
   }
 
 nav a {
     color: var(--plum) !important;
 }
+
+.logo {
+    vertical-align: middle;
+    height: 50px;
+}
+ .page-footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
 
 .input-field input, .input-field textarea {
     background-color: var(--mauve);
