@@ -24,11 +24,15 @@
         <nav class="nav-extended aero">
             <div class="nav-wrapper">
                 {% if session.user %}
-                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="brand-logo plum-text">LitTrack</a>
+                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="brand-logo plum-text">
+                    <img src="../static/images/logo-plum.png" class="logo" alt="littrack open book logo">LitTrack
+                </a>
                 {% else %}
-                <a href="{{ url_for('login') }}" class="brand-logo plum-text">LitTrack</a>
+                <a href="{{ url_for('login') }}" class="brand-logo plum-text"><img src="../static/images/logo-plum.png"
+                        class="logo" alt="littrack open book logo">LitTrack</a>
                 {% endif %}
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fa-solid fa-bars plum-text"></i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="fa-solid fa-bars plum-text"></i></a>
                 <ul class="right hide-on-med-and-down">
 
                     {% if session.user %}
@@ -36,7 +40,8 @@
                     <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Reading Sessions</a>
                     </li>
                     <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-                    <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
+                    <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent"
+                            %}Children{% else %}Students{% endif %}</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -53,7 +58,8 @@
             <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">Reading Sessions</a>
             </li>
             <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
-            <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{% else %}Students{% endif %}</a></li>
+            <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{%
+                    else %}Students{% endif %}</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -80,13 +86,13 @@
 
     <footer class="page-footer aero plum-text center-align">
         <div class="container">
-          <div class="row">
-            <div class="s12">
-              <h5>&copy 2023 LitTrack</h5>
+            <div class="row">
+                <div class="s12">
+                    <h5>&copy 2023 LitTrack</h5>
+                </div>
             </div>
-          </div>
         </div>
-      </footer>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
