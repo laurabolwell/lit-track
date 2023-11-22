@@ -13,7 +13,7 @@
             <h1>500 Error</h1>
             <h2 class="heading">Uh-oh!</h2>
             <h3>Something went wrong</h3>
-            <p>You'll automatically be redirected to the <a class="btn btn-small btn-blue" href="{{ url_for('my_reading_sessions', user=session['user']) }}"
+            <p>You'll automatically be redirected to the <a class="btn btn-small btn-blue" href="{% if session.user %}{{ url_for('my_reading_sessions', user=session['user']) }}{% else %}{{ url_for('login') }}{% endif %}"
                     aria-label="link to homepage">homepage</a> in <span id="countdowntimer">10 </span> seconds.
             </p>
         </div>
