@@ -5,26 +5,24 @@
     <div class="col s12">
         <div class="card-panel pistachio center-align">
             <h3 class="center-align plum-text">Reading Sessions</h3>
-
-            <div class="row card-panel grey-lighten-5">
-                <form action="{{ url_for('search_books') }}" method="POST" class="col s12 m6">
+            <div class="row card-panel">
+                <form action="{{ url_for('search_books') }}" method="POST" class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
-                        <div class="input-field col s12 m8">
+                        <div class="input-field col s8">
                             <input type="text" name="query" id="query" minlength="2" class="validate" placeholder=" "
                                 required>
                             <label for="query"><i class="fa-solid fa-search left"></i>Search for a Book Title</label>
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s4">
                             <button type="submit" class="btn btn-small">
-                                <i class="fa-solid fa-search left"></i>
-                                Search
+                                <i class="fa-solid fa-search"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST" class="col s12 m6">
+                <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST" class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
-                        <div class="input-field col s12 m8">
+                        <div class="input-field col s8">
                             <select name="filter" id="filter" class="validate" required multiple>
                                 {% for student in students %}
                                 <option value="{{ student._id }}">{{ student.fname | capitalize }} {{ student.lname |
@@ -35,15 +33,14 @@
                             <label for="filter">
                                 <i class="fa-solid fa-filter left"></i>Filter Students</label>
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s4">
                             <button type="submit" class="btn btn-small">
-                                <i class="fa-solid fa-filter left"></i>
-                                Filter
+                                <i class="fa-solid fa-filter"></i>
                             </button>
                         </div>
                     </div>
                 </form>
-                <div class="col s6 offset-m5">
+                <div class="col s4 offset-s4 offset-m5 l2 valign-wrapper">
                     <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="red btn btn-small left">
                         <i class="fa-solid fa-rotate-left"></i>Reset</a>
                 </div>
