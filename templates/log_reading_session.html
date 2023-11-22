@@ -14,26 +14,23 @@
                     </option>
                     {% endfor %}
                 </select>
-                <label for="student" class="">Student</label>
+                <label for="student" class=""><i class="fa-solid fa-child plum-text left"></i>Student</label>
             </div>
             <!-- datepicker -->
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-calendar-days plum-text prefix"></i>
                 <input id="date" name="date" type="text" class="pistachio datepicker validate" placeholder=" " required>
-                <label for="date" class="plum-text">Date</label>
+                <label for="date" class="plum-text"><i class="fa-solid fa-calendar-days plum-text left"></i>Date</label>
             </div>
         </div>
         <div class="row">
             <!-- book title-->
             <div class="input-field col s12 m8">
-                <i class="fa-solid fa-book plum-text prefix"></i>
                 <input id="title" name="title" minlength="2" maxlength="30" type="text" class="pistachio validate"
                     placeholder=" " required>
-                <label for="title" class="plum-text">Book Title</label>
+                <label for="title" class="plum-text"><i class="fa-solid fa-book plum-text left"></i>Book Title</label>
             </div>
             <!-- book level selector-->
             <div class="input-field col s12 m4">
-                <i class="fa-solid fa-book-open plum-text prefix"></i>
                 <select id="book_level" name="book_level" class="pistachio validate" placeholder=" " required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
@@ -41,15 +38,14 @@
                     {% endfor %}
                     <option value="Free Reader">30+</option>
                 </select>
-                <label for="book_level" class="">Reading Level</label>
+                <label for="book_level" class=""><i class="fa-solid fa-book-open plum-text left"></i>Reading Level</label>
             </div>
         </div>
         <!-- comments -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fa-solid fa-comment plum-text prefix"></i>
                 <textarea id="comment" name="comment" class="pistachio materialize-textarea" placeholder=" "></textarea>
-                <label for="comment" class="plum-text">Comment</label>
+                <label for="comment" class="plum-text"><i class="fa-solid fa-comment plum-text left"></i>Comment</label>
             </div>
         </div>
         <!-- submit button -->
