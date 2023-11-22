@@ -44,6 +44,11 @@ def get_user_type():
     return dict(user_type=user_type)
 
 
+@app.route("/about_us")
+def about_us():
+    return render_template("about_us.html")
+
+
 @app.route("/my_reading_sessions/<user>")
 def my_reading_sessions(user):
     if session["user"]:
