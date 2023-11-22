@@ -71,7 +71,14 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
+  main {
+    flex: 1 0 auto;
+  }
 
 nav a {
     color: var(--plum) !important;
