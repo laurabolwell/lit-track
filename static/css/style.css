@@ -87,3 +87,7 @@ nav a {
 .input-field input, .input-field textarea {
     background-color: var(--mauve);
 }
+
+.uppercase {
+    text-transform: uppercase;
+}

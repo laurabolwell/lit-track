@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel dark-mauve white-text center-align">
+            <h1 class="uppercase">Enter the World of Digital Reading Records</h1>
+            <h3>Tracking Triumphs, One Story at a Time</h3>
+        </div>
+    </div>
+</div>
+
+<div class="row plum-text">
+    <div class="col s12 m6">
+      <div class="card-panel pistachio">
+        <h3>Benefits for School</h3><br>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Records kept for the entire time the student is at your school</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Instant overview of students' reading sessions</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Quick and easy to use</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Record reading on any device connected to the internet</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Full access to previous reading records for all pupils</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>No more lost paper reading record books</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Reduced environmental impact</p>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="card-panel pistachio">
+        <h3>Benefits for Parents</h3><br>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Quick and Easy to Use</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Record reading on any device connected to the internet</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>View all your childrens' reading sessions in one place</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Share comments and concerns about reading with your child's teacher</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Full access to previous reading records for all your children</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>No more lost paper reading record books</p>
+        <i class="fa-solid fa-square-check"></i><br>
+        <p>Reduced environmental impact</p>
+      </div>
+    </div>
+  </div>
+
+<!-- Link to registration page -->
+<div class="row">
+    <div class="col s12 center-align">
+        <button class="btn outlined aero plum-text">
+            Ready to Start? <a href="{{ url_for('register') }}" class="white-text">Register Here</a>
+        </button>
+    </div>
+</div>
+
+{% endblock %}
