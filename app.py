@@ -52,8 +52,8 @@ def get_user_type():
 def home():
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        return redirect(url_for('my_reading_sessions', user=session['user']))
-    return redirect(url_for('login'))
+        return redirect(url_for("my_reading_sessions", user=session["user"]))
+    return redirect(url_for("login"))
 
 
 @app.route("/about_us")
@@ -182,7 +182,7 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect(url_for('my_reading_sessions', user=session['user']))
+        return redirect(url_for("my_reading_sessions", user=session["user"]))
     return render_template("register.html")
 
 
@@ -205,17 +205,17 @@ def login():
                     )
                 )
                 return redirect(url_for(
-                    'my_reading_sessions', user=session['user'])
+                    "my_reading_sessions", user=session["user"])
                 )
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
-                return redirect(url_for('login'))
+                return redirect(url_for("login"))
 
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
-            return redirect(url_for('login'))
+            return redirect(url_for("login"))
 
     return render_template("login.html")
 
@@ -249,7 +249,7 @@ def add_student():
         )
         return render_template("add_student.html", teachers=teachers)
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
@@ -283,7 +283,7 @@ def edit_student(student_id):
         flash("You don't have permission to edit this student")
         return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_student/<student_id>")
@@ -307,7 +307,7 @@ def delete_student(student_id):
         return redirect(url_for("my_students", user=session["user"]))
         flash("You Must Login to Visit This Page")
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_user/<user_id>")
@@ -319,7 +319,7 @@ def delete_user(user_id):
         mongo.db.users.delete_one(user)
         return redirect(url_for("register"))
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/update_reading_levels/<user>", methods=["GET", "POST"])
@@ -345,7 +345,7 @@ def update_reading_levels(user):
                     "You have no students. "
                     "Please remind parents to sign up."
                 )
-                return redirect(url_for('my_students', user=session['user']))
+                return redirect(url_for("my_students", user=session["user"]))
             return render_template(
                 "update_reading_levels.html",
                 user=user, students=students
@@ -381,7 +381,7 @@ def update_teacher(user):
                     "You have no students. "
                     "Please remind parents to sign up."
                 )
-                return redirect(url_for('my_students', user=session['user']))
+                return redirect(url_for("my_students", user=session["user"]))
             teachers = list(mongo.db.users.find(
                 {"user_type": "teacher"}).sort("lname")
             )
@@ -389,7 +389,7 @@ def update_teacher(user):
                 "update_teacher.html",
                 user=user, students=students, teachers=teachers)
         flash("You Don't Have Access to Update Teachers")
-        return redirect(url_for("my_students", user=session['user']))
+        return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
 
@@ -411,7 +411,7 @@ def log_reading_session():
         }
         mongo.db.reading_sessions.insert_one(reading_session)
         flash("Reading Session Successfully Added")
-        return redirect(url_for('my_reading_sessions', user=session['user']))
+        return redirect(url_for("my_reading_sessions", user=session["user"]))
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
         students = list(mongo.db.students.find(
@@ -422,13 +422,13 @@ def log_reading_session():
         )
         if not students:
             flash("You have no students. Please remind parents to sign up.")
-            return redirect(url_for('my_students', user=session['user']))
+            return redirect(url_for("my_students", user=session["user"]))
         return render_template(
             "log_reading_session.html",
             students=students, user=user
         )
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])  # noqa
@@ -457,8 +457,8 @@ def edit_reading_session(reading_session_id):
                 )
                 flash("Reading Session Successfully Updated")
                 return redirect(url_for(
-                    'my_reading_sessions',
-                    user=session['user'])
+                    "my_reading_sessions",
+                    user=session["user"])
                 )
             students = list(mongo.db.students.find(
                 {"$or": [
@@ -471,9 +471,9 @@ def edit_reading_session(reading_session_id):
                 reading_session=reading_session, students=students
             )
         flash("You don't have access to edit this reading session")
-        return redirect(url_for('my_reading_sessions', user=session['user']))
+        return redirect(url_for("my_reading_sessions", user=session["user"]))
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_reading_session/<reading_session_id>")
@@ -489,13 +489,13 @@ def delete_reading_session(reading_session_id):
             )
             flash("Reading Session Successfully Deleted")
             return redirect(url_for(
-                'my_reading_sessions',
-                user=session['user'])
+                "my_reading_sessions",
+                user=session["user"])
             )
         flash("You don't have access to delete this reading session")
-        return redirect(url_for('my_reading_sessions', user=session['user']))
+        return redirect(url_for("my_reading_sessions", user=session["user"]))
     flash("You Must Login to Visit This Page")
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
