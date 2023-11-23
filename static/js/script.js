@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     format: "dd mmmm, yyyy",
     yearRange: 0,
     autoClose: true,
+    maxDate: new Date()
   });
   let modal = document.querySelectorAll('.modal');
   M.Modal.init(modal, {
