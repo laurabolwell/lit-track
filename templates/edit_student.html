@@ -3,7 +3,8 @@
 
 <div class="row card-panel center-align pistachio plum-text">
     <form class="col s12" method="POST" action="{{ url_for('edit_student', student_id=student._id) }}">
-        <h2>Edit Student</h2>
+        <h2>Edit {% if user_type == "parent" %}Child{%
+            else %}Student{% endif %}</h2>
         <!-- student first and last names-->
         <div class="row student-field">
             <div class="input-field col s6">
@@ -48,8 +49,8 @@
         <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="btn-large white plum-text">Edit Student <i
-                        class="fa-solid fa-edit right"></i></button>
+                <button type="submit" class="btn-large white plum-text">Edit {% if user_type == "parent" %}Child{%
+                    else %}Student{% endif %} <i class="fa-solid fa-edit right"></i></button>
                 <a href="{{ url_for('my_students', user=session['user']) }}" class="btn-large white plum-text">Cancel <i
                         class="fa-solid fa-times-circle right"></i></a>
             </div>
