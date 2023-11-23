@@ -44,6 +44,16 @@ def get_user_type():
     return dict(user_type=user_type)
 
 
+@app.route("/")
+@app.route("/home")
+def home():
+    if session["user"]:
+        user = mongo.db.users.find_one({"username": session["user"]})
+        return redirect(url_for('my_reading_sessions', user=session['user']))
+    else:
+        return redirect(url_for('login'))
+
+
 @app.route("/about_us")
 def about_us():
     return render_template("about_us.html")
@@ -122,6 +132,9 @@ def register():
         }
 
         mongo.db.users.insert_one(register)
+        #logout any current user
+        if session["user"]:
+            session.pop("user")
         #put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
@@ -129,7 +142,7 @@ def register():
         
     return render_template("register.html")
 
-@app.route("/")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
