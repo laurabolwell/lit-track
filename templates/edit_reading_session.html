@@ -11,20 +11,23 @@
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled>Select Student</option>
                     {% for pupil in students %}
-                    <option value="{{ pupil._id }}" {% if reading_session.student == pupil._id %}selected{% endif %}>{{ pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
+                    <option value="{{ pupil._id }}" {% if reading_session.student==pupil._id %}selected{% endif %}>{{
+                        pupil.fname | capitalize }} {{ pupil.lname | capitalize }}</option>
                     {% endfor %}
                 </select>
                 <label for="student"><i class="fa-solid fa-child plum-text left"></i>Student</label>
             </div>
-            <div class="input-field col s12 m4">                
-                <input id="date" name="date" type="text" value="{{ reading_session.date }}" class="datepicker validate" required>
+            <div class="input-field col s12 m4">
+                <input id="date" name="date" type="text" value="{{ reading_session.date }}" class="datepicker validate"
+                    required>
                 <label for="date"><i class="fa-solid fa-calendar-days plum-text left"></i>Date</label>
             </div>
         </div>
         <div class="row">
             <!-- book title-->
-            <div class="input-field col s12 m8">               
-                <input id="title" name="title" minlength="2" maxlength="30" value="{{ reading_session.title | title }}" type="text" class="validate" required>
+            <div class="input-field col s12 m8">
+                <input id="title" name="title" minlength="2" maxlength="30" value="{{ reading_session.title | title }}"
+                    type="text" class="validate" required>
                 <label for="title" class=""><i class="fa-solid fa-book plum-text left"></i>Book Title</label>
             </div>
             <!-- book level selector-->
@@ -32,16 +35,18 @@
                 <select id="book_level" name="book_level" class="validate" required>
                     <option value="" disabled selected>Select Book Level</option>
                     {% for i in range(1, 31) %}
-                    <option value="{{i}}" {% if reading_session.book_level == i | string %}selected{% endif %}>{{i}}</option>
+                    <option value="{{i}}" {% if reading_session.book_level==i | string %}selected{% endif %}>{{i}}
+                    </option>
                     {% endfor %}
-                    <option value="Free Reader" {% if reading_session.book_level == "Free Reader" %}selected{% endif %}>30+</option>
+                    <option value="Free Reader" {% if reading_session.book_level=="Free Reader" %}selected{% endif %}>
+                        30+</option>
                 </select>
                 <label for="book_level"><i class="fa-solid fa-book-open plum-text left"></i>Reading Level</label>
             </div>
         </div>
         <!-- comments -->
         <div class="row">
-            <div class="input-field col s12">                
+            <div class="input-field col s12">
                 <textarea id="comment" name="comment" class="materialize-textarea">
                     {{- reading_session.comment -}}
                 </textarea>
@@ -53,7 +58,8 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large white plum-text">Edit Reading Session<i
                         class="fa-solid fa-edit right"></i></button>
-                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
+                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}"
+                    class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>

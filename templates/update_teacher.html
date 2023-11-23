@@ -15,9 +15,10 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
-                    <option value="{{ teacher._id }}__{{ student._id }}" {% if teacher._id==student.teacher %}selected{% endif %}>{{
+                    <option value="{{ teacher._id }}__{{ student._id }}" {% if teacher._id==student.teacher %}selected{%
+                        endif %}>{{
                         teacher.title | capitalize }} {{ teacher.lname | capitalize }}
-                    {% endfor %}
+                        {% endfor %}
                 </select>
                 <label for="teacher">Teacher</label>
             </div>
@@ -29,8 +30,8 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large white plum-text">Update<i
                         class="fa-solid fa-edit right"></i></button>
-                <a href="{{ url_for('my_students', user=session['user']) }}"
-                    class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
+                <a href="{{ url_for('my_students', user=session['user']) }}" class="btn-large white plum-text">Cancel <i
+                        class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
     </form>

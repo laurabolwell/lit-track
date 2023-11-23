@@ -20,7 +20,8 @@
                         </div>
                     </div>
                 </form>
-                <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST" class="col s12 m6 l5">
+                <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST"
+                    class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
                         <div class="input-field col s8">
                             <select name="filter" id="filter" class="validate" required multiple>
@@ -41,7 +42,8 @@
                     </div>
                 </form>
                 <div class="col s4 offset-s4 offset-m5 l2 valign-wrapper">
-                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="btn btn-small left dark-mauve">
+                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}"
+                        class="btn btn-small left dark-mauve">
                         <i class="fa-solid fa-rotate-left"></i>Reset</a>
                 </div>
             </div>
@@ -76,7 +78,8 @@
                         {% if user._id == reading_session.logged_by %}
                         <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}"
                             class="btn-small pistachio plum-text">Edit</a>
-                        <a href="#modal-{{ reading_session._id }}" class="btn-small modal-trigger pistachio plum-text">Delete</a>
+                        <a href="#modal-{{ reading_session._id }}"
+                            class="btn-small modal-trigger pistachio plum-text">Delete</a>
                         <!-- inject the modals partials-template -->
                         {% include "partials/modals.html" %}
                         {% endif %}

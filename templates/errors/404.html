@@ -24,12 +24,12 @@
 {% block scripts %}
 <script>
     let timeleft = 10;
-  let downloadTimer = setInterval(function () {
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if (timeleft <= 0) {
-      clearInterval(downloadTimer);
-    }
-  }, 1000);
+    let downloadTimer = setInterval(function () {
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+        }
+    }, 1000);
 </script>
 {% endblock %}

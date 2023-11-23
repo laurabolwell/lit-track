@@ -6,12 +6,14 @@
         <h2>Add Student</h2>
         <!-- student first and last names-->
         <div class="row">
-            <div class="input-field col s6">                
-                <input id="fname" name="fname" pattern="^[a-zA-Z]{2,15}$" type="text" class="validate mauve" placeholder=" " required>
+            <div class="input-field col s6">
+                <input id="fname" name="fname" pattern="^[a-zA-Z]{2,15}$" type="text" class="validate mauve"
+                    placeholder=" " required>
                 <label for="fname"><i class="fa-solid fa-child left"></i>First Name</label>
             </div>
             <div class="input-field col s6">
-                <input id="lname" name="lname" pattern="^[a-zA-Z]{2,15}$" type="text" class="validate mauve" placeholder=" " required>
+                <input id="lname" name="lname" pattern="^[a-zA-Z]{2,15}$" type="text" class="validate mauve"
+                    placeholder=" " required>
                 <label for="lname">Last Name</label>
             </div>
         </div>
@@ -34,7 +36,8 @@
                 <select id="teacher" name="teacher" class="validate" required>
                     <option value="" disabled selected>Select Teacher</option>
                     {% for teacher in teachers %}
-                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}</option>
+                    <option value="{{ teacher._id }}">{{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}
+                    </option>
                     {% endfor %}
                 </select>
                 <label for="teacher"><i class="fa-solid fa-person-chalkboard plum-text left"></i>Teacher</label>
