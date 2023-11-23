@@ -90,3 +90,9 @@ nav a {
 .uppercase {
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 420px) {
+    .logo-text {
+        display: none;
+    }
+}
