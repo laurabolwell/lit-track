@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="LitTrack - a digital reading record for children and schools">
+    <meta name="keywords" content="reading, record, log, digital, school, education, learn">
     {% block refresh %}
     {% endblock %}
     <!-- font awesome -->
@@ -20,42 +23,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>LitTrack</title>
     <link rel="icon" type="image/x-icon" href="/static/icons/favicon.png">
+    <title>LitTrack</title>
 </head>
 
 <body>
 
-    <header>
-        {% include "partials/navbar.html" %}
-    </header>
+    {% include "partials/navbar.html" %}
 
-    <section>
-        <!-- flash messages -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <h4 class="sky-blue center-align">{{ message }}</h4>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-    </section>
+    {% include "partials/flash_messages.html" %}
 
     <main class="container center-align">
         {% block content %}
         {% endblock%}
     </main>
 
-    <footer class="page-footer aero plum-text center-align">
-        <div class="container">
-            <div class="row">
-                <div class="s12">
-                    <h5>&copy; 2023 LitTrack</h5>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include "partials/footer.html" %}
 
+    <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script
