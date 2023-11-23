@@ -1,3 +1,4 @@
+/* jshint esversion: 11 */
 document.addEventListener('DOMContentLoaded', function () {
   let sidenav = document.querySelectorAll('.sidenav');
   M.Sidenav.init(sidenav, { edge: "right" });
@@ -27,12 +28,4 @@ document.addEventListener('DOMContentLoaded', function () {
       { id: "Dr" },
     ]
   });
-  let timeleft = 10;
-  let downloadTimer = setInterval(function () {
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if (timeleft <= 0) {
-      clearInterval(downloadTimer);
-    }
-  }, 1000);
 });
