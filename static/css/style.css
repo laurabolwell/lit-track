@@ -1,24 +1,16 @@
 :root {
-    --french-mauve: #DB7DD8;
     --plum: #673C66;
-    --mint: #44B58D;
-    --celadon: #B9DE93;
+    --celadon: #CCE7B1;
     --pistachio: #ADD982;
     --sky-blue: #90DDF8;
     --aero: #48BDE8;
 }
 
-.mauve {
-    background-color: #DB7DD8 !important;
+.celadon {
+    background-color: #CCE7B1 !important;
 }
-.mauve-text {
-    color: #DB7DD8 !important;
-}
-.light-mauve {
-    background-color: #E9AFE6 !important;
-}
-.light-mauve-text {
-    color: #E59FE2 !important;
+.celadon-text {
+    color: #CCE7B1 !important;
 }
 .dark-mauve {
     background-color: #A661A7 !important;
@@ -26,12 +18,7 @@
 .dark-mauve-text {
     color: #A661A7 !important;
 }
-.mint {
-    background-color: #44B58D !important;
-}
-.mint-text {
-    color: #44B58D !important;
-}
+
 .sky-blue {
     background-color: #90DDF8 !important;
 }
@@ -55,12 +42,6 @@
 }
 .plum-text {
     color: #673C66 !important;
-}
-.lavender {
-    background-color: #ECE5F9 !important;
-}
-.lavender-text {
-    color: #ECE5F9 !important;
 }
 
 body {
@@ -103,7 +84,7 @@ nav a {
  }
 
 .input-field input, .input-field textarea {
-    background-color: var(--mauve);
+    background-color: var(--pistachio);
 }
 
 .uppercase {
