@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row card-panel center-align mauve plum-text">
+<div class="row card-panel center-align pistachio plum-text">
     <form class="col s12" method="POST" action="{{ url_for('edit_student', student_id=student._id) }}">
         <h2>Edit Student</h2>
         <!-- student first and last names-->
         <div class="row student-field">
             <div class="input-field col s6">
                 <input id="fname" name="fname" pattern="^[a-zA-Z]{2,15}$" value="{{ student.fname | capitalize }}"
-                    type="text" class="mauve validate" required>
-                <label for="fname"><i class="fa-solid fa-child white-text left"></i>First Name</label>
+                    type="text" class="pistachio validate" required>
+                <label for="fname"><i class="fa-solid fa-child plum-text left"></i>First Name</label>
             </div>
             <div class="input-field col s6">
                 <input id="lname" name="lname" pattern="^[a-zA-Z]{2,15}$" value="{{ student.lname | capitalize }}"
-                    type="tel" class="mauve validate" required>
-                <label for="lname"><i class="fa-solid fa-child white-text left"></i>Last Name</label>
+                    type="tel" class="pistachio validate" required>
+                <label for="lname"><i class="fa-solid fa-child plum-text left"></i>Last Name</label>
             </div>
         </div>
         <!-- current reading level selector-->
@@ -27,7 +27,7 @@
                     {% endfor %}
                     <option value="Free Reader" {% if student.reading_level == "Free Reader" %}selected{% endif %}>Free Reader</option>
                 </select>
-                <label for="reading_level"><i class="fa-solid fa-book-open white-text left"></i>Reading Level</label>
+                <label for="reading_level"><i class="fa-solid fa-book-open plum-text left"></i>Reading Level</label>
             </div>
         </div>
         <!-- teacher name selector -->
@@ -40,7 +40,7 @@
                         capitalize }}
                     {% endfor %}
                 </select>
-                <label for="teacher"><i class="fa-solid fa-person-chalkboard white-text left"></i>Teacher</label>
+                <label for="teacher"><i class="fa-solid fa-person-chalkboard plum-text left"></i>Teacher</label>
             </div>
         </div>
         <!-- submit button -->

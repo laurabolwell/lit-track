@@ -14,7 +14,7 @@
                             <label for="query"><i class="fa-solid fa-search left"></i>Search for a Book Title</label>
                         </div>
                         <div class="col s4">
-                            <button type="submit" class="btn btn-small">
+                            <button type="submit" class="btn btn-small pistachio plum-text">
                                 <i class="fa-solid fa-search"></i>
                             </button>
                         </div>
@@ -34,14 +34,14 @@
                                 <i class="fa-solid fa-filter left"></i>Filter Students</label>
                         </div>
                         <div class="col s4">
-                            <button type="submit" class="btn btn-small">
+                            <button type="submit" class="btn btn-small pistachio plum-text">
                                 <i class="fa-solid fa-filter"></i>
                             </button>
                         </div>
                     </div>
                 </form>
                 <div class="col s4 offset-s4 offset-m5 l2 valign-wrapper">
-                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="red btn btn-small left">
+                    <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="btn btn-small left dark-mauve">
                         <i class="fa-solid fa-rotate-left"></i>Reset</a>
                 </div>
             </div>
@@ -75,8 +75,8 @@
                         Comment: {{ reading_session.comment }}<br>
                         {% if user._id == reading_session.logged_by %}
                         <a href="{{ url_for('edit_reading_session', reading_session_id=reading_session._id )}}"
-                            class="btn-small">Edit</a>
-                        <a href="#modal-{{ reading_session._id }}" class="btn-small modal-trigger">Delete</a>
+                            class="btn-small pistachio plum-text">Edit</a>
+                        <a href="#modal-{{ reading_session._id }}" class="btn-small modal-trigger pistachio plum-text">Delete</a>
                         <!-- inject the modals partials-template -->
                         {% include "partials/modals.html" %}
                         {% endif %}

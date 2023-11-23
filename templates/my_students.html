@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col s12 m8 offset-m2">
-    <div class="card-panel mauve">
+    <div class="card-panel pistachio">
       {% if user.user_type == 'teacher' %}
       <h3 class="center-align plum-text">My Students</h3>
       <a href="{{ url_for('update_reading_levels', user=session['user']) }}" class="btn white plum-text">Update All
@@ -13,7 +13,7 @@
       {% else %}
       <h3 class="center-align plum-text">My Children</h3>
       <a href="{{ url_for('add_student') }}" class="btn-floating btn-large white right"><i
-          class="fa-solid fa-plus pink-text"></i></a>
+          class="fa-solid fa-plus plum-text"></i></a>
       {% endif %}
     </div>
   </div>
@@ -23,7 +23,7 @@
   {% for student in students %}
   {% if student.parent == user._id %}
   <div class="col s12 m6">
-    <div class="card-panel center-align light-mauve">
+    <div class="card-panel center-align celadon">
       {{ student.fname | capitalize }}
       {{ student.lname | capitalize }}<br>
       Current Reading Level: {{ student.reading_level }}<br>
@@ -41,7 +41,7 @@
   </div>
   {% elif student.teacher == user._id %}
   <div class="col s6 m4">
-    <div class="card-panel center-align light-mauve">
+    <div class="card-panel center-align celadon">
       {{ student.fname | capitalize }}
       {{ student.lname | capitalize }}<br>
       Current Reading Level: {{ student.reading_level }}<br>
@@ -57,7 +57,7 @@
 </div>
 
 
-<a href="#modal-{{ user._id }}" class="btn-small mauve plum-text modal-trigger">Delete My
+<a href="#modal-{{ user._id }}" class="btn-small dark-mauve white-text modal-trigger">Delete My
   Account</a>
 <!-- inject the modals partials-template -->
 {% include "partials/modals.html" %}
