@@ -53,7 +53,6 @@ def home():
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
         return redirect(url_for('my_reading_sessions', user=session['user']))
-    flash("You Must Login to Visit This Page")
     return redirect(url_for('login'))
 
 
@@ -184,7 +183,6 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return redirect(url_for('my_reading_sessions', user=session['user']))
-
     return render_template("register.html")
 
 
