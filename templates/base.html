@@ -30,14 +30,9 @@
         <!-- top navbar -->
         <nav class="nav-extended aero">
             <div class="nav-wrapper">
-                {% if session.user %}
-                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}" class="brand-logo plum-text">
+                <a href="{{ url_for('home') }}" class="brand-logo plum-text">
                     <img src="../static/images/logo-plum.png" class="logo" alt="littrack open book logo">LitTrack
                 </a>
-                {% else %}
-                <a href="{{ url_for('login') }}" class="brand-logo plum-text"><img src="../static/images/logo-plum.png"
-                        class="logo" alt="littrack open book logo">LitTrack</a>
-                {% endif %}
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                         class="fa-solid fa-bars plum-text"></i></a>
                 <ul class="right hide-on-med-and-down">
@@ -93,7 +88,7 @@
         <div class="container">
             <div class="row">
                 <div class="s12">
-                    <h5>&copy 2023 LitTrack</h5>
+                    <h5>&copy; 2023 LitTrack</h5>
                 </div>
             </div>
         </div>
