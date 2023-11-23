@@ -1,0 +1,40 @@
+<!-- top navbar -->
+<nav class="nav-extended aero">
+    <div class="nav-wrapper">
+        <a href="{{ url_for('home') }}" class="brand-logo plum-text">
+            <img src="../static/images/logo-plum.png" class="logo"
+                alt="littrack open book logo"><span class="logo-text">LitTrack</span>
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                class="fa-solid fa-bars plum-text"></i></a>
+        <ul class="right hide-on-med-and-down">
+
+            {% if session.user %}
+            <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">View Reading Sessions</a>
+            </li>
+            <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
+            <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent"
+                    %}Children{% else %}Students{% endif %}</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- mobile sidenav  -->
+<ul class="sidenav" id="mobile-demo">
+    {% if session.user %}
+    <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">View Reading Sessions</a>
+    </li>
+    <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
+    <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{%
+            else %}Students{% endif %}</a></li>
+    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Log In</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+</ul>
