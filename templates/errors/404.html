@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block refresh %}
-<meta http-equiv="refresh" content="10;URL='{% if session.user %}{{ url_for('my_reading_sessions', user=session['user']) }}{% else %}{{ url_for('login') }}{% endif %}'">
+<meta http-equiv="refresh" content="10;URL='{{ url_for('home') }}'">
 {% endblock %}
 
 {% block content %}
