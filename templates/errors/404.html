@@ -12,7 +12,7 @@
             <h1>404 Error</h1>
             <h2 class="heading">Uh-oh!</h2>
             <h3>We couldn't find the page you are looking for</h3>
-            <p>You'll automatically be redirected to the <a class="btn btn-small aero" href="{% if session.user %}{{ url_for('my_reading_sessions', user=session['user']) }}{% else %}{{ url_for('login') }}{% endif %}"
+            <p>You'll automatically be redirected to the <a class="btn btn-small aero" href="{{ url_for('home') }}"
                     aria-label="link to homepage">homepage</a> in <span id="countdowntimer">10 </span> seconds.
             </p>
         </div>
