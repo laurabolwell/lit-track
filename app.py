@@ -1,6 +1,8 @@
 import os
 from datetime import datetime
-from flask import (Flask, flash, render_template, redirect, request, session, url_for)
+from flask import (
+    Flask, flash, render_template, redirect, request, session, url_for
+)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -38,7 +40,8 @@ def path_error(path):
 @app.context_processor
 def get_user_type():
     if "user" in session:
-        user_type = mongo.db.users.find_one({"username": session["user"]})["user_type"]
+        user_type = mongo.db.users.find_one(
+            {"username": session["user"]})["user_type"]
     else:
         user_type = ""
     return dict(user_type=user_type)
@@ -63,20 +66,39 @@ def about_us():
 def my_reading_sessions(user):
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
-        reading_sessions = list(mongo.db.reading_sessions.find().sort("date_sort", -1))
-        return render_template("my_reading_sessions.html", user=user, reading_sessions=reading_sessions, students=students)
+        students = list(mongo.db.students.find(
+            {"$or": [
+                {"parent": ObjectId(user["_id"])},
+                {"teacher": ObjectId(user["_id"])}
+            ]}
+        ))
+        reading_sessions = list(mongo.db.reading_sessions.find().sort(
+            "date_sort", -1))
+        return render_template(
+            "my_reading_sessions.html",
+            user=user, reading_sessions=reading_sessions, students=students
+        )
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
+
 
 @app.route("/search_books", methods=["GET", "POST"])
 def search_books():
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
         query = request.form.get("query")
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
-        reading_sessions = list(mongo.db.reading_sessions.find({"$text": {"$search": query}}).sort("date_sort", -1))
-        return render_template("my_reading_sessions.html", user=user, reading_sessions=reading_sessions, students=students)
+        students = list(mongo.db.students.find(
+            {"$or": [
+                {"parent": ObjectId(user["_id"])},
+                {"teacher": ObjectId(user["_id"])}
+            ]}
+        ))
+        reading_sessions = list(mongo.db.reading_sessions.find(
+            {"$text": {"$search": query}}).sort("date_sort", -1))
+        return render_template(
+            "my_reading_sessions.html",
+            user=user, reading_sessions=reading_sessions, students=students
+        )
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
 
@@ -85,24 +107,43 @@ def search_books():
 def filter_students(user):
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}))
+        students = list(mongo.db.students.find(
+            {"$or": [
+                {"parent": ObjectId(user["_id"])},
+                {"teacher": ObjectId(user["_id"])}
+            ]}
+        ))
         filtered_students = request.form.getlist("filter")
-        filtered_students = [ObjectId(student) for student in filtered_students]
-        reading_sessions = list(mongo.db.reading_sessions.find({"student": { "$in": filtered_students}}).sort("date_sort", -1))
+        filtered_students = [
+            ObjectId(student) for student in filtered_students
+        ]
+        reading_sessions = list(mongo.db.reading_sessions.find(
+            {"student": {"$in": filtered_students}}).sort("date_sort", -1))
         users = list(mongo.db.users.find())
-        return render_template("my_reading_sessions.html", user=user, users=users, reading_sessions=reading_sessions, students=students)
+        return render_template(
+            "my_reading_sessions.html",
+            user=user, users=users, reading_sessions=reading_sessions,
+            students=students
+        )
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
 
 
-
 @app.route("/my_students/<user>")
 def my_students(user):
-    #get the session user's username from the database
+    # get the session user's username from the database
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
-        return render_template("my_students.html", user=user, students=students)
+        students = list(mongo.db.students.find(
+            {"$or": [
+                {"parent": ObjectId(user["_id"])},
+                {"teacher": ObjectId(user["_id"])}
+            ]}
+        ).sort("lname", 1))
+        return render_template(
+            "my_students.html",
+            user=user, students=students
+        )
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
 
@@ -136,39 +177,45 @@ def register():
         }
 
         mongo.db.users.insert_one(register)
-        #logout any current user
+        # logout any current user
         if "user" in session:
             session.pop("user")
-        #put the new user into 'session' cookie
+        # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
         return redirect(url_for('my_reading_sessions', user=session['user']))
-        
+
     return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        #check if username exists
+        # check if username exists
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
+
         if existing_user:
-            #ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            # ensure hashed password matches user input
+            if check_password_hash(existing_user["password"], request.form.get("password")):  # noqa
                 session["user"] = request.form.get("username").lower()
                 user = mongo.db.users.find_one({"username": session["user"]})
-                flash("Welcome, {title} {lname}".format(title=user["title"].capitalize(), lname=user["lname"].capitalize()))
-                return redirect(url_for('my_reading_sessions', user=session['user']))
+                flash(
+                    "Welcome, {title} {lname}".format(
+                        title=user["title"].capitalize(),
+                        lname=user["lname"].capitalize()
+                    )
+                )
+                return redirect(url_for(
+                    'my_reading_sessions', user=session['user'])
+                )
             else:
-                #invalid password match
+                # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for('login'))
-        
+
         else:
-            #username doesn't exist
+            # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for('login'))
 
@@ -177,7 +224,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    #remove user from session cookies
+    # remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -197,12 +244,15 @@ def add_student():
         mongo.db.students.insert_one(student)
         flash("Student Successfully Added")
         return redirect(url_for("my_students", user=session["user"]))
-    
-    if "user" in session:   
-        teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
+
+    if "user" in session:
+        teachers = list(mongo.db.users.find(
+            {"user_type": "teacher"}).sort("surname", 1)
+        )
         return render_template("add_student.html", teachers=teachers)
     flash("You Must Login to Visit This Page")
     return redirect(url_for('login'))
+
 
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
@@ -219,11 +269,19 @@ def edit_student(student_id):
                     "reading_level": request.form.get("reading_level"),
                     "teacher": ObjectId(request.form.get("teacher")),
                 }
-                mongo.db.students.update_one({"_id": ObjectId(student_id)}, {"$set": submit})
+                mongo.db.students.update_one(
+                    {"_id": ObjectId(student_id)},
+                    {"$set": submit}
+                )
                 flash("Student Successfully Updated")
                 return redirect(url_for("my_students", user=session["user"]))
-            teachers = list(mongo.db.users.find({"user_type":"teacher"}).sort("surname", 1))
-            return render_template("edit_student.html", student=student, teachers=teachers)
+            teachers = list(mongo.db.users.find(
+                {"user_type": "teacher"}).sort("surname", 1)
+            )
+            return render_template(
+                "edit_student.html",
+                student=student, teachers=teachers
+            )
         flash("You don't have permission to edit this student")
         return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
@@ -239,8 +297,13 @@ def delete_student(student_id):
         # the user must be a parent or teacher of the student to delete
         if student["parent"] == user_id or student["teacher"] == user_id:
             mongo.db.students.delete_one({"_id": ObjectId(student_id)})
-            mongo.db.reading_sessions.delete_many({"student": ObjectId(student_id)})
-            flash("Student and All Associated Reading Sessions Successfully Deleted")
+            mongo.db.reading_sessions.delete_many(
+                {"student": ObjectId(student_id)}
+            )
+            flash(
+                "Student and All Associated Reading "
+                "Sessions Successfully Deleted"
+            )
             return redirect(url_for("my_students", user=session["user"]))
         flash("You don't have permission to delete this student")
         return redirect(url_for("my_students", user=session["user"]))
@@ -276,11 +339,19 @@ def update_reading_levels(user):
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
         if user["user_type"] == "teacher":
-            students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
+            students = list(mongo.db.students.find(
+                {"teacher": ObjectId(user["_id"])}).sort("lname", 1)
+            )
             if not students:
-                flash("You have no students. Please remind parents to sign up.")
+                flash(
+                    "You have no students. "
+                    "Please remind parents to sign up."
+                )
                 return redirect(url_for('my_students', user=session['user']))
-            return render_template("update_reading_levels.html", user=user, students=students)
+            return render_template(
+                "update_reading_levels.html",
+                user=user, students=students
+            )
         flash("You Don't Have Access to This Page")
         return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
@@ -295,21 +366,30 @@ def update_teacher(user):
             teacher_id = student.split("__")[0]
             mongo.db.students.find_one_and_update(
                 {"_id": ObjectId(student_id)},
-                {"$set":{"teacher": ObjectId(teacher_id)}}
+                {"$set": {"teacher": ObjectId(teacher_id)}}
             )
         flash("Teachers Successfully Updated")
         return redirect(url_for("my_students", user=session["user"]))
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        #check user is a teacher
+        # check user is a teacher
         if user["user_type"] == "teacher":
-            students = list(mongo.db.students.find({"teacher": ObjectId(user["_id"])}).sort("lname", 1))
-            #check user has students linked to them
+            students = list(mongo.db.students.find(
+                {"teacher": ObjectId(user["_id"])}).sort("lname", 1)
+            )
+            # check user has students linked to them
             if not students:
-                flash("You have no students. Please remind parents to sign up.")
+                flash(
+                    "You have no students. "
+                    "Please remind parents to sign up."
+                )
                 return redirect(url_for('my_students', user=session['user']))
-            teachers = list(mongo.db.users.find({"user_type": "teacher"}).sort("lname"))
-            return render_template("update_teacher.html", user=user, students=students, teachers=teachers)
+            teachers = list(mongo.db.users.find(
+                {"user_type": "teacher"}).sort("lname")
+            )
+            return render_template(
+                "update_teacher.html",
+                user=user, students=students, teachers=teachers)
         flash("You Don't Have Access to Update Teachers")
         return redirect(url_for("my_students", user=session['user']))
     flash("You Must Login to Visit This Page")
@@ -319,8 +399,9 @@ def update_teacher(user):
 @app.route("/log_reading_session", methods=["GET", "POST"])
 def log_reading_session():
     if request.method == "POST":
-        logged_by = mongo.db.users.find_one({"username": session["user"]})["_id"]
-        date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
+        logged_by = mongo.db.users.find_one(
+            {"username": session["user"]})["_id"]
+        date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")  # noqa
         reading_session = {
             "student": ObjectId(request.form.get("student")),
             "date_sort": date_sort,
@@ -335,25 +416,35 @@ def log_reading_session():
         return redirect(url_for('my_reading_sessions', user=session['user']))
     if "user" in session:
         user = mongo.db.users.find_one({"username": session["user"]})
-        students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user["_id"])},  {"teacher": ObjectId(user["_id"])}]}).sort("lname", 1))
+        students = list(mongo.db.students.find(
+            {"$or": [
+                {"parent": ObjectId(user["_id"])},
+                {"teacher": ObjectId(user["_id"])}
+            ]}).sort("lname", 1)
+        )
         if not students:
             flash("You have no students. Please remind parents to sign up.")
             return redirect(url_for('my_students', user=session['user']))
-        return render_template("log_reading_session.html", students=students, user=user)
+        return render_template(
+            "log_reading_session.html",
+            students=students, user=user
+        )
     flash("You Must Login to Visit This Page")
     return redirect(url_for('login'))
 
 
-@app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])
+@app.route("/edit_reading_session/<reading_session_id>", methods=["GET", "POST"])  # noqa
 def edit_reading_session(reading_session_id):
     if "user" in session:
         # find the reading session
-        reading_session = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})
+        reading_session = mongo.db.reading_sessions.find_one(
+            {"_id": ObjectId(reading_session_id)}
+        )
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         # the session["user"] must be the user who created the task
         if user_id == reading_session["logged_by"]:
             if request.method == "POST":
-                date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")
+                date_sort = datetime.strptime(request.form.get("date"), "%d %B, %Y").strftime("%Y%m%d")  # noqa
                 reading_session = {
                     "student": ObjectId(request.form.get("student")),
                     "date_sort": date_sort,
@@ -362,11 +453,25 @@ def edit_reading_session(reading_session_id):
                     "book_level": request.form.get("book_level"),
                     "comment": request.form.get("comment"),
                 }
-                mongo.db.reading_sessions.update_one({ "_id": ObjectId(reading_session_id) }, { "$set": reading_session })
+                mongo.db.reading_sessions.update_one(
+                    {"_id": ObjectId(reading_session_id)},
+                    {"$set": reading_session}
+                )
                 flash("Reading Session Successfully Updated")
-                return redirect(url_for('my_reading_sessions', user=session['user']))
-            students = list(mongo.db.students.find({ "$or": [ {"parent": ObjectId(user_id)},  {"teacher": ObjectId(user_id)}]}).sort("lname", 1))
-            return render_template("edit_reading_session.html", reading_session=reading_session, students=students)
+                return redirect(url_for(
+                    'my_reading_sessions',
+                    user=session['user'])
+                )
+            students = list(mongo.db.students.find(
+                {"$or": [
+                    {"parent": ObjectId(user_id)},
+                    {"teacher": ObjectId(user_id)}
+                ]}).sort("lname", 1)
+            )
+            return render_template(
+                "edit_reading_session.html",
+                reading_session=reading_session, students=students
+            )
         flash("You don't have access to edit this reading session")
         return redirect(url_for('my_reading_sessions', user=session['user']))
     flash("You Must Login to Visit This Page")
@@ -377,13 +482,18 @@ def edit_reading_session(reading_session_id):
 def delete_reading_session(reading_session_id):
     if "user" in session:
         # find the reading session
-        reading_session_author = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})["logged_by"]
+        reading_session_author = mongo.db.reading_sessions.find_one({"_id": ObjectId(reading_session_id)})["logged_by"]  # noqa
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         # the session["user"] must be the user who created the task
         if user_id == reading_session_author:
-            mongo.db.reading_sessions.delete_one({"_id": ObjectId(reading_session_id)})
+            mongo.db.reading_sessions.delete_one(
+                {"_id": ObjectId(reading_session_id)}
+            )
             flash("Reading Session Successfully Deleted")
-            return redirect(url_for('my_reading_sessions', user=session['user']))
+            return redirect(url_for(
+                'my_reading_sessions',
+                user=session['user'])
+            )
         flash("You don't have access to delete this reading session")
         return redirect(url_for('my_reading_sessions', user=session['user']))
     flash("You Must Login to Visit This Page")
@@ -392,5 +502,5 @@ def delete_reading_session(reading_session_id):
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug = debug)
+            port=int(os.environ.get("PORT")),
+            debug=debug)
