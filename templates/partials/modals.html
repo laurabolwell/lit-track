@@ -1,29 +1,29 @@
 <!-- modal: confirm reading session deletion -->
 {% if reading_session %}
-<div id="modal-{{ reading_session._id }}" class="modal">
+<div id="modal-{{ reading_session._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>Are you sure you want to delete this reading session?</h4>
         <p>This action cannot be undone.</p>
     </div>
-    <div class="modal-footer">
-        <a class="btn red modal-close">No</a>
+    <div class="modal-footer dark-mauve">
+        <a class="btn white plum-text modal-close">No, go back</a>
         <a href="{{ url_for('delete_reading_session', reading_session_id=reading_session._id )}}"
-            class="btn green accent-4">Yes</a>
+            class="btn white plum-text">Yes, delete permanently</a>
     </div>
 </div>
 {% endif %}
 
 <!-- modal: confirm student deletion -->
 {% if student %}
-<div id="modal-{{ student._id }}" class="modal">
+<div id="modal-{{ student._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>Are you sure you want to delete this {% if user_type == "parent" %}child{%
             else %}student{% endif %} and all associated reading sessions?</h4>
         <p>This action cannot be undone.</p>
     </div>
-    <div class="modal-footer">
-        <a class="btn red modal-close">No</a>
-        <a href="{{ url_for('delete_student', student_id=student._id )}}" class="btn green accent-4">Yes</a>
+    <div class="modal-footer dark-mauve">
+        <a class="btn white plum-text modal-close">No, go back</a>
+        <a href="{{ url_for('delete_student', student_id=student._id )}}" class="btn white plum-text">Yes, delete permanently</a>
     </div>
 </div>
 {% endif %}
@@ -32,7 +32,7 @@
 {% if session["user"] %}
 {% for student in students %}
 {% if student.parent == user._id or student.teacher == user._id %}
-<div id="modal-{{ user._id }}" class="modal">
+<div id="modal-{{ user._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>You Still Have {% if user_type == "parent" %}Children{%
             else %}Students{% endif %} Linked to Your Account</h4>
@@ -41,8 +41,8 @@
             else %}students{% endif %}
             before you can delete your account</p>
     </div>
-    <div class="modal-footer">
-        <a class="btn green accent-4 modal-close">Close</a>
+    <div class="modal-footer dark-mauve">
+        <a class="btn white plum-text modal-close">Close</a>
     </div>
 </div>
 {% endif %}
@@ -50,14 +50,14 @@
 {% endif %}
 
 {% if session["user"] %}
-<div id="modal-{{ user._id }}" class="modal black white-text">
+<div id="modal-{{ user._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>Are you sure you want to delete your account?</h4>
         <p>This action cannot be undone.</p>
     </div>
-    <div class="modal-footer">
-        <a class="btn red modal-close">No</a>
-        <a href="{{ url_for('delete_user', user_id=user._id )}}" class="btn green accent-4">Yes</a>
+    <div class="modal-footer dark-mauve">
+        <a class="btn white plum-text modal-close">No, go back</a>
+        <a href="{{ url_for('delete_user', user_id=user._id )}}" class="btn white plum-text">Yes, delete permanently</a>
     </div>
 </div>
 {% endif %}

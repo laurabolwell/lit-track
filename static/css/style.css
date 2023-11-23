@@ -87,6 +87,10 @@ nav a {
     background-color: var(--pistachio);
 }
 
+.modal-footer {
+    text-align: center !important;
+}
+
 .uppercase {
     text-transform: uppercase;
 }
