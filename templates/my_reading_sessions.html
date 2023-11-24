@@ -81,6 +81,7 @@
                         <a href="#modal-{{ reading_session._id }}"
                             class="btn-small modal-trigger pistachio plum-text">Delete</a>
                         <!-- inject the modals partials-template -->
+                        {% set delete = "reading_session" %}
                         {% include "partials/modals.html" %}
                         {% endif %}
                     </div>
