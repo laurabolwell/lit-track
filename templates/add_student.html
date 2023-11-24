@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row card-panel mauve plum-text center-align">
+<div class="row card-panel pistachio plum-text center-align">
     <form class="col s12" method="POST" action="{{ url_for('add_student') }}">
         <h2>Add {% if user_type == "parent" %}Child{%
             else %}Student{% endif %}</h2>
@@ -48,10 +48,13 @@
         <div class="row">
             <div class="col s12 center-align">
                 <button type="submit" class="btn btn-large white plum-text">Add {% if user_type == "parent" %}Child{%
-                    else %}Student{% endif %} <i
-                        class="fa-solid fa-plus-square right"></i></button>
+                    else %}Student{% endif %} <i class="fa-solid fa-plus-square right"></i></button>
+                <a href="{{ url_for('my_students', user=session['user']) }}" class="btn-large white plum-text">Cancel <i
+                        class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
+
+
     </form>
 </div>
 
