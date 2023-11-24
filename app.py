@@ -156,14 +156,14 @@ def register():
         elif registration_code == parent_code:
             user_type = "parent"
         else:
-            flash("Registration code not valid")
+            flash("Registration Code Not Valid")
             return redirect(url_for("register"))
 
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username already exists")
+            flash("Username Already Exists")
             return redirect(url_for("register"))
 
         register = {
@@ -223,7 +223,7 @@ def login():
 @app.route("/logout")
 def logout():
     # remove user from session cookies
-    flash("You have been logged out")
+    flash("You Have Been Logged Out")
     session.pop("user")
     return redirect(url_for("login"))
 
@@ -280,7 +280,7 @@ def edit_student(student_id):
                 "edit_student.html",
                 student=student, teachers=teachers
             )
-        flash("You don't have permission to edit this student")
+        flash("You Don't Have Permission to Edit This Student")
         return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
@@ -303,7 +303,7 @@ def delete_student(student_id):
                 "Sessions Successfully Deleted"
             )
             return redirect(url_for("my_students", user=session["user"]))
-        flash("You don't have permission to delete this student")
+        flash("You Don't Have Permission to Delete This Student")
         return redirect(url_for("my_students", user=session["user"]))
         flash("You Must Login to Visit This Page")
     flash("You Must Login to Visit This Page")
@@ -342,8 +342,8 @@ def update_reading_levels(user):
             )
             if not students:
                 flash(
-                    "You have no students. "
-                    "Please remind parents to sign up."
+                    "You Have No Students. "
+                    "Please Remind Parents to Sign Up."
                 )
                 return redirect(url_for("my_students", user=session["user"]))
             return render_template(
@@ -378,8 +378,8 @@ def update_teacher(user):
             # check user has students linked to them
             if not students:
                 flash(
-                    "You have no students. "
-                    "Please remind parents to sign up."
+                    "You Have No Students. "
+                    "Please Remind Parents to Sign Up."
                 )
                 return redirect(url_for("my_students", user=session["user"]))
             teachers = list(mongo.db.users.find(
@@ -421,7 +421,7 @@ def log_reading_session():
             ]}).sort("lname", 1)
         )
         if not students:
-            flash("You have no students. Please remind parents to sign up.")
+            flash("You Have No Students. Please Remind Parents to Sign Up.")
             return redirect(url_for("my_students", user=session["user"]))
         return render_template(
             "log_reading_session.html",
@@ -470,7 +470,7 @@ def edit_reading_session(reading_session_id):
                 "edit_reading_session.html",
                 reading_session=reading_session, students=students
             )
-        flash("You don't have access to edit this reading session")
+        flash("You Don't Have Access to Edit This Reading Session")
         return redirect(url_for("my_reading_sessions", user=session["user"]))
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
@@ -492,7 +492,7 @@ def delete_reading_session(reading_session_id):
                 "my_reading_sessions",
                 user=session["user"])
             )
-        flash("You don't have access to delete this reading session")
+        flash("You Don't Have Access to Delete This Reading Session")
         return redirect(url_for("my_reading_sessions", user=session["user"]))
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
