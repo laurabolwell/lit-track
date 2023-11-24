@@ -12,7 +12,7 @@
             </div>
             <!-- current teacher selector-->
             <div class="input-field col s6">
-                <select id="teacher" name="teacher" class="validate" required>
+                <select id="teacher-{{ loop.index }}" name="teacher" class="validate" required>
                     <option value="" disabled>Select Teacher</option>
                     {% for teacher in teachers %}
                     <option value="{{ teacher._id }}__{{ student._id }}" {% if teacher._id==student.teacher %}selected{%
@@ -20,7 +20,7 @@
                         teacher.title | capitalize }} {{ teacher.lname | capitalize }}
                         {% endfor %}
                 </select>
-                <label for="teacher">Teacher</label>
+                <label for="teacher-{{ loop.index }}">Teacher</label>
             </div>
             {% endfor %}
         </div>

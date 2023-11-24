@@ -12,7 +12,7 @@
             </div>
             <!-- current reading level selector-->
             <div class="input-field col s6">
-                <select id="reading_level" name="reading_level" class="validate" required>
+                <select id="reading_level-{{ loop.index }}" name="reading_level" class="validate" required>
                     <option value="" disabled>Select Current Reading Level</option>
                     {% for i in range(1, 31) %}
                     <option value="{{i}}__{{student._id}}" {% if student.reading_level==i | string %}selected{% endif
@@ -21,7 +21,7 @@
                     <option value="Free Reader__{{student._id}}" {% if student.reading_level=="Free Reader" %}selected{%
                         endif %}>Free Reader</option>
                 </select>
-                <label for="reading_level">Reading Level</label>
+                <label for="reading_level-{{ loop.index }}">Reading Level</label>
             </div>
             {% endfor %}
         </div>
