@@ -25,55 +25,23 @@ You are not required to validate external libraries/frameworks, such as imported
 
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-- If you are copying/pasting your HTML code, use this link: https://validator.w3.org/#validate_by_input
-- (*recommended*) If you are using the live deployed site pages, use this link: https://validator.w3.org/#validate_by_uri
-
-It's recommended to validate the live pages (each of them) using the deployed URL.
-This will give you a custom URL as well, which you can use on your testing documentation.
-It makes it easier to return back to a page to validate it again in the future.
-The URL will look something like this:
-
-- https://validator.w3.org/nu/?doc=https%3A%2F%2Flaurabolwell.github.io%2Flit-track%2Findex.html
-
-Sample HTML code validation documentation (tables are extremely helpful!):
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files. Due to all pages (other than login, register and about_us) needing a user to be logged in to access them, I have validated the files by copying and pasting the source code from each page of the live deployed site into the validator.
 
 | Page | W3C URL | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Home | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flaurabolwell.github.io%2Flit-track%2Findex.html) | ![screenshot](documentation/html-validation-home.png) | Section lacks header h2-h6 warning |
-| Contact | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flaurabolwell.github.io%2Flit-track%2Fcontact.html) | ![screenshot](documentation/html-validation-contact.png) | obsolete iframe warnings |
-| Quiz | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flaurabolwell.github.io%2Flit-track%2Fquiz.html) | ![screenshot](documentation/html-validation-quiz.png) | Pass: No Errors |
-| Add Blog | n/a | ![screenshot](documentation/html-validation-add-blog.png) | Duplicate IDs found, and fixed |
-| Checkout | n/a | ![screenshot](documentation/html-validation-checkout.png) | Pass: No Errors |
-| x | x | x | repeat for all remaining HTML files |
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-**IMPORTANT**: Python/Jinja syntax in HTML
-
-Python projects that use Jinja syntax, such as `{% for loops %}`, `{% url 'home' %}`, and `{{ variable|filter }}`
-will not validate properly if you're copying/pasting into the HTML validator.
-
-In order to properly validate these types of files, it's recommended to
-[validate by uri](https://validator.w3.org/#validate_by_uri) from the deployed Heroku pages.
-
-Unfortunately, pages that require a user to be logged-in and authenticated (CRUD functionality),
-will not work using this method, due to the fact that the HTML Validator (W3C) doesn't have
-access to login to your pages.
-In order to properly validate HTML pages with Jinja syntax for authenticated pages, follow these steps:
-
-- Navigate to the deployed pages which require authentication
-- Right-click anywhere on the page, and select **View Page Source** (usually `CTRL+U` or `⌘+U` on Mac).
-- This will display the entire "compiled" code, without any Jinja syntax.
-- Copy everything, and use the [validate by input](https://validator.w3.org/#validate_by_input) method.
-- Repeat this process for every page that requires a user to be logged-in/authenticated.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
+| login | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flit-track-313aa42e46f6.herokuapp.com%2Flogin) | ![screenshot](documentation/testing/validation/html/login.png) | no errors or warnings |
+| register | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flit-track-313aa42e46f6.herokuapp.com%2Fregister) | ![screenshot](documentation/testing/validation/html/register.png) | No errors or warnings |
+| my_reading_sessions | [W3C]() | ![screenshot](documentation/testing/validation/html/my_reading_sessions.png) | No errors or warnings |
+| my_students | [W3C]() | ![screenshot](documentation/testing/validation/html/my_students.png) | No errors or warnings |
+| log_reading_session | [W3C]() | ![screenshot](documentation/testing/validation/html/log_reading_session.png) | No errors or warnings |
+| edit_reading_session | [W3C]() | ![screenshot](documentation/testing/validation/html/edit_reading_session.png) | No errors or warnings |
+| add_student | [W3C]() | ![screenshot](documentation/testing/validation/html/add_student.png) | No errors or warnings |
+| edit_student | [W3C]() | ![screenshot](documentation/testing/validation/html/edit_student.png) | No errors or warnings |
+| about_us | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flit-track-313aa42e46f6.herokuapp.com%2Fabout_us) | ![screenshot](documentation/testing/validation/html/about_us.png) | No errors or warnings |
+| 404 error page | [W3C]() | ![screenshot](documentation/testing/validation/html/404.png) | No errors or warnings |
+| 500 error page | [W3C]() | ![screenshot](documentation/testing/validation/html/500.png) | No errors or warnings |
+| update_reading_levels | [W3C]() | ![screenshot](documentation/testing/validation/html/login.png) |  |
+| update_teachers | [W3C]() | ![screenshot](documentation/testing/validation/html/login.png) |  |
 
 ### CSS
 
