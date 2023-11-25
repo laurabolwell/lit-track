@@ -267,9 +267,9 @@ def add_student():
         return render_template("add_student.html", teachers=teachers)
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
-    
 
-#add a reading session to the database
+
+# add a reading session to the database
 @app.route("/log_reading_session", methods=["GET", "POST"])
 def log_reading_session():
     if request.method == "POST":
@@ -311,7 +311,7 @@ def log_reading_session():
     return redirect(url_for("login"))
 
 
-# UPDATE FUNCTIONALITY 
+# UPDATE FUNCTIONALITY
 # edit a student
 @app.route("/edit_student/<student_id>", methods=["GET", "POST"])
 def edit_student(student_id):
@@ -520,7 +520,7 @@ def delete_reading_session(reading_session_id):
     return redirect(url_for("login"))
 
 
-# delete user 
+# delete user
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     # check user logged in
