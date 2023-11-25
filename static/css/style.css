@@ -60,6 +60,13 @@
     color: var(--plum)
 }
 
+/* Override pistachio background colour */
+.datepicker-controls input {
+    width: 80px;
+    background-color: var(--surface-color);
+    padding: 0;
+}
+
 /* Navbar link colour */
 nav a {
     color: var(--plum) !important;
