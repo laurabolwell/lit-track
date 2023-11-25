@@ -56,27 +56,37 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
 
 ### New Site Users
 
-- As a new site user, I would like to ____________, so that I can ____________.
-- As a new site user, I would like to ____________, so that I can ____________.
-- As a new site user, I would like to ____________, so that I can ____________.
-- As a new site user, I would like to ____________, so that I can ____________.
-- As a new site user, I would like to ____________, so that I can ____________.
+- As a new site user, I would like to understand what the site is about, so that I can decide whether I would like to use it.
+- As a new site user, I would like to create an account, so that I can use the site.
 
 ### Parent Users
 
-- As a returning site user, I would like to ____________, so that I can ____________.
-- As a returning site user, I would like to ____________, so that I can ____________.
-- As a returning site user, I would like to ____________, so that I can ____________.
-- As a returning site user, I would like to ____________, so that I can ____________.
-- As a returning site user, I would like to ____________, so that I can ____________.
+- As a parent user, I would like to easily add my children, so that I can start their digital reading record.
+- As a parent user, I would like to edit my child's information, so that I can correct a mistake.
+- As a parent user, I would like to be able to view my child's information, so that I can see their reading level and teacher at a glance.
+- As a parent site user, I would like to easily log a reading session, so that I can quickly and easily add to their reading record.
+- As a parent site user, I would like to easily view my child's reading sessions, so I can see how much they are reading and how much progress they are making.
+- As a parent site user, I would like to edit a reading session I have logged, so that I can correct a mistake.
+- As a parent user, I would like to do all the above for ALL my children from a single account.
+- As a parent user, I would like to see reading sessions for all my children together, but also have the option to view them for one particular child.
+- As a parent site user, I would like to have the option to delete a reading session I have logged.
+- As a parent user, I would like the option to delete my child and all their information, once they have left school.
+- As a parent site user, I would like the option to delete my account once all my children have left school.
+
 
 ### Teacher users
 
-- As a site administrator, I should be able to ____________, so that I can ____________.
-- As a site administrator, I should be able to ____________, so that I can ____________.
-- As a site administrator, I should be able to ____________, so that I can ____________.
-- As a site administrator, I should be able to ____________, so that I can ____________.
-- As a site administrator, I should be able to ____________, so that I can ____________.
+- As a teacher user, I should be able to see which of my students have been reading and how often, so that I can keep track of their progress.
+- As a teacher user, I should be able to see at a glance whether each session has been completed at home or in school, so that I can keep track of which students may need extra reading practise.
+- As a teacher user, I should be able to search for a book title, so I can see if a student has already read a particular book.
+- As a teacher user, I should be able to filter the list of reading sessions by student, so I can focus on them individually sometimes.
+- As a teacher user, I should be able to log reading sessions students complete in school, so that parents are aware of these.
+- As a teacher user, I should be able to edit a reading session, so that I can correct a mistake.
+- As a teacher user, I should be able to delete a reading session.
+- As a teacher user, I should be able to edit student details, so that I can update their teacher or reading level.
+- As a teacher user, I should be able to edit student reading levels for the whole class from one place, so that I can update them quickly after assessments.
+- As a teacher user, I should be able to edit the teacher for the whole class from one place, so that I can update them quickly if the teachers or classes are changing.
+- As a teacher site user, I would like the option to delete my account..
 
 ## Wireframes
 
@@ -122,21 +132,6 @@ Repeat for any addition wireframe pages you have.
 🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ## Features
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-In this section, you should go over the different parts of your project,
-and describe each in a sentence or so.
-
-You will need to explain what value each of the features provides for the user,
-focusing on who this website is for, what it is that they want to achieve,
-and how your project is the best way to help them achieve these things.
-
-For some/all of your features, you may choose to reference the specific project files that implement them.
-
-IMPORTANT: Remember to always include a screenshot of each individual feature!
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ### Existing Features
 
