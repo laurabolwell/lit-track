@@ -15,6 +15,7 @@
                 <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">View Reading Sessions</a>
                 </li>
                 <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
+                <!-- Display My Children if user is a parent or My Students if user is a teacher -->
                 <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent"
                         %}Children{% else %}Students{% endif %}</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -32,6 +33,7 @@
         <li><a href="{{ url_for('my_reading_sessions', user=session['user']) }}">View Reading Sessions</a>
         </li>
         <li><a href="{{ url_for('log_reading_session') }}">Log a Reading Session</a></li>
+        <!-- Display My Children if user is a parent or My Students if user is a teacher -->
         <li><a href="{{ url_for('my_students', user=session['user']) }}">My {% if user_type == "parent" %}Children{%
                 else %}Students{% endif %}</a></li>
         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
