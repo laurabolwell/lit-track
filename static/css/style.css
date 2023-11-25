@@ -4,8 +4,13 @@
     --pistachio: #ADD982;
     --sky-blue: #90DDF8;
     --aero: #48BDE8;
+    --dark-mauve: #A661A7;
+    /* Overriding standard materialize colours */
+    --primary-color: var(--plum);
+    --font-color-main: var(--plum);
+    --font-color-medium: var(--plum);
+    --font-color-disabled: var(--aero);
 }
-
 .celadon {
     background-color: #CCE7B1 !important;
 }
