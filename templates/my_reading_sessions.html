@@ -6,6 +6,7 @@
         <div class="card-panel pistachio center-align">
             <h3 class="center-align plum-text">Reading Sessions</h3>
             <div class="row">
+                <!-- Book title search -->
                 <form action="{{ url_for('search_books') }}" method="POST" class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
                         <div class="input-field col s8">
@@ -20,6 +21,7 @@
                         </div>
                     </div>
                 </form>
+                <!-- Filter students -->
                 <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST"
                     class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
@@ -41,6 +43,7 @@
                         </div>
                     </div>
                 </form>
+                <!-- reset search and filter button -->
                 <div class="col s4 offset-s4 offset-m5 l2 valign-wrapper">
                     <a href="{{ url_for('my_reading_sessions', user=session['user']) }}"
                         class="btn btn-small left dark-mauve">
@@ -56,6 +59,7 @@
                 {% if reading_session.student == student._id %}
 
                 <li>
+                    <!-- collapsible header showing name, date, and logged_by icon -->
                     <div class="collapsible-header plum-text">
                         <div class="row">
                             <div class="col s2"><i class="fa-solid fa-caret-down"></i></div>
@@ -71,6 +75,7 @@
                             {% endif %}
                         </div>
                     </div>
+                    <!-- collapsible body showing book, level and comment -->
                     <div class="collapsible-body plum-text">
                         Book: <strong>{{ reading_session.title | title }}</strong><br>
                         Level: {{ reading_session.book_level }}<br>
