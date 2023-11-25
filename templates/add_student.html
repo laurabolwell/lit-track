@@ -3,6 +3,7 @@
 
 <div class="row card-panel pistachio plum-text center-align">
     <form class="col s12" method="POST" action="{{ url_for('add_student') }}">
+        <!-- display My Children if user is a parent or My Students if user is a teacher -->
         <h2>Add {% if user_type == "parent" %}Child{%
             else %}Student{% endif %}</h2>
         <!-- student first and last names-->
@@ -53,8 +54,6 @@
                         class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
-
-
     </form>
 </div>
 
