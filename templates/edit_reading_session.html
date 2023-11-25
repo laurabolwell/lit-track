@@ -4,7 +4,7 @@
 <div class="row card-panel pistachio plum-text center-align">
     <form class="col s12" method="POST"
         action="{{ url_for('edit_reading_session', reading_session_id=reading_session._id ) }}">
-        <h3 class="">Edit Reading Session</h3>
+        <h3>Edit Reading Session</h3>
         <div class="row">
             <!-- student name selector -->
             <div class="input-field col s12 m8">
@@ -32,7 +32,7 @@
             <div class="input-field col s12 m8">
                 <input id="title" name="title" minlength="2" maxlength="30" value="{{ reading_session.title | title }}"
                     type="text" class="validate" required>
-                <label for="title" class=""><i class="fa-solid fa-book plum-text left"></i>Book Title</label>
+                <label for="title"><i class="fa-solid fa-book plum-text left"></i>Book Title</label>
             </div>
             <!-- book level selector-->
             <div class="input-field col s12 m4">
