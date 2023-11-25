@@ -4,12 +4,14 @@
 <div class="row">
   <div class="col s12 m10 offset-m1">
     <div class="card-panel pistachio">
+      <!-- teachers heading card panel: shows update teacher and update levels buttons -->
       {% if user.user_type == 'teacher' %}
       <h3 class="center-align plum-text">My Students</h3>
       <a href="{{ url_for('update_reading_levels', user=session['user']) }}" class="btn white plum-text">Update All
         Reading Levels</a>
       <a href="{{ url_for('update_teacher', user=user._id) }}" class="btn white plum-text">Update Teacher for All
         Students</a>
+      <!-- parents heading card panel: shows add student button -->
       {% else %}
       <h3 class="center-align plum-text">My Children</h3>
       <a href="{{ url_for('add_student') }}" class="btn-floating btn-large white right"><i
@@ -23,15 +25,17 @@
   {% for student in students %}
   {% if student.parent == user._id %}
   <div class="col s12 m6">
+    <!-- student card panel (for parents)-->
     <div class="card-panel center-align celadon">
       {{ student.fname | capitalize }}
       {{ student.lname | capitalize }}<br>
       Current Reading Level: {{ student.reading_level }}<br>
       {% for teacher in teachers %}
-      {% if teacher._id | string() == student.teacher | string() %}
+      {% if teacher._id == student.teacher %}
       Teacher: {{ teacher.title | capitalize }} {{ teacher.lname | capitalize }}<br>
       {% endif %}
       {% endfor %}
+      <!-- buttons to edit and delete student -->
       <a href="{{ url_for('edit_student', student_id=student._id )}}" class="btn-small white plum-text">Edit</a>
       <a href="#modal-{{ student._id }}" class="btn-small white plum-text modal-trigger">Delete</a>
       <!-- inject the modals partials-template -->
@@ -40,6 +44,7 @@
     </div>
   </div>
   {% elif student.teacher == user._id %}
+  <!-- student card panel (for teachers) -->
   <div class="col s6 m4">
     <div class="card-panel center-align celadon">
       {{ student.fname | capitalize }}
