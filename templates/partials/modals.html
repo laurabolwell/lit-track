@@ -31,6 +31,7 @@
 {% if delete == "user_profile" %}
 <!-- modal: confirm user deletion -->
 {% if students | length > 0 %}
+<!-- if students still linked to user account: redirect to my_students -->
 <div id="modal-{{ user._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>You Still Have {% if user_type == "parent" %}Children{%
@@ -45,6 +46,7 @@
     </div>
 </div>
 {% else %}
+<!-- if no students linked to user account trigger confirm deletion modal -->
 <div id="modal-{{ user._id }}" class="modal dark-mauve white-text center-align">
     <div class="modal-content">
         <h4>Are you sure you want to delete your account?</h4>
