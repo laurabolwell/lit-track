@@ -139,9 +139,11 @@ def my_students(user):
                 {"teacher": ObjectId(user["_id"])}
             ]}
         ).sort("lname", 1))
+        teachers = list(mongo.db.users.find(
+            {"user_type": "teacher"}))
         return render_template(
             "my_students.html",
-            user=user, students=students
+            user=user, students=students, teachers=teachers
         )
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
