@@ -2,26 +2,7 @@
 
 Return back to the [README.md](README.md) file.
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-In this section, you need to convince the assessors that you have conducted enough testing to legitimately believe that the site works well.
-Essentially, in this part, you should go over all of your project's features, and ensure that they all work as intended,
-with the project providing an easy and straightforward way for the users to achieve their goals.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 ## Code Validation
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Use the space to discuss code validation for any of your own code files (where applicable).
-You are not required to validate external libraries/frameworks, such as imported Bootstrap, Materialize, Font Awesome, etc.
-
-**IMPORTANT**: You must provide a screenshot for each file you validate.
-
-**PRO TIP**: Always validate the live site pages, not your local code. There could be subtle/hidden differences.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ### HTML
 
@@ -40,8 +21,8 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | about_us | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Flit-track-313aa42e46f6.herokuapp.com%2Fabout_us) | ![screenshot](documentation/testing/validation/html/about_us.png) | No errors or warnings |
 | 404 error page | [W3C]() | ![screenshot](documentation/testing/validation/html/404.png) | No errors or warnings |
 | 500 error page | [W3C]() | ![screenshot](documentation/testing/validation/html/500.png) | No errors or warnings |
-| update_reading_levels | [W3C]() | ![screenshot](documentation/testing/validation/html/login.png) |  |
-| update_teachers | [W3C]() | ![screenshot](documentation/testing/validation/html/login.png) |  |
+| update_reading_levels | [W3C]() | ![screenshot](documentation/testing/validation/html/update_reading_levels.png) |  |
+| update_teachers | [W3C]() | ![screenshot](documentation/testing/validation/html/update_teacher.png) |  |
 
 ### CSS
 
