@@ -5,8 +5,8 @@
     <form class="col s12" method="POST"
         action="{{ url_for('edit_reading_session', reading_session_id=reading_session._id ) }}">
         <h3 class="">Edit Reading Session</h3>
-        <!-- student name selector -->
         <div class="row">
+            <!-- student name selector -->
             <div class="input-field col s12 m8">
                 <select id="student" name="student" class="validate" required>
                     <option value="" disabled>Select {% if user_type == "parent" %}Child{%
@@ -20,6 +20,7 @@
                     %}Child{%
                     else %}Student{% endif %}</label>
             </div>
+            <!-- date selector -->
             <div class="input-field col s12 m4">
                 <input id="date" name="date" type="text" value="{{ reading_session.date }}" class="datepicker validate"
                     required>
