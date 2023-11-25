@@ -1,3 +1,4 @@
+/* COLOURS */
 :root {
     --plum: #673C66;
     --celadon: #CCE7B1;
@@ -11,44 +12,60 @@
     --font-color-medium: var(--plum);
     --font-color-disabled: var(--aero);
 }
+/* Custom colour classes */
 .celadon {
-    background-color: #CCE7B1 !important;
+    background-color: var(--celadon) !important;
 }
 .celadon-text {
-    color: #CCE7B1 !important;
+    color: var(--celadon) !important;
 }
 .dark-mauve {
-    background-color: #A661A7 !important;
+    background-color: var(--dark-mauve) !important;
 }
 .dark-mauve-text {
-    color: #A661A7 !important;
+    color: var(--dark-mauve)!important;
 }
-
 .sky-blue {
-    background-color: #90DDF8 !important;
+    background-color: var(--sky-blue) !important;
 }
 .sky-blue-text {
-    color: #90DDF8 !important;
+    color: var(--sky-blue) !important;
 }
 .aero {
-    background-color: #48BDE8 !important;
+    background-color: var(--aero) !important;
 }
 .aero-text {
-    color: #48BDE8 !important;
+    color: var(--aero) !important;
 }
 .pistachio {
-    background-color: #ADD982 !important;
+    background-color: var(--pistachio) !important;
 }
 .pistachio-text {
-    color: #ADD982 !important;
+    color: var(--pistachio) !important;
 }
 .plum {
-    background-color: #673C66 !important;
+    background-color: var(--plum) !important;
 }
 .plum-text {
-    color: #673C66 !important;
+    color: var(--plum) !important;
 }
 
+/* Background for form input areas */
+.input-field input, .input-field textarea {
+    background-color: var(--pistachio);
+}
+
+/* Filter icon colour on my_reading_sessions page */
+.fa-filter:before {
+    color: var(--plum)
+}
+
+/* Navbar link colour */
+nav a {
+    color: var(--plum) !important;
+}
+
+/* Whole site background and font */
 body {
     margin: 0;
     height: 100vh;
@@ -57,49 +74,56 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    /* Sticky footer */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
 }
 
+/* Header fonts */
 header, h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Navbar */
 .brand-logo {
     letter-spacing: 0.5px;
 }
-
-main {
-    flex: 1 0 auto;
-  }
-
-nav a {
-    color: var(--plum) !important;
-}
-
 .logo {
     vertical-align: middle;
     height: 50px;
 }
- .page-footer{
-    padding-top: 10px;
-    padding-bottom: 10px;
- }
 
-.input-field input, .input-field textarea {
-    background-color: var(--pistachio);
+/* Sticky footer */
+main {
+    flex: 1 0 auto;
 }
 
+/* Footer */
+.page-footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Modal footer */ 
 .modal-footer {
     text-align: center !important;
 }
 
+/* Transform text to uppercase */
 .uppercase {
     text-transform: uppercase;
 }
 
+/* Spacing for collapsible on my_reading_sessions page */
+.collapsible-header {
+    display: grid;
+    text-align: left;
+}
+
+/* MEDIA QUERIES */
+/* Remove logo text on small screens to stop overflow */
 @media screen and (max-width: 420px) {
     .logo-text {
         display: none;
