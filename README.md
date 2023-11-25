@@ -46,29 +46,13 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
 
 ### Typography
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Explain any fonts and icon libraries used, like Google Fonts and/or Font Awesome.
-
-Consider adding a link to each font used, and the Font Awesome site if used (or similar icon library).
-
-Example:
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 - [Montserrat](https://fonts.google.com/specimen/Montserrat) was used for the primary headers and titles.
 
-- [Lato](https://fonts.google.com/specimen/Lato) was used for all other secondary text.
+- [Roboto](https://fonts.google.com/specimen/Roboto) was used for all other secondary text.
 
-- [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
+- [Font Awesome](https://fontawesome.com) icons were used throughout the site.
 
 ## User Stories
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-In this section, list all of your user stories for the project.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ### New Site Users
 
@@ -78,7 +62,7 @@ In this section, list all of your user stories for the project.
 - As a new site user, I would like to ____________, so that I can ____________.
 - As a new site user, I would like to ____________, so that I can ____________.
 
-### Returning Site Users
+### Parent Users
 
 - As a returning site user, I would like to ____________, so that I can ____________.
 - As a returning site user, I would like to ____________, so that I can ____________.
@@ -86,7 +70,7 @@ In this section, list all of your user stories for the project.
 - As a returning site user, I would like to ____________, so that I can ____________.
 - As a returning site user, I would like to ____________, so that I can ____________.
 
-### Site Admin
+### Teacher users
 
 - As a site administrator, I should be able to ____________, so that I can ____________.
 - As a site administrator, I should be able to ____________, so that I can ____________.
