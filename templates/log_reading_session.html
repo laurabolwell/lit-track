@@ -15,7 +15,8 @@
                     </option>
                     {% endfor %}
                 </select>
-                <label for="student" class=""><i class="fa-solid fa-child plum-text left"></i>{% if user_type == "parent" %}Child{%
+                <label for="student" class=""><i class="fa-solid fa-child plum-text left"></i>{% if user_type ==
+                    "parent" %}Child{%
                     else %}Student{% endif %}</label>
             </div>
             <!-- datepicker -->
@@ -56,9 +57,12 @@
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large white plum-text">Log Reading Session<i
                         class="fa-solid fa-plus-square right"></i></button>
+                <a href="{{ url_for('my_reading_sessions', user=session['user']) }}"
+                    class="btn-large white plum-text">Cancel <i class="fa-solid fa-times-circle right"></i></a>
             </div>
         </div>
-    </form>
+</div>
+</form>
 </div>
 
 {% endblock %}
