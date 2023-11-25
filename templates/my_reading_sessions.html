@@ -5,7 +5,7 @@
     <div class="col s12">
         <div class="card-panel pistachio center-align">
             <h3 class="center-align plum-text">Reading Sessions</h3>
-            <div class="row card-panel">
+            <div class="row">
                 <form action="{{ url_for('search_books') }}" method="POST" class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
                         <div class="input-field col s8">
@@ -14,7 +14,7 @@
                             <label for="query"><i class="fa-solid fa-search left"></i>Search for a Book Title</label>
                         </div>
                         <div class="col s4">
-                            <button type="submit" class="btn btn-small pistachio plum-text">
+                            <button type="submit" class="btn btn-small white plum-text">
                                 <i class="fa-solid fa-search"></i>
                             </button>
                         </div>
@@ -23,8 +23,8 @@
                 <form action="{{ url_for('filter_students', user=session['user']) }}" method="POST"
                     class="col s12 m6 l5">
                     <div class="row valign-wrapper center-align">
-                        <div class="input-field col s8">
-                            <select name="filter" id="filter" class="validate" required multiple>
+                        <div class="input-field col s8" id="filter">
+                            <select name="filter" class="validate" required multiple>
                                 {% for student in students %}
                                 <option value="{{ student._id }}">{{ student.fname | capitalize }} {{ student.lname |
                                     capitalize }}
@@ -35,8 +35,8 @@
                                 <i class="fa-solid fa-filter left"></i>Filter Students</label>
                         </div>
                         <div class="col s4">
-                            <button type="submit" class="btn btn-small pistachio plum-text">
-                                <i class="fa-solid fa-filter"></i>
+                            <button type="submit" class="btn btn-small white plum-text">
+                                <i class="fa-solid fa-filter plum-text"></i>
                             </button>
                         </div>
                     </div>
