@@ -138,16 +138,6 @@ Defensive programming was manually tested with the below user acceptance testing
 | | Enters invalid first/last name | Cannot submit form | Pass | |
 | | Enters invalid password | Cannot submit form | Pass | |
 
-I have created several user accounts to test all functionality. 
-Sample test accounts with data attached:
-| username | password | user_type |
-| --- | --- | --- |
-| garethdavies | Password1 | teacher |
-| helenajones | Password1 | teacher |
-| rachelsharp | Password1 | parent |
-| neilforbes | Password1 | parent |
-
-
 ## User Story Testing
 
 | User Story | Screenshot |
