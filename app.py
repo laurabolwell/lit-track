@@ -261,10 +261,13 @@ def add_student():
         return redirect(url_for("my_students", user=session["user"]))
     # check user logged in
     if "user" in session:
-        teachers = list(mongo.db.users.find(
-            {"user_type": "teacher"}).sort("surname", 1)
-        )
-        return render_template("add_student.html", teachers=teachers)
+        if user["user_type"] == "parent"
+            teachers = list(mongo.db.users.find(
+                {"user_type": "teacher"}).sort("surname", 1)
+            )
+            return render_template("add_student.html", teachers=teachers)
+        flash("You Do Not Have Permission to Visit This Page")
+        return redirect(url_for("my_students", user=session["user"]))
     flash("You Must Login to Visit This Page")
     return redirect(url_for("login"))
 
