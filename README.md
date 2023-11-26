@@ -201,7 +201,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
     - Next to the search bar and filter dropdown there is a reset button to return to the full list of reading sessions. This means the user will not need to use the back button to return to the full list.
 
-![screenshot](documentation/features/reset.png)
+![screenshot](documentation/features/reset_button.png)
 
 - **Edit Reading Session**
 
