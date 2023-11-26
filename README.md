@@ -125,33 +125,197 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 | Tablet | ![screenshot](documentation/wireframes/tablet-contact.png) |
 | Desktop | ![screenshot](documentation/wireframes/desktop-contact.png) |
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Repeat for any addition wireframe pages you have.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 ## Features
 
 ### Existing Features
 
-- **Title for feature #1**
+- **Registration Page**
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+    - Requires a registration code to either register as a teacher or parent. Users must choose a username, this has a pattern attribute to ensure it cannot be left blank.
+    - Password has a pattern attribute to ensure passwords contain a minimum of 6 characters, a lowercase letter, an uppercase letter and a digit.
+    - Has a link to find out more about the website.
+    - Has a link to the login page
 
-![screenshot](documentation/feature01.png)
+![screenshot](documentation/features/registration.png)
 
-- **Title for feature #2**
+- **About Us Page**
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+    - Contains a list of benefits of the site for both parents and the school, with a register and login page at the bottom to encourage people to sign up
 
-![screenshot](documentation/feature02.png)
+![screenshot](documentation/features/about_us.png)
 
-- **Title for feature #3**
+- **Login Page**
 
-    - Details about this particular feature, including the value to the site, and benefit for the user. Be as detailed as possible!
+    - This is the main home landing page, as the majority of visitors to the site will be current users who want to log in in the minimum number of clicks possible.
+    - Contains links to find out more about the website and to the registration page for new users.
 
-![screenshot](documentation/feature03.png)
+![screenshot](documentation/features/login_page.png)
+
+- **Welcome Messages**
+
+    - A flash message is displayed on registering/login.
+
+![screenshot](documentation/features/registration_message.png)
+![screenshot](documentation/features/welcome_message.png)
+
+- **My Reading Sessions**
+
+    - This is the page users are directed to on login.
+    - It displays a list of all reading sessions for that users students/children in a collapsible.
+    - The collapsible header contains the student name, date of session and a home/school icon to show if the reading session was completed at home or in school.
+    - When a reading session is clicked on it reveals more information: the book title, book level and an optional comment written by the person who has logged the session.
+    - If the current user is the person who has logged the reading session, it will also show buttons with the options to edit or delete the session.
+
+![screenshot](documentation/features/reading_sessions.png)
+![screenshot](documentation/features/collapsible1.png)
+![screenshot](documentation/features/collapsible2.png)
+
+- **Search Book Titles**
+
+    - At the top of the reading sessions page there is a search bar which searches both the book title and comments.
+
+![screenshot](documentation/features/search.png)
+
+- **Filter**
+
+    - At the top of the reading sessions page there is also a dropdown to filter the sessions by student. The user is able to select multiple students.
+
+![screenshot](documentation/features/filter.png)
+
+- **Reset Button**
+
+    - Next to the search bar and filter dropdown there is a reset button to return to the full list of reading sessions. This means the user will not need to use the back button to return to the full list.
+
+![screenshot](documentation/features/reset.png)
+
+- **Edit Reading Session**
+
+    - If the user is the author of a reading session, the edit button will be visible when the collapsible is opened (as shown above). 
+    - The edit form is prepopulated with all the current information from the database.
+    - The student/child must be chosen from a dropdown list of only students/children of the user.
+    - The date must be chosen from a datepicker. You cannot select a date in the future.
+    - The reading level must be chosen from a dropdown list.
+
+![screenshot](documentation/features/edit_reading_session.png)
+![screenshot](documentation/features/student_dropdown.png)
+![screenshot](documentation/features/datepicker.png)
+
+- **Delete Reading Session**
+
+    - If the user is the author of a reading session, the delete button will be visible when the collapsible is opened (as shown above). 
+    - This button triggers a modal to avoid accidental deletion.
+
+![screenshot](documentation/features/delete_reading_session_modal.png)
+
+- **Log a Reading Session Page**
+
+    - The student/child must be chosen from a dropdown list of only students/children of the user.
+    - The date must be chosen from a datepicker. You cannot select a date in the future.
+    - The reading level must be chosen from a dropdown list.
+    - The book title has a minimum and maximum number of characters to stop it being left blank.
+    - The comment is optional (being forced to write a comment can put people off logging a session).
+
+![screenshot](documentation/features/log_reading_session.png)
+![screenshot](documentation/features/student_dropdown.png)
+![screenshot](documentation/features/datepicker.png)
+
+- **My Children/ My Students**
+
+    - The heading will say 'My Children' for parent users and 'My Students' for teacher users.
+    - A button to add students is visible for parents.
+    - Buttons to update all reading levels or update all students' teachers are visible to teachers.
+
+![screenshot](documentation/features/my_students_parent.png)
+![screenshot](documentation/features/my_students_teacher.png)
+
+- **Individual Student Card Panels**
+
+    - There is an individual card panel showing basic information for each student - name and current reading level.
+    - For parent users the student's teacher is also listed.
+    - Contains buttons to edit and delete the student.
+
+![screenshot](documentation/features/individual_student_teacher.png)
+![screenshot](documentation/features/individual_student_parent.png)
+
+- **Edit Student**
+
+    - The edit form is prepopulated with all the current information from the database.
+    - The reading level must be chosen from a dropdown list.
+    - The teacher must be chosen from a dropdown list.
+
+![screenshot](documentation/features/edit_student.png)
+![screenshot](documentation/features/teacher_dropdown.png)
+
+- **Delete Student**
+
+    - This button triggers a modal to avoid accidental deletion.
+    - Deleting a student also deletes all their logged reading sessions (the user is reminded of this in the modal).
+
+![screenshot](documentation/features/delete_reading_session_modal.png)
+
+- **Add Student**
+
+    - Only parents can add students to the database. 
+    - Parents select the teacher from a dropdown list.
+    - Parents can add as many children as they want to their single user account for the app.
+
+![screenshot](documentation/features/add_child.png)
+![screenshot](documentation/features/teacher_dropdown.png)
+
+- **Delete Account**
+
+    - When this button is clicked, if a user (either teacher or parent) has students linked to their account, a modal will be triggered telling them that they must delete (if a parent) or delete/reassign (if a teacher) all their students before they can delete the account.
+    -If the user has no students linked to their account a modal will be triggered asking them if they definitely want to permanently delete the account. This is to avoid accidental account deletion.
+
+![screenshot](documentation/features/delete_account.png)
+![screenshot](documentation/features/delete_modal_1.png)
+![screenshot](documentation/features/delete_modal_2.png)
+
+- **Update All Buttons**
+
+    - If the user is a teacher the 'Update all reading levels' and 'Update teacher for all students' will be visible.
+
+![screenshot](documentation/features/update_all.png)
+
+- **Update All Levels**
+
+    - This page lists the teacher's current students together with their reading levels.
+    - Every reading level can be edited by selecting a different value from the dropdown.
+
+![screenshot](documentation/features/update_all_levels.png)
+
+- **Update All Teachers**
+
+    - This page lists the teacher's students together with their teacher (currently the user).
+    - The teacher can be edited for every student by selecting a different name from the dropdown.
+
+![screenshot](documentation/features/update_all_teachers.png)
+
+- **No Students Message**
+
+    - If a user 
+
+![screenshot](documentation/features/datepicker.png)
+
+![screenshot](documentation/features/login_page.png)
+
+- **Login Page**
+
+    - This is the main home landing page, as the majority of visitors to the site will be current users who want to log in in the minimum number of clicks possible.
+    - Contains links to find out more about the website and to the registration page for new users.
+
+![screenshot](documentation/features/datepicker.png)
+
+![screenshot](documentation/features/login_page.png)
+
+- **Login Page**
+
+    - This is the main home landing page, as the majority of visitors to the site will be current users who want to log in in the minimum number of clicks possible.
+    - Contains links to find out more about the website and to the registration page for new users.
+
+![screenshot](documentation/features/datepicker.png)
+
+![screenshot](documentation/features/login_page.png)
 
 ⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
 
