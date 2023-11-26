@@ -60,17 +60,17 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | Firefox | ![screenshot](documentation/testing/browsers/firefox.png) | Works as expected |
 | Edge | ![screenshot](documentation/testing/browsers/edge.png) | Works as expected |
 | Brave | ![screenshot](documentation/testing/browsers/brave.png) | Works as expected |
-| Opera | ![screenshot](documentation/testing/browsers/opera.png) | Minor differences |
+| Opera | ![screenshot](documentation/testing/browsers/opera.png) | Works as expected |
 
 ## Responsiveness
 
 I've tested my deployed project on multiple devices to check for responsiveness issues.
 
-| Device | Screenshot | Notes |
-| --- | --- | --- |
-| Mobile (DevTools) | ![screenshot](documentation/responsive-mobile.png) | Works as expected |
-| Tablet (DevTools) | ![screenshot](documentation/responsive-tablet.png) | Works as expected |
-| Desktop | ![screenshot](documentation/responsive-desktop.png) | Works as expected |
+| Device | My Reading Sessions Screenshot | My Students Screenshot | Edit Students Screenshot | About Us Screenshot | Notes |
+| --- | --- | --- | --- | --- | --- |
+| Mobile (DevTools) | ![screenshot](documentation/testing/responsiveness/reading_sessions_mobile.png) | ![screenshot](documentation/testing/responsiveness/my_students_mobile.png) | ![screenshot](documentation/testing/responsiveness/edit_student_mobile.png) | ![screenshot](documentation/testing/responsiveness/benefits_mobile.png) |  Works as expected |
+| Tablet (DevTools) | ![screenshot](documentation/testing/responsiveness/reading_sessions_tablet.png) |![screenshot](documentation/testing/responsiveness/my_students_tablet.png) | ![screenshot](documentation/testing/responsiveness/edit_student_tablet.png) | ![screenshot](documentation/testing/responsiveness/benefits_tablet.png) | Works as expected |
+| Desktop | ![screenshot](documentation/testing/responsiveness/reading_sessions_desktop.png) | ![screenshot](documentation/testing/responsiveness/my_students_desktop.png) | ![screenshot](documentation/testing/responsiveness/edit_student_desktop.png) | ![screenshot](documentation/testing/responsiveness/benefits_desktop.png) | Works as expected |
 
 ## Lighthouse Audit
 
@@ -79,17 +79,17 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
 | My Reading Sessions | Mobile | ![screenshot](documentation/testing/lighthouse/reading_sessions_mobile.png) | Some minor warnings |
-| My Reading Sessions | Desktop | ![screenshot](documentation/testing/lighthouse/reading_sessions_desktop.png) | Some minor warnings |
+| My Reading Sessions | Desktop | ![screenshot](documentation/testing/lighthouse/reading_sessions_deskptop.png) | Some minor warnings |
 | My Students | Mobile | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Some minor warnings |
-| My Students | Desktop | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Few warnings |
+| My Students | Desktop | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Some minor warnings |
 | Edit Student | Mobile | ![screenshot](documentation/testing/lighthouse/edit_student_mobile.png) | |
 | Edit Student | Desktop | ![screenshot](documentation/testing/lighthouse/edit_student_mobile.png) | |
 | Log Reading Session | Mobile | ![screenshot](documentation/testing/lighthouse/log_reading_session_mobile.png) | |
 | Log Reading Session | Desktop | ![screenshot](documentation/testing/lighthouse/log_reading_session_mobile.png) | |
 | Login | Mobile | ![screenshot](documentation/testing/lighthouse/login_mobile.png) | Some minor warnings |
-| Login | Desktop | ![screenshot](documentation/testing/lighthouse/login_mobile.png) | Few warnings |
+| Login | Desktop | ![screenshot](documentation/testing/lighthouse/login_mobile.png) | Some minor warnings |
 | Register | Mobile | ![screenshot](documentation/testing/lighthouse/register_mobile.png) | Some minor warnings |
-| Register | Desktop | ![screenshot](documentation/testing/lighthouse/register_mobile.png) | Few warnings |
+| Register | Desktop | ![screenshot](documentation/testing/lighthouse/register_mobile.png) | Some minor warnings |
 | Update All Levels | Mobile | ![screenshot](documentation/testing/lighthouse/update_all_levels_mobile.png) | |
 | Update All Levels | Desktop | ![screenshot](documentation/testing/lighthouse/update_all_levels_mobile.png) | |
 
