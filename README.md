@@ -539,7 +539,16 @@ There are no known differences between the local development version and the liv
 | [W3Schools](https://www.w3schools.com/css/css3_variables.asp) | entire site | how to use CSS :root variables |
 | [Flexbox Froggy](https://flexboxfroggy.com/) | entire site | modern responsive layouts |
 | [Grid Garden](https://cssgridgarden.com) | entire site | modern responsive layouts |
+| [Materialize](https://materializeweb.com/collapsible.html) | my reading sessions page | collapsible |
+| [Materialize](https://materializeweb.com/select.html) | all add/edit pages | select |
+| [Materialize](https://materializeweb.com/pickers.html) | log session page | datepicker |
+| [Materialize](https://materializeweb.com/text-inputs.html) | log session page | text input for comment |
+| [Materialize](https://materializeweb.com/navbar.html) | entire site | collapsible navbar |
+| [Materialize](https://materializeweb.com/cards.html) | entire site | card panels |
 | [strftime](https://strftime.org) | CRUD functionality | helpful tool to format date/time from string |
+| [W3Schools](https://www.w3schools.com/python/python_mongodb_find.asp) | entire site | search database |
+| [MongoDB](https://www.mongodb.com/docs/manual/reference/operator/query/or/) | CRUD functionality | $or operator for searching for multiple conditions |
+| [StackOverflow](https://stackoverflow.com/questions/31106189/create-a-simple-10-second-countdown) | Error pages | Countdown timer |
 
 ### Media
 
