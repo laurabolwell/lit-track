@@ -23,7 +23,7 @@ I used [coolors.co](https://coolors.co/e84610-009fe3-4a4a4f-445261-d63649-e6ecf0
 - `#A661A7` used for buttons.
 - `#ADD982` used for card panels throughout site.
 - `#CCE7B1` used for student individual card panels.
-- `#48BDE8` used for the navbar and footer.
+- `#90DDF8` used for the navbar and footer.
 - `#90DDF8` used for flash messages.
 
 I've used CSS `:root` variables to easily update the global colour scheme by changing only one value, instead of everywhere in the CSS file.
