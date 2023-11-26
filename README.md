@@ -86,7 +86,7 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
 - As a teacher user, I should be able to edit student details, so that I can update their teacher or reading level.
 - As a teacher user, I should be able to edit student reading levels for the whole class from one place, so that I can update them quickly after assessments.
 - As a teacher user, I should be able to edit the teacher for the whole class from one place, so that I can update them quickly if the teachers or classes are changing.
-- As a teacher site user, I would like the option to delete my account..
+- As a teacher site user, I would like the option to delete my account.
 
 ## Wireframes
 

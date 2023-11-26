@@ -64,10 +64,6 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 ## Responsiveness
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-The minimum requirement is for the following 3 tests:
-
 I've tested my deployed project on multiple devices to check for responsiveness issues.
 
 | Device | Screenshot | Notes |
@@ -82,22 +78,15 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Home | Mobile | ![screenshot](documentation/lighthouse-home-mobile.png) | Some minor warnings |
-| Home | Desktop | ![screenshot](documentation/lighthouse-home-desktop.png) | Few warnings |
-| About | Mobile | ![screenshot](documentation/lighthouse-about-mobile.png) | Some minor warnings |
-| About | Desktop | ![screenshot](documentation/lighthouse-about-desktop.png) | Few warnings |
+| My Reading Sessions | Mobile | ![screenshot](documentation/testing/lighthouse/my_reading_sessions_mobile.png) | Some minor warnings |
+| My Reading Sessions | Desktop | ![screenshot](documentation/testing/lighthouse/my_reading_sessions_desktop.png) | Some minor warnings |
+| My Students | Mobile | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Some minor warnings |
+| My Students | Desktop | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Few warnings |
 | Gallery | Mobile | ![screenshot](documentation/lighthouse-gallery-mobile.png) | Slow response time due to large images |
 | Gallery | Desktop | ![screenshot](documentation/lighthouse-gallery-desktop.png) | Slow response time due to large images |
 | x | x | x | repeat for any other tested pages/sizes |
 
 ## Defensive Programming
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Defensive programming (defensive design) is extremely important!
-
-When building projects that accept user inputs or forms, you should always test the level of security for each.
-Examples of this could include (not limited to):
 
 Forms:
 - Users cannot submit an empty form
@@ -114,83 +103,79 @@ Flask/Django:
 - Non-Authenticated users should not be able to access pages that require authentication
 - Standard users should not be able to access pages intended for superusers
 
-You'll want to test all functionality on your application, whether it's a standard form,
-or uses CRUD functionality for data manipulation on a database.
-Make sure to include the `required` attribute on any form-fields that should be mandatory.
-Try to access various pages on your site as different user types (User-A, User-B, guest user, admin, superuser).
-
-You should include any manual tests performed, and the expected results/outcome.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 Defensive programming was manually tested with the below user acceptance testing:
 
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
-| Home Page | | | | |
-| | Click on Logo | Redirection to Home page | Pass | |
-| | Click on Home link in navbar | Redirection to Home page | Pass | |
-| Gallery Page | | | | |
-| | Click on Gallery link in navbar | Redirection to Gallery page | Pass | |
-| | Load gallery images | All images load as expected | Pass | |
-| Contact Page | | | | |
-| | Click on Contact link in navbar | Redirection to Contact page | Pass | |
-| | Enter first/last name | Field will accept freeform text | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter message in textarea | Field will accept freeform text | Pass | |
-| | Click the Submit button | Redirects user to form-dump | Pass | User must click 'Back' button to return |
-| Sign Up | | | | |
-| | Click on Sign Up button | Redirection to Sign Up page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password (twice) | Field will only accept password format | Pass | |
-| | Click on Sign Up button | Asks user to confirm email page | Pass | Email sent to user |
-| | Confirm email | Redirects user to blank Sign In page | Pass | |
+| Login Page | | | | when not logged in |
+| | Click on Logo | Redirection to Login page | Pass | |
+| | Brute forcing the URL of every logged in page | Redirection to Login page | Pass | |
+| My Reading Sessions Page | | | | |
+| | Click on 'Log Reading Session' on navbar | Redirect to log_reading_session page | Pass | |
+| | Click on 'My Students' on navbar | Redirect to my_students page | Pass | |
+| | Click on session logged by user | Edit and delete buttons available | Pass | |
+| | Click on session logged by another user | No buttons visible | Pass | |
+| | Brute force URL of edit page | "You don't have access to edit this reading session" flash message and redirect to my_reading_sessions | Pass | |
+| Log Reading Session Page | | | | |
+| | Try to log a session when no students | Redirection to my_students and flash message | Pass | |
+| | Select student | Only students of the user appear in the dropdown | Pass | |
+| | Select a date | Cannot select a date in the future | Pass | |
+| | Enter a 1 character title | Helper text saying input too short | Pass | |
+| | Submit the form leaving comment blank | Form submits | Pass | comment is optional |
+| | Submit the form leaving any other field blank | Form will not submit | Pass | |
+| My Students Page | | | | |
+| | Parent user clicks add student button | Redirection to add_student page | Pass | |
+| | Teacher user brute forces URL of add_student page | Flash message "You don't have permission" and redirect | Pass | |
+| | Click on student edit button | Redirection to edit_student page | Pass | |
+| | Click on student delete button | Deletion modal triggered | Pass | |
+| | Click on delete user button | Trigger appropriate deletion modal depending on if students still linked to account | Pass | |
+| | Teacher clicks on update_reading_levels | Redirect to update_levels page | Pass | |
+| | Teacher clicks on update_teacher button | Redirect to update_teacher page | Pass | |
+| | Parent brute forces URL of an update all page | Cannot gain access | Pass | |
 | Log In | | | | |
 | | Click on the Login link | Redirection to Login page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
 | | Enter valid password | Field will only accept password format | Pass | |
 | | Click Login button | Redirects user to home page | Pass | |
 | Log Out | | | | |
-| | Click Logout button | Redirects user to logout page | Pass | Confirms logout first |
-| | Click Confirm Logout button | Redirects user to home page | Pass | |
-| Profile | | | | |
-| | Click on Profile button | User will be redirected to the Profile page | Pass | |
-| | Click on the Edit button | User will be redirected to the edit profile page | Pass | |
-| | Click on the My Orders link | User will be redirected to the My Orders page | Pass | |
-| | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
+| | Click Logout button | Redirects user to logout page | Pass | |
+| Registration Page | | | | |
+| | Enters incorrect registration code | Flash message and redirect to reg page | Pass | |
+| | Enters invalid username | Cannot submit form | Pass | |
+| | Enters invalid first/last name | Cannot submit form | Pass | |
+| | Enters invalid password | Cannot submit form | Pass | |
 
 
 
 ## User Story Testing
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Testing user stories is actually quite simple, once you've already got the stories defined on your README.
-
-Most of your project's **features** should already align with the **user stories**,
-so this should as simple as creating a table with the user story, matching with the re-used screenshot
-from the respective feature.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 | User Story | Screenshot |
 | --- | --- |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature01.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature02.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature03.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature04.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature05.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature06.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature07.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature08.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature09.png) |
-| repeat for all remaining user stories | x |
+| As a new site user, I would like to understand what the site is about, so that I can decide whether I would like to use it. | ![screenshot](documentation/features/about_us.png) |
+| As a new site user, I would like to create an account, so that I can use the site. | ![screenshot](documentation/features/registration.png) |
+| As a parent user, I would like to easily add my children, so that I can start their digital reading record. | ![screenshot](documentation/features/my_students_parent.png.png) |
+| As a parent user, I would like to edit my child's information, so that I can correct a mistake. | ![screenshot](documentation/features/edit_student.png.png) |
+| As a parent user, I would like to be able to view my child's information, so that I can see their reading level and teacher at a glance. | ![screenshot](documentation/features/individual_student_parent.png.png) |
+| As a parent site user, I would like to easily log a reading session, so that I can quickly and easily add to their reading record. | ![screenshot](documentation/features/log_reading_session.png.png) |
+| As a parent site user, I would like to easily view my child's reading sessions, so I can see how much they are reading and how much progress they are making. | ![screenshot](documentation/features/reading_sessions.png.png) |
+| As a parent site user, I would like to edit a reading session I have logged, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png.png) |
+| As a parent user, I would like to do all the above for ALL my children from a single account. | ![screenshot](documentation/features/my_students_parent.png.png) |
+| As a parent user, I would like to see reading sessions for all my children together, but also have the option to view them for one particular child. | ![screenshot](documentation/features/filter.png.png) |
+| As a parent site user, I would like to have the option to delete a reading session I have logged. | ![screenshot](documentation/features/delete_reading_session_modal.png.png) |
+| As a parent user, I would like the option to delete my child and all their information, once they have left school. | ![screenshot](documentation/features/delete_student_modal.png.png) |
+| As a parent site user, I would like the option to delete my account once all my children have left school. | ![screenshot](documentation/features/delete_modal_2.png.png) |
+| As a teacher user, I should be able to see which of my students have been reading and how often, so that I can keep track of their progress. | ![screenshot](documentation/features/reading_sessions.png.png) |
+| As a teacher user, I should be able to see at a glance whether each session has been completed at home or in school, so that I can keep track of which students may need extra reading practise. | ![screenshot](documentation/features/collapsible1.png.png) |
+| As a teacher user, I should be able to search for a book title, so I can see if a student has already read a particular book. | ![screenshot](documentation/features/search.png.png) |
+| As a teacher user, I should be able to filter the list of reading sessions by student, so I can focus on them individually sometimes. | ![screenshot](documentation/features/filter.png.png) |
+| As a teacher user, I should be able to log reading sessions students complete in school, so that parents are aware of these. | ![screenshot](documentation/features/log_reading_session.png.png) |
+| As a teacher user, I should be able to edit a reading session, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png.png) |
+| As a teacher user, I should be able to delete a reading session. | ![screenshot](documentation/features/delete_reading_session_modal.png.png) |
+| As a teacher user, I should be able to edit student details, so that I can update their teacher or reading level. | ![screenshot](documentation/features/edit_student.png.png) |
+| As a teacher user, I should be able to edit student reading levels for the whole class from one place, so that I can update them quickly after assessments. | ![screenshot](documentation/features/update_all_levels.png.png) |
+| As a teacher user, I should be able to edit the teacher for the whole class from one place, so that I can update them quickly if the teachers or classes are changing. | ![screenshot](documentation/features/update_all_teachers.png.png) |
+| As a teacher site user, I would like the option to delete my account. | ![screenshot](documentation/features/delete_modal_2.png.png) |
 
-## Automated Testing
-
-I have conducted a series of automated tests on my application.
-
-I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests would be more comprehensive.
 ## Bugs
 
 ⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
