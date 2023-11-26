@@ -261,6 +261,7 @@ def add_student():
         return redirect(url_for("my_students", user=session["user"]))
     # check user logged in
     if "user" in session:
+        user = mongo.db.users.find_one({"username": session["user"]})
         if user["user_type"] == "parent":
             teachers = list(mongo.db.users.find(
                 {"user_type": "teacher"}).sort("surname", 1)
