@@ -370,25 +370,34 @@ It contains 3 collections:
     | Key | Type | Notes |
     | --- | --- | --- |
     | _id | ObjectId() | |
-    | category_name | String | |
-
-- **reading_sessions**
-    | Key | Type | Notes |
-    | --- | --- | --- |
-    | _id | ObjectId() | |
-    | category_name | String | selected from *categories* collection |
-    | task_name | String | |
-    | task_description | String | |
-    | is_urgent | String | |
-    | due_date | String | |
-    | created_by | String | selected from the *users* collection |
-
-- **users**
-    | Key | Type | Notes |
-    | --- | --- | --- |
-    | _id | ObjectId() | |
     | username | String | |
+    | user_type | String | |
+    | title | String | |
+    | fname | String | |
+    | lname | String | |
     | password | String | uses Secure Hash Algorithm (SHA) |
+
+- **students**
+    | Key | Type | Notes |
+    | --- | --- | --- |
+    | _id | ObjectId() | |
+    | fname | String | |
+    | lname | String | |
+    | reading_level | String | |
+    | teacher | ObjectId() | _id from user collection |
+    | parent | ObjectId() | _id from user collection |
+
+- **reading_sessions***
+    | Key | Type | Notes |
+    | --- | --- | --- |
+    | _id | ObjectId() | |
+    | student | ObjectId() | _id from student collection |
+    | date | String | formatted for displaying on app |
+    | title | String | |
+    | book_level | String | |
+    | comment | String | |
+    | logged_by | ObjectId() | _id from user collection |
+    | date_sort | String | formatted for sorting |
 
 ## Testing
 
@@ -396,38 +405,16 @@ For all testing, please refer to the [TESTING.md](TESTING.md) file.
 
 ## Deployment
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-**IMPORTANT:**
-- Be sure to remove all instances of ElephantSQL/PostgreSQL/Flask-Migrate if you've only used a non-relational database with MongoDB
-- Be sure to remove all instances of MongoDB if you've only used a relational database with ElephantSQL/PostgreSQL
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-- ⚠️ DO NOT update the environment variables to your own! These should NOT be included in this file; just demo values! ⚠️
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 The live deployed application can be found deployed on [Heroku](https://lit-track-313aa42e46f6.herokuapp.com).
-
-### ElephantSQL Relational Database
-
-This project uses [ElephantSQL](https://www.elephantsql.com) for the PostgreSQL Database.
-
-To obtain your own Postgres Database, sign-up with your GitHub account, then follow these steps:
-- Click **Create New Instance** to start a new database.
-- Provide a name (this is commonly the name of the project: PLACEHOLDER-NAME).
-- Select the **Tiny Turtle (Free)** plan.
-- You can leave the **Tags** blank.
-- Select the **Region** and **Data Center** closest to you.
-- Once created, click on the new database name, where you can view the database URL and Password.
 
 ### MongoDB Non-Relational Database
 
 This project uses [MongoDB](https://www.mongodb.com) for the Non-Relational Database.
 
 To obtain your own MongoDB Database URI, sign-up on their site, then follow these steps:
-- The name of the database on MongoDB should be called **insert-your-database-name-here**.
-- The collection(s) needed for this database should be **insert-your-collection-names-here**.
+- The name of the database on MongoDB should be called **Lit_track**.
+- The collection(s) needed for this database should be **users**, **students**, and **reading_sessions**.
 - Click on the **Cluster** name created for the project.
 - Click on the **Connect** button.
 - Click **Connect Your Application**.
@@ -486,54 +473,6 @@ This project can be cloned or forked in order to make a local copy on your own s
 For either method, you will need to install any applicable packages found within the *requirements.txt* file.
 - `pip3 install -r requirements.txt`.
 
-If you are using SQLAlchemy for your project, you need to create a local PostgreSQL database.
-In this example, the example database name is **db-name**.
-
-```shell
-workspace (branch) $ set_pg
-workspace (branch) $ psql
-
-... connection to postgres ...
-
-postgres=# CREATE DATABASE db-name;
-CREATE DATABASE
-postgres=# \c db-name;
-You are now connected to database "db-name" as user "foobar".
-db-name=# \q
-```
-
-Once that database is created, you must migrate the database changes from your models.py file.
-This example uses **app-name** for the name of the primary Flask application.
-
-```shell
-workspace (branch) $ python3
-
-... connection to Python CLI ...
-
->>> from app-name import db
->>> db.create_all()
->>> exit()
-```
-
-To confirm that the database table(s) have been created, you can use the following:
-
-```shell
-workspace (branch) $ psql -d db-name
-
-... connection to postgres ...
-
-postgres=# \dt
-
-	List of relations
-Schema | Name | Type | Owner
--------+------+------+--------
-public | blah1 | table | foobar
-public | blah2 | table | foobar
-public | blah3 | table | foobar
-
-db-name=# \q
-```
-
 You will need to create a new file called `env.py` at the root-level,
 and include the same environment variables listed above from the Heroku deployment steps, plus a few extras.
 
@@ -552,33 +491,6 @@ os.environ.setdefault("SECRET_KEY", "user's own value")
 os.environ.setdefault("DB_URL", "user's own value")
 os.environ.setdefault("DEBUG", "True")
 os.environ.setdefault("DEVELOPMENT", "True")
-```
-
-If using Flask-Migrate, make sure to include the following steps as well.
-
-During the course of development, it became necessary to update the PostgreSQL data models.
-In order to do this, [Flask-Migrate](https://flask-migrate.readthedocs.io) was used.
-
-- `pip3 install Flask-Migrate`
-- Import the newly installed package on your main `__init__.py` file:
-	- `from flask_migrate import Migrate`
-- Define **Migrate** in the same file after **app** and **db** are defined:
-	- `migrate = Migrate(app, db)`
-- Initiate the migration changes in the terminal:
-
-```shell
-workspace (branch) $ flask db init
-
-	... generating migrations ...
-
-workspace (branch) $ set_pg
-workspace (branch) $ flask db migrate -m "Add a commit message for this migration"
-
-	... migrating changes ...
-
-workspace (branch) $ flask db upgrade
-
-	... updating database ...
 ```
 
 #### Cloning
@@ -612,11 +524,7 @@ You can fork this repository by using the following steps:
 
 ### Local VS Deployment
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Use this space to discuss any differences between the local version you've developed, and the live deployment site on Heroku.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
+There are no known differences between the local development version and the live deployed site on Heroku.
 
 ## Credits
 
