@@ -138,6 +138,16 @@ Defensive programming was manually tested with the below user acceptance testing
 | | Enters invalid first/last name | Cannot submit form | Pass | |
 | | Enters invalid password | Cannot submit form | Pass | |
 
+I have created several user accounts to test all functionality. 
+Sample test accounts with data attached:
+| username | password | user_type |
+| --- | --- | --- |
+| garethdavies | Password1 | teacher |
+| helenajones | Password1 | teacher |
+| rachelsharp | Password1 | parent |
+| neilforbes | Password1 | parent |
+
+
 ## User Story Testing
 
 | User Story | Screenshot |
@@ -187,3 +197,4 @@ All previously closed/fixed bugs can be tracked [here](https://github.com/laurab
 
 - Search doesn't include common words such as "a", "the" etc. This is somewhat of a problem when many titles of early reader books are very simple, for example, with "We Go Out" no results are returned if you search for "we" or "out".
 
+Return back to the [README.md](README.md) file.
