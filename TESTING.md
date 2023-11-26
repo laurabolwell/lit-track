@@ -78,13 +78,22 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-| My Reading Sessions | Mobile | ![screenshot](documentation/testing/lighthouse/my_reading_sessions_mobile.png) | Some minor warnings |
-| My Reading Sessions | Desktop | ![screenshot](documentation/testing/lighthouse/my_reading_sessions_desktop.png) | Some minor warnings |
+| My Reading Sessions | Mobile | ![screenshot](documentation/testing/lighthouse/reading_sessions_mobile.png) | Some minor warnings |
+| My Reading Sessions | Desktop | ![screenshot](documentation/testing/lighthouse/reading_sessions_desktop.png) | Some minor warnings |
 | My Students | Mobile | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Some minor warnings |
 | My Students | Desktop | ![screenshot](documentation/testing/lighthouse/my_students_mobile.png) | Few warnings |
-| Gallery | Mobile | ![screenshot](documentation/lighthouse-gallery-mobile.png) | Slow response time due to large images |
-| Gallery | Desktop | ![screenshot](documentation/lighthouse-gallery-desktop.png) | Slow response time due to large images |
-| x | x | x | repeat for any other tested pages/sizes |
+| Edit Student | Mobile | ![screenshot](documentation/testing/lighthouse/edit_student_mobile.png) | |
+| Edit Student | Desktop | ![screenshot](documentation/testing/lighthouse/edit_student_mobile.png) | |
+| Log Reading Session | Mobile | ![screenshot](documentation/testing/lighthouse/log_reading_session_mobile.png) | |
+| Log Reading Session | Desktop | ![screenshot](documentation/testing/lighthouse/log_reading_session_mobile.png) | |
+| Login | Mobile | ![screenshot](documentation/testing/lighthouse/login_mobile.png) | Some minor warnings |
+| Login | Desktop | ![screenshot](documentation/testing/lighthouse/login_mobile.png) | Few warnings |
+| Register | Mobile | ![screenshot](documentation/testing/lighthouse/register_mobile.png) | Some minor warnings |
+| Register | Desktop | ![screenshot](documentation/testing/lighthouse/register_mobile.png) | Few warnings |
+| Update All Levels | Mobile | ![screenshot](documentation/testing/lighthouse/update_all_levels_mobile.png) | |
+| Update All Levels | Desktop | ![screenshot](documentation/testing/lighthouse/update_all_levels_mobile.png) | |
+
+
 
 ## Defensive Programming
 
@@ -128,7 +137,6 @@ Defensive programming was manually tested with the below user acceptance testing
 | | Enters invalid username | Cannot submit form | Pass | |
 | | Enters invalid first/last name | Cannot submit form | Pass | |
 | | Enters invalid password | Cannot submit form | Pass | |
-
 
 ## User Story Testing
 
