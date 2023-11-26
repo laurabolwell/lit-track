@@ -88,22 +88,6 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 ## Defensive Programming
 
-Forms:
-- Users cannot submit an empty form
-- Users must enter valid email addresses
-
-PP3 (Python-only):
-- Users must enter a valid letter/word/string when prompted
-- Users must choose from a specific list only
-
-Flask/Django:
-- Users cannot brute-force a URL to navigate to a restricted page
-- Users cannot perform CRUD functionality while logged-out
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers
-
-
 Defensive programming was manually tested with the below user acceptance testing:
 
 | Page | User Action | Expected Result | Pass/Fail | Comments |
@@ -146,7 +130,6 @@ Defensive programming was manually tested with the below user acceptance testing
 | | Enters invalid password | Cannot submit form | Pass | |
 
 
-
 ## User Story Testing
 
 | User Story | Screenshot |
@@ -154,27 +137,27 @@ Defensive programming was manually tested with the below user acceptance testing
 | As a new site user, I would like to understand what the site is about, so that I can decide whether I would like to use it. | ![screenshot](documentation/features/about_us.png) |
 | As a new site user, I would like to create an account, so that I can use the site. | ![screenshot](documentation/features/registration.png) |
 | As a parent user, I would like to easily add my children, so that I can start their digital reading record. | ![screenshot](documentation/features/my_students_parent.png.png) |
-| As a parent user, I would like to edit my child's information, so that I can correct a mistake. | ![screenshot](documentation/features/edit_student.png.png) |
-| As a parent user, I would like to be able to view my child's information, so that I can see their reading level and teacher at a glance. | ![screenshot](documentation/features/individual_student_parent.png.png) |
-| As a parent site user, I would like to easily log a reading session, so that I can quickly and easily add to their reading record. | ![screenshot](documentation/features/log_reading_session.png.png) |
-| As a parent site user, I would like to easily view my child's reading sessions, so I can see how much they are reading and how much progress they are making. | ![screenshot](documentation/features/reading_sessions.png.png) |
-| As a parent site user, I would like to edit a reading session I have logged, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png.png) |
-| As a parent user, I would like to do all the above for ALL my children from a single account. | ![screenshot](documentation/features/my_students_parent.png.png) |
-| As a parent user, I would like to see reading sessions for all my children together, but also have the option to view them for one particular child. | ![screenshot](documentation/features/filter.png.png) |
-| As a parent site user, I would like to have the option to delete a reading session I have logged. | ![screenshot](documentation/features/delete_reading_session_modal.png.png) |
-| As a parent user, I would like the option to delete my child and all their information, once they have left school. | ![screenshot](documentation/features/delete_student_modal.png.png) |
-| As a parent site user, I would like the option to delete my account once all my children have left school. | ![screenshot](documentation/features/delete_modal_2.png.png) |
-| As a teacher user, I should be able to see which of my students have been reading and how often, so that I can keep track of their progress. | ![screenshot](documentation/features/reading_sessions.png.png) |
+| As a parent user, I would like to edit my child's information, so that I can correct a mistake. | ![screenshot](documentation/features/edit_student.png) |
+| As a parent user, I would like to be able to view my child's information, so that I can see their reading level and teacher at a glance. | ![screenshot](documentation/features/individual_student_parent.png) |
+| As a parent site user, I would like to easily log a reading session, so that I can quickly and easily add to their reading record. | ![screenshot](documentation/features/log_reading_session.png) |
+| As a parent site user, I would like to easily view my child's reading sessions, so I can see how much they are reading and how much progress they are making. | ![screenshot](documentation/features/reading_sessions.png) |
+| As a parent site user, I would like to edit a reading session I have logged, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png) |
+| As a parent user, I would like to do all the above for ALL my children from a single account. | ![screenshot](documentation/features/my_students_parent.png) |
+| As a parent user, I would like to see reading sessions for all my children together, but also have the option to view them for one particular child. | ![screenshot](documentation/features/filter.png) |
+| As a parent site user, I would like to have the option to delete a reading session I have logged. | ![screenshot](documentation/features/delete_reading_session_modal.png) |
+| As a parent user, I would like the option to delete my child and all their information, once they have left school. | ![screenshot](documentation/features/delete_student_modal.png) |
+| As a parent site user, I would like the option to delete my account once all my children have left school. | ![screenshot](documentation/features/delete_modal_2.png) |
+| As a teacher user, I should be able to see which of my students have been reading and how often, so that I can keep track of their progress. | ![screenshot](documentation/features/reading_sessions.png) |
 | As a teacher user, I should be able to see at a glance whether each session has been completed at home or in school, so that I can keep track of which students may need extra reading practise. | ![screenshot](documentation/features/collapsible1.png.png) |
-| As a teacher user, I should be able to search for a book title, so I can see if a student has already read a particular book. | ![screenshot](documentation/features/search.png.png) |
-| As a teacher user, I should be able to filter the list of reading sessions by student, so I can focus on them individually sometimes. | ![screenshot](documentation/features/filter.png.png) |
-| As a teacher user, I should be able to log reading sessions students complete in school, so that parents are aware of these. | ![screenshot](documentation/features/log_reading_session.png.png) |
-| As a teacher user, I should be able to edit a reading session, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png.png) |
-| As a teacher user, I should be able to delete a reading session. | ![screenshot](documentation/features/delete_reading_session_modal.png.png) |
-| As a teacher user, I should be able to edit student details, so that I can update their teacher or reading level. | ![screenshot](documentation/features/edit_student.png.png) |
-| As a teacher user, I should be able to edit student reading levels for the whole class from one place, so that I can update them quickly after assessments. | ![screenshot](documentation/features/update_all_levels.png.png) |
-| As a teacher user, I should be able to edit the teacher for the whole class from one place, so that I can update them quickly if the teachers or classes are changing. | ![screenshot](documentation/features/update_all_teachers.png.png) |
-| As a teacher site user, I would like the option to delete my account. | ![screenshot](documentation/features/delete_modal_2.png.png) |
+| As a teacher user, I should be able to search for a book title, so I can see if a student has already read a particular book. | ![screenshot](documentation/features/search.png) |
+| As a teacher user, I should be able to filter the list of reading sessions by student, so I can focus on them individually sometimes. | ![screenshot](documentation/features/filter.png) |
+| As a teacher user, I should be able to log reading sessions students complete in school, so that parents are aware of these. | ![screenshot](documentation/features/log_reading_session.png) |
+| As a teacher user, I should be able to edit a reading session, so that I can correct a mistake. | ![screenshot](documentation/features/edit_reading_session.png) |
+| As a teacher user, I should be able to delete a reading session. | ![screenshot](documentation/features/delete_reading_session_modal.png) |
+| As a teacher user, I should be able to edit student details, so that I can update their teacher or reading level. | ![screenshot](documentation/features/edit_student.png) |
+| As a teacher user, I should be able to edit student reading levels for the whole class from one place, so that I can update them quickly after assessments. | ![screenshot](documentation/features/update_all_levels.png) |
+| As a teacher user, I should be able to edit the teacher for the whole class from one place, so that I can update them quickly if the teachers or classes are changing. | ![screenshot](documentation/features/update_all_teachers.png) |
+| As a teacher site user, I would like the option to delete my account. | ![screenshot](documentation/features/delete_modal_2.png) |
 
 ## Bugs
 
