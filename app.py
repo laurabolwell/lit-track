@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-debug = os.environ.get("DEBUG", False)
+debug = os.environ.get("DEBUG")
 parent_code = os.environ.get("PARENT_CODE")
 teacher_code = os.environ.get("TEACHER_CODE")
 
