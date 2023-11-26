@@ -301,7 +301,13 @@ def log_reading_session():
             ]}).sort("lname", 1)
         )
         if not students:
-            flash("You Have No Students. Please Remind Parents to Sign Up.")
+            if user["user_type"] == "teacher":
+                flash("You Have No Students. Please Remind Parents to Sign Up.")
+            else:
+                flash(
+                    "You Have No Children Linked to Your Account. "
+                    "Please Add a Child."
+                    )
             return redirect(url_for("my_students", user=session["user"]))
         return render_template(
             "log_reading_session.html",
