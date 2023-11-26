@@ -153,7 +153,7 @@ To follow best practice, wireframes were developed for mobile, tablet, and deskt
 
     - This is the page users are directed to on login.
     - It displays a list of all reading sessions for that users students/children in a collapsible.
-    - The collapsible header contains the student name, date of session and a home/school icon to show if the reading session was completed at home or in school.
+    - The collapsible header contains the student name, date of session and a home/school icon to show if the reading session was completed at home or in school. The icon shows a tooltip when hovered over which says "logged by ..."
     - When a reading session is clicked on it reveals more information: the book title, book level and an optional comment written by the person who has logged the session.
     - If the current user is the person who has logged the reading session, it will also show buttons with the options to edit or delete the session.
 
