@@ -69,9 +69,9 @@
                             <div class="col s4"><strong>{{ reading_session.date }}</strong></div>
                             <!-- display home icon if logged by parent and school icon if logged by teacher -->
                             {% if reading_session.logged_by == student.parent %}
-                            <div class="col s2"><i class="fa-solid fa-house"></i></div>
+                            <div class="col s2"><i class="fa-solid fa-house tooltipped" data-position="right" data-tooltip="Logged by Parent"></i></div>
                             {% else %}
-                            <div class="col s2"><i class="fa-solid fa-school"></i></div>
+                            <div class="col s2"><i class="fa-solid fa-school tooltipped" data-position="right" data-tooltip="Logged by Teacher"></i></div>
                             {% endif %}
                         </div>
                     </div>

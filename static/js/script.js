@@ -35,4 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
       { id: "Dr" },
     ]
   });
+  // initialization for tooltips
+  let tooltipped = document.querySelectorAll('.tooltipped');
+  M.Tooltip.init(tooltipped, {
+  });
 });
