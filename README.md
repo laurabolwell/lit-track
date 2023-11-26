@@ -129,6 +129,14 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 ### Existing Features
 
+- **Navbar**
+
+    - If the user is not currently logged in, the only links on the navbar are login and register. The main logo on the left hand side links to the login page.
+    - If the user is logged in, the full menu is displayed.
+    - The navbar collapses for small devices.
+
+![screenshot](documentation/features/navbar.png)
+
 - **Registration Page**
 
     - Requires a registration code to either register as a teacher or parent. Users must choose a username, this has a pattern attribute to ensure it cannot be left blank.
@@ -150,6 +158,13 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     - Contains links to find out more about the website and to the registration page for new users.
 
 ![screenshot](documentation/features/login_page.png)
+
+- **Incorrect Username/Password**
+
+    - If a user enters an incorrect username or password, this flash message will display and the user will be directed back to the login page.
+    - The message does not say whether the username or the password is incorrect, this is to improve app security.
+
+![screenshot](documentation/features/incorrect_username_message.png)
 
 - **Welcome Messages**
 
@@ -267,7 +282,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     - When this button is clicked, if a user (either teacher or parent) has students linked to their account, a modal will be triggered telling them that they must delete (if a parent) or delete/reassign (if a teacher) all their students before they can delete the account.
     -If the user has no students linked to their account a modal will be triggered asking them if they definitely want to permanently delete the account. This is to avoid accidental account deletion.
 
-![screenshot](documentation/features/delete_account.png)
+![screenshot](documentation/features/delete_account_button.png)
 ![screenshot](documentation/features/delete_modal_1.png)
 ![screenshot](documentation/features/delete_modal_2.png)
 
@@ -293,66 +308,35 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **No Students Message**
 
-    - If a user 
+    - If a user has no students, they will be shown a flash message.
+    - For parents this will tell them to add a student, for teachers it will tell them to remind parents to sign up.
 
-![screenshot](documentation/features/datepicker.png)
+![screenshot](documentation/features/no_students_message.png)
+![screenshot](documentation/features/no_children_message.png)
 
-![screenshot](documentation/features/login_page.png)
+- **Logout Message**
 
-- **Login Page**
+    - Once a user has successfully logged out, a flash message will display and they will be redirected back to the login page.
 
-    - This is the main home landing page, as the majority of visitors to the site will be current users who want to log in in the minimum number of clicks possible.
-    - Contains links to find out more about the website and to the registration page for new users.
+![screenshot](documentation/features/logged_out_message.png)
 
-![screenshot](documentation/features/datepicker.png)
+- **Error Pages (404 and 500)**
 
-![screenshot](documentation/features/login_page.png)
+    - Error page displays the error and has a 10 second countdown timer after which is redirects to the home page (login if not logged in, or my_reading_sessions if logged in)
+    - It also contains a button link back to the homepage.
 
-- **Login Page**
+![screenshot](documentation/features/404.png)
 
-    - This is the main home landing page, as the majority of visitors to the site will be current users who want to log in in the minimum number of clicks possible.
-    - Contains links to find out more about the website and to the registration page for new users.
-
-![screenshot](documentation/features/datepicker.png)
-
-![screenshot](documentation/features/login_page.png)
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Repeat as necessary for as many features as your site contains.
-
-Hint: the more, the merrier!
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ### Future Features
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
+- Admin User
+    - In the future an admin user would be useful to oversee all users and to be able to move students between teachers, as well as deleting unused accounts.
+- Teachers to be able to add students
+    - It would be useful if teachers could also add students to the site, but would require a registration code to be given to the parents so that their children and all information already held in the database could be linked to their account. This is something that I will look at adding in the future.
 
-Do you have additional ideas that you'd like to include on your project in the future?
-Fantastic! List them here!
-It's always great to have plans for future improvements!
-Consider adding any helpful links or notes to help remind you in the future, if you revisit the project in a couple years.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
-- Title for future feature #1
-    - Any additional notes about this feature.
-- Title for future feature #2
-    - Any additional notes about this feature.
-- Title for future feature #3
-    - Any additional notes about this feature.
 
 ## Tools & Technologies Used
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-In this section, you should explain the various tools and technologies used to develop the project.
-Make sure to put a link (where applicable) to the source, and explain what each was used for.
-Some examples have been provided, but this is just a sample only, your project might've used others.
-Feel free to delete any unused items below as necessary.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 - [HTML](https://en.wikipedia.org/wiki/HTML) used for the main site content.
 - [CSS](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
@@ -365,35 +349,30 @@ Feel free to delete any unused items below as necessary.
 - [GitHub](https://github.com) used for secure online code storage.
 - [GitHub Pages](https://pages.github.com) used for hosting the deployed front-end site.
 - [Gitpod](https://gitpod.io) used as a cloud-based IDE for development.
-- [Bootstrap](https://getbootstrap.com) used as the front-end CSS framework for modern responsiveness and pre-built components.
 - [Materialize](https://materializecss.com) used as the front-end CSS framework for modern responsiveness and pre-built components.
+- [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder/) used to help generate the Markdown files.
+- [Favicon.io](favicon.io) used to create favicon.
+- [Am I Responsive?](https://ui.dev/amiresponsive) used to show the website on a range of devices.
 - [Flask](https://flask.palletsprojects.com) used as the Python framework for the site.
-- [Django](https://www.djangoproject.com) used as the Python framework for the site.
 - [MongoDB](https://www.mongodb.com) used as the non-relational database management with Flask.
-- [SQLAlchemy](https://www.sqlalchemy.org) used as the relational database management with Flask.
-- [PostgreSQL](https://www.postgresql.org) used as the relational database management.
-- [ElephantSQL](https://www.elephantsql.com) used as the Postgres database.
 - [Heroku](https://www.heroku.com) used for hosting the deployed back-end site.
-- [Cloudinary](https://cloudinary.com) used for online static file storage.
-- [Stripe](https://stripe.com) used for online secure payments of ecommerce products/services.
-- [AWS S3](https://aws.amazon.com/s3) used for online static file storage.
 
 ## Database Design
 
 My project uses a non-relational database with MongoDB, and therefore the database architecture
 doesn't have actual relationships like a relational database would.
 
-My database is called **task_manager**.
+My database is called **lit_track**.
 
 It contains 3 collections:
 
-- **categories**
+- **users**
     | Key | Type | Notes |
     | --- | --- | --- |
     | _id | ObjectId() | |
     | category_name | String | |
 
-- **tasks**
+- **reading_sessions**
     | Key | Type | Notes |
     | --- | --- | --- |
     | _id | ObjectId() | |
