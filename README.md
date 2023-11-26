@@ -90,40 +90,16 @@ I've used CSS `:root` variables to easily update the global colour scheme by cha
 
 ## Wireframes
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-In this section, display your wireframe screenshots using a Markdown `table`.
-
-Instructions on how to do Markdown `tables` start on line #213 on this site: https://pandao.github.io/editor.md/en.html
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
-I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
 
-### Home Page Wireframes
-
-| Size | Screenshot |
-| --- | --- |
-| Mobile | ![screenshot](documentation/wireframes/mobile-home.png) |
-| Tablet | ![screenshot](documentation/wireframes/tablet-home.png) |
-| Desktop | ![screenshot](documentation/wireframes/desktop-home.png) |
-
-### About Page Wireframes
-
-| Size | Screenshot |
-| --- | --- |
-| Mobile | ![screenshot](documentation/wireframes/mobile-about.png) |
-| Tablet | ![screenshot](documentation/wireframes/tablet-about.png) |
-| Desktop | ![screenshot](documentation/wireframes/desktop-about.png) |
-
-### Contact Page Wireframes
-
-| Size | Screenshot |
-| --- | --- |
-| Mobile | ![screenshot](documentation/wireframes/mobile-contact.png) |
-| Tablet | ![screenshot](documentation/wireframes/tablet-contact.png) |
-| Desktop | ![screenshot](documentation/wireframes/desktop-contact.png) |
+| Page | Mobile Screenshot | Tablet Screenshot | Desktop Screenshot |
+| --- | --- | --- | --- |
+| Login | ![screenshot](documentation/wireframes/login_mobile.png) | ![screenshot](documentation/wireframes/login_tablet.png) | ![screenshot](documentation/wireframes/login_desktop.png) |
+| About Us | ![screenshot](documentation/wireframes/benefits_mobile.png) | ![screenshot](documentation/wireframes/benefits_tablet.png) | ![screenshot](documentation/wireframes/benefits_desktop.png) |
+| Reading Sessions | ![screenshot](documentation/wireframes/reading_sessions_mobile.png) | ![screenshot](documentation/wireframes/reading_sessions_tablet.png) | ![screenshot](documentation/wireframes/reading_sessions_desktop.png) |
+| My Students | ![screenshot](documentation/wireframes/my_students_mobile.png) | ![screenshot](documentation/wireframes/my_students_tablet.png) | ![screenshot](documentation/wireframes/my_students_desktop.png) |
+| Log Session | ![screenshot](documentation/wireframes/log_session_mobile.png) | ![screenshot](documentation/wireframes/log_session_tablet.png) | ![screenshot](documentation/wireframes/log_session_desktop.png) |
+| Update All | ![screenshot](documentation/wireframes/update_all_mobile.png) | ![screenshot](documentation/wireframes/update_all_tablet.png) | ![screenshot](documentation/wireframes/update_all_desktop.png) |
 
 ## Features
 
